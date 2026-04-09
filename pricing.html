@@ -32,7 +32,7 @@
             --cream-dark: #EDE8DF;
             --ink: #1A1410;
             --ink-light: #3D342C;
-            --muted: #9A8A7A;
+            --muted: #5C5049;
             --white: #FDFAF6;
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
@@ -46,8 +46,48 @@
             color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
-            cursor: none;
         }
+        @media (pointer: fine) {
+            .has-custom-cursor,
+            .has-custom-cursor * { cursor: none !important; }
+        }
+        .skip-link {
+            position: absolute;
+            top: -100%; left: 1rem;
+            background: var(--crimson);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 999999;
+            border-radius: 0 0 6px 6px;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 0; }
+        :focus-visible {
+            outline: 3px solid var(--crimson);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal, .reveal-left { opacity: 1 !important; transform: none !important; }
+            .pricing-hero h1, .pricing-hero-label, .pricing-hero-sub { opacity: 1 !important; transform: none !important; }
+            .marquee-inner { animation: none !important; }
+        }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+        .cursor, .cursor-follower { display: none; }
+        .has-custom-cursor .cursor,
+        .has-custom-cursor .cursor-follower { display: block; }
 
         /* ─── CURSOR ─── */
         .cursor {
@@ -135,7 +175,7 @@
         /* ─── HERO ─── */
         .pricing-hero {
             min-height: 60vh;
-            background: var(--ink);
+            background: var(--crimson-deep);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -391,7 +431,7 @@
         .pricing-card:hover::before { transform: scaleX(1); }
 
         .pricing-card.featured {
-            background: var(--ink);
+            background: var(--crimson-deep);
             color: var(--white);
         }
 
@@ -520,7 +560,7 @@
         }
 
         .addon-card {
-            background: var(--ink);
+            background: var(--crimson-deep);
             padding: 3rem 2.5rem;
             display: flex;
             justify-content: space-between;
@@ -577,7 +617,7 @@
         /* ─── PAYMENT SECTION ─── */
         .payment-section {
             padding: 6rem 5%;
-            background: var(--ink);
+            background: var(--crimson-deep);
         }
 
         .payment-inner {
@@ -767,8 +807,8 @@
 
         /* ─── FOOTER ─── */
         footer {
-            background: var(--ink);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--crimson-deep);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding: 2.5rem 5%;
             display: flex;
             justify-content: space-between;
@@ -822,31 +862,37 @@
 </head>
 <body>
 
-    <div class="page-loader" id="loader"><div class="loader-text">Pricing</div></div>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="page-loader" id="loader" role="status" aria-live="polite" aria-label="Loading">
+        <div class="loader-text" aria-hidden="true">Pricing</div>
+    </div>
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
     <!-- NAV -->
-    <nav id="nav">
-        <a href="index.html" class="logo">La'<span>T</span>ahvia Williams</a>
-        <ul>
+    <nav id="nav" aria-label="Main navigation">
+        <a href="index.html" class="logo">La'<span aria-hidden="true">T</span><span class="sr-only">T</span>ahvia Williams</a>
+        <ul role="list">
             <li><a href="index.html#about">About</a></li>
             <li><a href="index.html#projects">Work</a></li>
             <li><a href="index.html#contact">Contact</a></li>
-            <li><a href="index.html" class="nav-back">← Portfolio</a></li>
+            <li><a href="index.html" class="nav-back"><span aria-hidden="true">←</span> Portfolio</a></li>
         </ul>
     </nav>
 
+    <main id="main-content">
+
     <!-- HERO -->
-    <section class="pricing-hero">
-        <div class="pricing-hero-bg">RATES</div>
-        <p class="pricing-hero-label">Freelance Services · 2026</p>
-        <h1>Transparent<br><em>Pricing.</em></h1>
+    <section class="pricing-hero" aria-labelledby="pricing-hero-heading">
+        <div class="pricing-hero-bg" aria-hidden="true">RATES</div>
+        <p class="pricing-hero-label" aria-hidden="true">Freelance Services · 2026</p>
+        <h1 id="pricing-hero-heading">Transparent<br><em>Pricing.</em></h1>
         <p class="pricing-hero-sub">Five years of experience. Professional-quality design and analysis with honest, fixed-price packages — no hidden fees, no surprises.</p>
     </section>
 
     <!-- MARQUEE -->
-    <div class="marquee-wrap">
+    <div class="marquee-wrap" aria-hidden="true" role="presentation">
         <div class="marquee-inner">
             <span class="marquee-item">Website Design</span>
             <span class="marquee-sep">✦</span>
@@ -1229,27 +1275,27 @@
             <h2 class="reveal">Frequently <em>Asked</em></h2>
 
             <div class="faq-item reveal delay-1">
-                <button class="faq-question">How long does a typical project take? <span class="faq-icon">+</span></button>
+                <button class="faq-question" aria-expanded="false">How long does a typical project take? <span class="faq-icon" aria-hidden="true">+</span></button>
                 <div class="faq-answer"><p>Delivery timelines are listed on each package. Website projects typically take 3–12 weeks depending on complexity. Brand identity projects take 2–8 weeks. Data analysis ranges from 1–6 weeks. Rush delivery is available for a 25% fee.</p></div>
             </div>
 
             <div class="faq-item reveal delay-2">
-                <button class="faq-question">What if I need something not listed? <span class="faq-icon">+</span></button>
+                <button class="faq-question" aria-expanded="false">What if I need something not listed? <span class="faq-icon" aria-hidden="true">+</span></button>
                 <div class="faq-answer"><p>All packages are a starting point. If your project needs something custom — a unique scope, combination of services, or a tight timeline — reach out and we'll put together a custom quote. I'm flexible and happy to tailor a package to your needs.</p></div>
             </div>
 
             <div class="faq-item reveal delay-3">
-                <button class="faq-question">Do you work with nonprofits or students? <span class="faq-icon">+</span></button>
+                <button class="faq-question" aria-expanded="false">Do you work with nonprofits or students? <span class="faq-icon" aria-hidden="true">+</span></button>
                 <div class="faq-answer"><p>Absolutely. I'm passionate about mission-driven work. Nonprofits and student organizations get a 10% discount on all packages. Just mention it when you reach out and I'll apply it to your quote.</p></div>
             </div>
 
             <div class="faq-item reveal delay-4">
-                <button class="faq-question">What do I need to provide to get started? <span class="faq-icon">+</span></button>
+                <button class="faq-question" aria-expanded="false">What do I need to provide to get started? <span class="faq-icon" aria-hidden="true">+</span></button>
                 <div class="faq-answer"><p>For design projects: any existing brand assets, inspiration references, and a brief description of your goals. For data projects: your dataset (or a description of your data source), your research questions, and any existing reports. I'll guide you through the rest in our discovery call.</p></div>
             </div>
 
             <div class="faq-item reveal delay-5">
-                <button class="faq-question">What happens after the project is done? <span class="faq-icon">+</span></button>
+                <button class="faq-question" aria-expanded="false">What happens after the project is done? <span class="faq-icon" aria-hidden="true">+</span></button>
                 <div class="faq-answer"><p>You get all source files and deliverables in agreed formats. Website clients get a 30–90 day support window depending on their package. After that, maintenance retainers keep everything running smoothly. I don't disappear after delivery — I want your project to keep performing.</p></div>
             </div>
         </div>
@@ -1264,10 +1310,12 @@
         </div>
     </section>
 
+    </main><!-- end #main-content -->
+
     <!-- FOOTER -->
     <footer>
         <p>© 2026 La'Tahvia Williams · Freelance Services</p>
-        <a href="index.html">← Back to Portfolio</a>
+        <a href="index.html"><span aria-hidden="true">←</span> Back to Portfolio</a>
     </footer>
 
     <script>
@@ -1278,16 +1326,23 @@
             }, 800);
         });
 
-        // CURSOR
+        // CURSOR (mouse only)
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursorFollower');
         let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
+            if (!document.documentElement.classList.contains('has-custom-cursor')) {
+                document.documentElement.classList.add('has-custom-cursor');
+            }
             mouseX = e.clientX;
             mouseY = e.clientY;
             cursor.style.left = mouseX + 'px';
             cursor.style.top = mouseY + 'px';
+        });
+
+        document.addEventListener('keydown', () => {
+            document.documentElement.classList.remove('has-custom-cursor');
         });
 
         function animateFollower() {
@@ -1323,8 +1378,14 @@
             btn.addEventListener('click', () => {
                 const item = btn.parentElement;
                 const isOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                if (!isOpen) item.classList.add('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
             });
         });
 

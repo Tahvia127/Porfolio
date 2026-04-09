@@ -36,7 +36,7 @@
             --cream-dark: #EDE8DF;
             --ink: #1A1410;
             --ink-light: #3D342C;
-            --muted: #9A8A7A;
+            --muted: #5C5049;
             --white: #FDFAF6;
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
@@ -58,7 +58,53 @@
             color: var(--ink);
             line-height: 1.6;
             overflow-x: hidden;
-            cursor: none;
+        }
+
+        /* Only hide system cursor for mouse users after JS activates custom cursor */
+        @media (pointer: fine) {
+            .has-custom-cursor,
+            .has-custom-cursor * { cursor: none !important; }
+        }
+
+        /* ─── SKIP LINK ─── */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--crimson);
+            color: var(--white);
+            padding: 0.8rem 1.6rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            z-index: 999999;
+            border-radius: 0 0 6px 6px;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* ─── FOCUS STYLES ─── */
+        :focus-visible {
+            outline: 3px solid var(--crimson);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+        /* ─── REDUCED MOTION ─── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal, .reveal-left, .reveal-right, .reveal-scale {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .section-line { transform: scaleX(1) !important; }
+            .hero h1 .line-inner { opacity: 1 !important; transform: none !important; }
+            .hero-label, .hero-stats, .hero-bottom { opacity: 1 !important; transform: none !important; }
+            .marquee-inner { animation: none !important; }
         }
 
         /* ─── CUSTOM CURSOR ─── */
@@ -171,7 +217,7 @@
         /* ─── HERO ─── */
         .hero {
             min-height: 100vh;
-            background: var(--ink);
+            background: var(--crimson-deep);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -524,7 +570,7 @@
         /* ─── SERVICES TEASER ─── */
         .services-teaser {
             padding: 8rem 5%;
-            background: var(--ink);
+            background: var(--crimson-deep);
             overflow: hidden;
         }
 
@@ -788,7 +834,7 @@
         /* ─── DESIGN SECTION ─── */
         .design-section {
             padding: 10rem 5%;
-            background: var(--ink);
+            background: var(--cream-dark);
         }
 
         .design-header {
@@ -803,14 +849,14 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: clamp(3.5rem, 6vw, 5rem);
             font-weight: 400;
-            color: var(--white);
+            color: var(--ink);
             line-height: 1;
         }
 
-        .design-header h2 em { font-style: italic; color: var(--crimson-bright); }
+        .design-header h2 em { font-style: italic; color: var(--crimson); }
 
         .design-header p {
-            color: rgba(255,255,255,0.8);
+            color: var(--ink-light);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -828,7 +874,7 @@
         }
 
         .design-card {
-            background: var(--ink-light);
+            background: var(--white);
             overflow: hidden;
             position: relative;
             cursor: pointer;
@@ -882,14 +928,14 @@
         .design-card-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            color: var(--white);
+            color: var(--ink);
             font-weight: 400;
             margin-bottom: 0.5rem;
         }
 
         .design-card-desc {
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.78);
+            color: var(--ink-light);
             line-height: 1.7;
         }
 
@@ -1070,7 +1116,7 @@
         /* ─── CONTACT ─── */
         .contact {
             padding: 12rem 5%;
-            background: var(--ink);
+            background: var(--crimson-deep);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -1159,8 +1205,8 @@
 
         /* ─── FOOTER ─── */
         footer {
-            background: var(--ink);
-            border-top: 1px solid rgba(255,255,255,0.05);
+            background: var(--crimson-deep);
+            border-top: 1px solid rgba(255,255,255,0.1);
             padding: 2.5rem 5%;
             display: flex;
             justify-content: space-between;
@@ -1309,43 +1355,64 @@
         }
 
         .section-line.visible { transform: scaleX(1); }
+
+        /* ─── SCREEN-READER ONLY UTILITY ─── */
+        .sr-only {
+            position: absolute;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Hide custom cursor elements until mouse activates them */
+        .cursor, .cursor-follower { display: none; }
+        .has-custom-cursor .cursor,
+        .has-custom-cursor .cursor-follower { display: block; }
     </style>
 </head>
 <body>
 
+    <!-- Skip Navigation -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Page Loader -->
-    <div class="page-loader" id="loader">
-        <div class="loader-text">La'Tahvia</div>
+    <div class="page-loader" id="loader" role="status" aria-live="polite" aria-label="Loading">
+        <div class="loader-text" aria-hidden="true">La'Tahvia</div>
     </div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
+    <!-- Custom Cursor (decorative) -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav id="nav">
-        <a href="#" class="logo">La'<span>T</span>ahvia Williams</a>
-        <ul>
+    <nav id="nav" aria-label="Main navigation">
+        <a href="#main-content" class="logo">La'<span aria-hidden="true">T</span><span class="sr-only">T</span>ahvia Williams</a>
+        <ul role="list">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Data & Analysis</a></li>
+            <li><a href="#projects">Data &amp; Analysis</a></li>
             <li><a href="#design">Design</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="pricing.html" class="nav-cta">View Pricing →</a></li>
+            <li><a href="pricing.html" class="nav-cta">View Pricing <span aria-hidden="true">→</span></a></li>
         </ul>
     </nav>
 
+    <main id="main-content">
+
     <!-- ─── HERO ─── -->
-    <section class="hero">
-        <div class="hero-bg-text">LTW</div>
-        <div class="hero-label">Portfolio · 2026</div>
-        <h1>
+    <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg-text" aria-hidden="true">LTW</div>
+        <div class="hero-label" aria-hidden="true">Portfolio · 2026</div>
+        <h1 id="hero-heading">
             <span class="line"><span class="line-inner">Data.</span></span>
             <span class="line"><span class="line-inner">Design.</span></span>
             <span class="line"><span class="line-inner"><em>Impact.</em></span></span>
         </h1>
-        <div class="hero-stats">
+        <div class="hero-stats" aria-label="Key statistics">
             <div class="hero-stat">
-                <div class="hero-stat-number">20+</div>
+                <div class="hero-stat-number" aria-label="20 plus">20+</div>
                 <div class="hero-stat-label">Projects</div>
             </div>
             <div class="hero-stat">
@@ -1353,13 +1420,13 @@
                 <div class="hero-stat-label">Years Experience</div>
             </div>
             <div class="hero-stat">
-                <div class="hero-stat-number">100+</div>
+                <div class="hero-stat-number" aria-label="100 plus">100+</div>
                 <div class="hero-stat-label">Students Mentored</div>
             </div>
         </div>
         <div class="hero-bottom">
             <p class="hero-tagline">Turning complex data into stories that drive real-world change.</p>
-            <div class="hero-scroll">
+            <div class="hero-scroll" aria-hidden="true">
                 <div class="hero-scroll-line"></div>
                 Scroll to explore
             </div>
@@ -1367,7 +1434,7 @@
     </section>
 
     <!-- ─── MARQUEE ─── -->
-    <div class="marquee-wrap">
+    <div class="marquee-wrap" aria-hidden="true" role="presentation">
         <div class="marquee-inner">
             <span class="marquee-item">Data Scientist</span>
             <span class="marquee-sep">✦</span>
@@ -1397,12 +1464,12 @@
     </div>
 
     <!-- ─── ABOUT ─── -->
-    <section class="about" id="about">
+    <section class="about" id="about" aria-labelledby="about-heading">
         <div class="about-grid">
             <div class="about-left">
                 <p class="section-label reveal">About Me</p>
                 <div class="section-line reveal delay-1"></div>
-                <h2 class="reveal delay-2">Where <em>Data</em><br>Meets Design</h2>
+                <h2 id="about-heading" class="reveal delay-2">Where <em>Data</em><br>Meets Design</h2>
                 <p class="reveal delay-3">
                     I'm a data science and public policy student at the University of Chicago
                     who turns numbers into narratives. I believe the most powerful insights
@@ -1444,7 +1511,7 @@
     <section class="services-teaser">
         <div class="services-teaser-inner">
             <div>
-                <p class="section-label reveal" style="color: var(--crimson-bright);">What I Offer</p>
+                <p class="section-label reveal" style="color: rgba(255,255,255,0.9);">What I Offer</p>
                 <div class="section-line reveal delay-1" style="background: var(--crimson-bright);"></div>
                 <h2 class="reveal delay-2">I help brands<br>grow through<br><em>data & design</em></h2>
             </div>
@@ -1617,7 +1684,7 @@
     <section class="design-section" id="design">
         <div class="design-header">
             <div>
-                <p class="section-label reveal" style="color: var(--crimson-bright);">Creative Work</p>
+                <p class="section-label reveal">Creative Work</p>
                 <h2 class="reveal delay-1">Brand &<br><em>Design</em></h2>
             </div>
             <p class="reveal delay-2" style="color: rgba(255,255,255,0.82);">Brand identity,<br>campaign design &<br>visual systems</p>
@@ -1697,9 +1764,9 @@
                     </div>
                 </div>
                 <div class="design-card-info">
-                    <div class="design-card-cat" style="color: rgba(255,255,255,0.6);">Freelance Services</div>
-                    <div class="design-card-title">View Pricing & Packages</div>
-                    <div class="design-card-desc" style="color: rgba(255,255,255,0.5);">Website design, graphic design, and data analysis — transparent pricing for every budget.</div>
+                    <div class="design-card-cat" style="color: rgba(255,255,255,0.85);">Freelance Services</div>
+                    <div class="design-card-title" style="color: var(--white);">View Pricing &amp; Packages</div>
+                    <div class="design-card-desc" style="color: rgba(255,255,255,0.85);">Website design, graphic design, and data analysis — transparent pricing for every budget.</div>
                 </div>
             </a>
         </div>
@@ -1791,7 +1858,7 @@
     <!-- ─── CONTACT ─── -->
     <section class="contact" id="contact">
         <div class="contact-inner">
-            <p class="section-label reveal" style="color: var(--crimson-bright); text-align: center; display: block;">Get In Touch</p>
+            <p class="section-label reveal" style="color: rgba(255,255,255,0.9); text-align: center; display: block;">Get In Touch</p>
             <h2 class="reveal delay-1">Let's<br><em>Connect</em></h2>
             <p class="reveal delay-2">
                 Whether you want to collaborate on a project, discuss the latest in data science,
@@ -1799,17 +1866,19 @@
             </p>
             <div class="contact-links reveal delay-3">
                 <a href="mailto:williamstahvia@gmail.com" class="contact-btn contact-btn-primary">Email Me</a>
-                <a href="https://www.linkedin.com/in/la-tahvia-williams-805a96246/" target="_blank" class="contact-btn contact-btn-secondary">LinkedIn</a>
-                <a href="https://github.com/Tahvia127" target="_blank" class="contact-btn contact-btn-secondary">GitHub</a>
+                <a href="https://www.linkedin.com/in/la-tahvia-williams-805a96246/" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-secondary">LinkedIn <span class="sr-only">(opens in new tab)</span></a>
+                <a href="https://github.com/Tahvia127" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-secondary">GitHub <span class="sr-only">(opens in new tab)</span></a>
                 <a href="pricing.html" class="contact-btn contact-btn-secondary">View Pricing</a>
             </div>
         </div>
     </section>
 
+    </main><!-- end #main-content -->
+
     <!-- ─── FOOTER ─── -->
     <footer>
-        <p>© 2026 La'Tahvia Williams · Designed with Data & Intention</p>
-        <a href="pricing.html">Freelance Services →</a>
+        <p>© 2026 La'Tahvia Williams · Designed with Data &amp; Intention</p>
+        <a href="pricing.html">Freelance Services <span aria-hidden="true">→</span></a>
     </footer>
 
     <script>
@@ -1820,17 +1889,26 @@
             }, 800);
         });
 
-        // ─── CUSTOM CURSOR ───
+        // ─── CUSTOM CURSOR (mouse only) ───
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursorFollower');
         let mouseX = 0, mouseY = 0;
         let followerX = 0, followerY = 0;
 
         document.addEventListener('mousemove', (e) => {
+            // Activate custom cursor only after first mouse movement
+            if (!document.documentElement.classList.contains('has-custom-cursor')) {
+                document.documentElement.classList.add('has-custom-cursor');
+            }
             mouseX = e.clientX;
             mouseY = e.clientY;
             cursor.style.left = mouseX + 'px';
             cursor.style.top = mouseY + 'px';
+        });
+
+        // Restore cursor for keyboard users
+        document.addEventListener('keydown', () => {
+            document.documentElement.classList.remove('has-custom-cursor');
         });
 
         function animateFollower() {
