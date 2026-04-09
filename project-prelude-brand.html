@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prelude Brand Identity | La'Tahvia Williams</title>
+    <style>
+        /* ==========================================
+   CONSISTENT TYPOGRAPHY SYSTEM
+   Copy this entire section to ALL your HTML pages
+   ========================================== */
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Base Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings - Playfair Display */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Body Text - Poppins */
+        p, li, span, a, div {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Special Elements */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .project-category,
+        .tech-tag,
+        .tech-badge {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        button, .btn, .contact-btn, .project-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav, nav a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 1.75rem; }
+            h4 { font-size: 1.35rem; }
+            p { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        nav {
+            background: #000000;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #FFB425 0%, #f39c12 100%);
+            color: #1B4793;
+            padding: 8rem 5% 6rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            color: #2c3e50;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+
+        .section h3 {
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: #FFB425;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #444444;
+        }
+
+        .project-details {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item h3 {
+            font-size: 1.2rem;
+            color: #FFB425;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            color: #666666;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .color-palette {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .color-blue { background: #1B4793; }
+        .color-green { background: #ADC965; }
+        .color-yellow { background: #FFB425; }
+        .color-pink { background: #DD3341; }
+        .color-orange { background: #EE3A23; }
+
+        .color-name {
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-meaning {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1.5rem;
+        }
+
+        .gallery-caption h4 {
+            font-family: 'Medino', serif;
+            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            color: #666666;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .full-width-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 3rem auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: #FFB425;
+            color: #000000;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .cta-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: #FFB425;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: #f39c12;
+        }
+
+        .btn-secondary {
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .hero-meta { gap: 1rem; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="project-category">Brand Identity • Visual System • Marketing Design</div>
+            <h1>Prelude</h1>
+            <p class="hero-subtitle">
+                Develop Young Minds, Build Bright Futures
+            </p>
+            <div class="hero-meta">
+                <span>Complete Brand Identity</span>
+                <span>•</span>
+                <span>Education Program</span>
+                <span>•</span>
+                <span>2024</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>
+                Prelude is an after-school and summer program dedicated to helping students grow academically and personally. 
+                I created a comprehensive brand identity system that reflects the organization's mission to develop young minds 
+                and build bright futures through education and enrichment.
+            </p>
+            <p>
+                The brand needed to communicate warmth, joy, and intellectual growth while appealing to both students and parents. 
+                The result is a vibrant, approachable identity centered around a smiling box mascot with a lightbulb symbolizing 
+                the idea that education unlocks potential and illuminates paths forward.
+            </p>
+
+            <div class="project-details">
+                <h3>Project Scope</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h3>Client</h3>
+                        <p>Prelude<br>After-School & Summer Program<br>"Develop Young Minds, Build Bright Futures"</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Brand Elements</h3>
+                        <p>Logo Design<br>Color System<br>Pattern Design<br>Mascot Character<br>Typography System</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Applications</h3>
+                        <p>Merchandise Line<br>Vehicle Wraps<br>Building Signage<br>Billboard Advertising<br>Digital Marketing<br>Stationery System</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Deliverables</h3>
+                        <p>Brand Guidelines<br>Website Design<br>Social Media Templates<br>Product Mockups<br>Environmental Graphics</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Brand Strategy</h2>
+            <p>
+                The Prelude brand identity is built on the concept of transformation through education. The mascot—a cheerful 
+                box with a glowing lightbulb that represents students who are full of potential, ready to open up and discover 
+                their brightness. This friendly character makes learning feel accessible and exciting rather than intimidating.
+            </p>
+            <p>
+                Every element of the brand system was designed to convey positivity, growth, and possibility. From the vibrant 
+                color palette to the playful pattern system, each component reinforces Prelude's commitment to creating 
+                joyful learning environments where students can thrive.
+            </p>
+
+            <div class="color-palette">
+                <h3>Strategic Color Palette</h3>
+                <p>Each color was chosen for its psychological impact and meaning within the educational context:</p>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch color-blue"></div>
+                        <div class="color-name">Blue</div>
+                        <div class="color-meaning">Integrity</div>
+                        <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">#1B4793</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-green"></div>
+                        <div class="color-name">Green</div>
+                        <div class="color-meaning">Growth</div>
+                        <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">#ADC965</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-yellow"></div>
+                        <div class="color-name">Yellow</div>
+                        <div class="color-meaning">Joy & Positivity</div>
+                        <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">#FFB425</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-pink"></div>
+                        <div class="color-name">Hot Pink</div>
+                        <div class="color-meaning">Caring</div>
+                        <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">#DD3341</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch color-orange"></div>
+                        <div class="color-name">Orange</div>
+                        <div class="color-meaning">Happiness</div>
+                        <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">#EE3A23</p>
+                    </div>
+                </div>
+            </div>
+
+            <img src="Photos/5ddf454e-ecd6-4155-bf5a-f0457ba00ff9_rw_1920.png" alt="Prelude Logo Color Variations" class="full-width-img">
+            <img src="Photos/1bbb09c1-2086-40ee-95bf-a442adeba8b1_rw_1920.png" alt="Prelude Wordmark Variations" class="full-width-img">
+        </section>
+
+        <section class="section">
+            <h2>Brand Applications</h2>
+
+            <h3>Merchandise & Products</h3>
+            <p>
+                Designed a complete product line including phone cases, backpacks, t-shirts, water bottles, and headphones. 
+                Each item features the Prelude pattern system and logo, creating branded merchandise that students would 
+                actually want to use.
+            </p>
+
+            <img src="Photos/0b5988b3-30ea-4957-a615-06dd6d4b8c46_rw_1920.png" alt="Prelude Product Line" class="full-width-img">
+
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="Photos/7a775f87-fcd3-49dc-a5bb-66f10b33cb64_rw_1200.png" alt="Phone Case Designs">
+                    <div class="gallery-caption">
+                        <h4>Phone Cases</h4>
+                        <p>Pattern design applied to protective phone cases in blue and yellow colorways</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/c7dbda03-b91c-4e53-a8f3-5245157b631a_rw_1200.png" alt="Branded Apparel">
+                    <div class="gallery-caption">
+                        <h4>Apparel Design</h4>
+                        <p>Subtle logo placement on athletic wear and casual clothing</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Environmental Graphics</h3>
+            <p>
+                Created bold, eye-catching designs for large-scale applications including vehicle wraps, building signage, 
+                and billboard advertising. These designs maintain brand consistency while adapting to different viewing 
+                distances and contexts.
+            </p>
+
+            <img src="Photos/3162c138-a367-4a0c-baae-f822af0fb0cd_rw_1920.png" alt="Bus Wrap Design" class="full-width-img">
+            <img src="Photos/afe9b30e-0186-4f67-99b8-2334fe1daee8_rw_1920.png" alt="Building Signage" class="full-width-img">
+            <img src="Photos/b93048af-0de2-4a0e-8651-f789f8450959_rw_1920.png" alt="Billboard Design" class="full-width-img">
+
+            <h3>Stationery System</h3>
+            <p>
+                Developed a complete stationery suite including business cards, letterhead, envelopes, and stickers. 
+                The pattern design creates visual interest while maintaining professional credibility.
+            </p>
+
+            <img src="Photos/aa8170ee-0bb6-402f-930f-e34ffefc9257_rw_1200.png" alt="Brand Stationery" class="full-width-img">
+
+            <h3>Digital Presence</h3>
+            <p>
+                Designed website interface and social media templates that bring the brand identity into digital spaces. 
+                The designs prioritize usability while maintaining the vibrant, energetic brand personality.
+            </p>
+
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="Photos/da214c13-a36e-4def-a34d-638c3090e957_rw_1200.png" alt="Website Design">
+                    <div class="gallery-caption">
+                        <h4>Website Interface</h4>
+                        <p>Clean, modern design featuring the pattern system and brand messaging</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/ff5ada9c-030a-4631-8614-18bea22de7f7_rw_1920.png" alt="Social Media Templates">
+                    <div class="gallery-caption">
+                        <h4>Social Media Design</h4>
+                        <p>Instagram templates showcasing product photography and brand content</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Design Process</h2>
+            <p>
+                The project began with extensive research into educational brand identities and color psychology. I developed 
+                multiple logo concepts before landing on the smiling box with lightbulb, a design that perfectly captured the 
+                program's mission while being simple enough to work across all applications.
+            </p>
+            <p>
+                Using Adobe Illustrator, I created the logo as a vector graphic, ensuring scalability from business cards to 
+                billboards. The pattern system evolved from the core logo, creating repeating elements that could be applied 
+                to products and marketing materials. Adobe Photoshop enabled realistic product mockups and environmental 
+                graphics visualizations.
+            </p>
+            <p>
+                For the color system, I selected five distinct hues, each tied to specific emotional and psychological meanings 
+                relevant to education. This strategic approach ensured every color choice supported the brand's messaging 
+                about integrity, growth, joy, caring, and happiness.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Results & Impact</h2>
+            <p>
+                The Prelude brand identity successfully positions the program as warm, professional, and focused on student 
+                growth. The vibrant visual system differentiates Prelude from competitors while appealing to families seeking 
+                enriching educational experiences for their children.
+            </p>
+            <p>
+                The comprehensive nature of the brand system, from merchandise to environmental graphics—ensures consistent 
+                brand recognition across all touchpoints. Whether families encounter Prelude through a billboard, social media, 
+                or a branded bus, they experience a cohesive, memorable identity that communicates the program's commitment 
+                to developing young minds and building bright futures.
+            </p>
+            <p>
+                This project demonstrates my ability to develop complete brand ecosystems that extend far beyond logo design, 
+                encompassing strategic color systems, pattern design, product development, environmental graphics, and digital 
+                marketing materials.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Tools & Techniques</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Adobe Illustrator</span>
+                <span class="tech-badge">Adobe Photoshop</span>
+                <span class="tech-badge">Canva</span>
+                <span class="tech-badge">Logo Design</span>
+                <span class="tech-badge">Brand Strategy</span>
+                <span class="tech-badge">Color Theory</span>
+                <span class="tech-badge">Pattern Design</span>
+                <span class="tech-badge">Product Mockups</span>
+                <span class="tech-badge">Environmental Graphics</span>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <h2>See More Work</h2>
+        <div class="cta-buttons">
+            <a href="index.html#design" class="btn btn-secondary">More Design Projects</a>
+            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+</html>

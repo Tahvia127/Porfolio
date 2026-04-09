@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Services — La'Tahvia Williams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Regular.otf') format('opentype');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Light.otf') format('opentype');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Bold.otf') format('opentype');
+            font-weight: 700;
+        }
+
+        :root {
+            --crimson: #8B1A2A;
+            --crimson-deep: #5C0F1B;
+            --crimson-bright: #C41E3A;
+            --cream: #F5F0E8;
+            --cream-dark: #EDE8DF;
+            --ink: #1A1410;
+            --ink-light: #3D342C;
+            --muted: #9A8A7A;
+            --white: #FDFAF6;
+            --transition: cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Aileron', 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ─── CURSOR ─── */
+        .cursor {
+            position: fixed;
+            width: 10px; height: 10px;
+            background: var(--crimson);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s var(--transition), height 0.3s var(--transition);
+            mix-blend-mode: multiply;
+        }
+        .cursor-follower {
+            position: fixed;
+            width: 36px; height: 36px;
+            border: 1.5px solid var(--crimson);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s var(--transition), width 0.3s var(--transition), height 0.3s var(--transition);
+        }
+        .cursor.expanded { width: 20px; height: 20px; }
+        .cursor-follower.expanded { width: 60px; height: 60px; }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.4s ease, padding 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 5%;
+            border-bottom: 1px solid rgba(139, 26, 42, 0.15);
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .logo span { color: var(--crimson); }
+
+        nav ul { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        nav a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--crimson);
+            transition: width 0.3s var(--transition);
+        }
+        nav a:hover { color: var(--crimson); }
+        nav a:hover::after { width: 100%; }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--crimson) !important;
+            font-weight: 600 !important;
+        }
+        .nav-back::after { display: none !important; }
+
+        /* ─── HERO ─── */
+        .pricing-hero {
+            min-height: 60vh;
+            background: var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 8rem 5% 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-hero-bg {
+            position: absolute;
+            inset: 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(120px, 20vw, 240px);
+            font-weight: 700;
+            color: rgba(255,255,255,0.025);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            letter-spacing: -5px;
+            white-space: nowrap;
+            animation: slowFloat 10s ease-in-out infinite;
+        }
+
+        @keyframes slowFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .pricing-hero-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--crimson-bright);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: revealUp 0.8s var(--transition) 0.3s forwards;
+        }
+
+        .pricing-hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1;
+            letter-spacing: -2px;
+            opacity: 0;
+            animation: revealUp 0.9s var(--transition) 0.5s forwards;
+        }
+
+        .pricing-hero h1 em {
+            font-style: italic;
+            color: var(--crimson-bright);
+        }
+
+        .pricing-hero-sub {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.5);
+            max-width: 500px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: revealUp 0.9s var(--transition) 0.7s forwards;
+        }
+
+        @keyframes revealUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── MARQUEE ─── */
+        .marquee-wrap {
+            background: var(--crimson);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-item {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--white);
+            letter-spacing: 2px;
+            padding: 0 2rem;
+            display: inline-block;
+        }
+        .marquee-sep {
+            color: rgba(255,255,255,0.4);
+            display: inline-block;
+            padding: 0 0.5rem;
+        }
+
+        /* ─── REVEAL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+        }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+
+        /* ─── PROCESS ─── */
+        .process {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+        .process-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .process h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .process h2 em { font-style: italic; color: var(--crimson); }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+        }
+        .process-step {
+            background: var(--cream);
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+        .process-step:hover { background: var(--crimson); }
+        .process-step:hover .process-step-num { color: rgba(255,255,255,0.2); }
+        .process-step:hover .process-step-title { color: var(--white); }
+        .process-step:hover .process-step-desc { color: rgba(255,255,255,0.7); }
+
+        .process-step-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(139,26,42,0.1);
+            line-height: 1;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        .process-step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.7rem;
+            transition: color 0.3s ease;
+        }
+        .process-step-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        /* ─── PRICING SECTIONS ─── */
+        .pricing-section {
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .pricing-section:nth-child(odd) { background: var(--cream); }
+        .pricing-section:nth-child(even) { background: var(--cream-dark); }
+
+        .pricing-section-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--crimson);
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title em { font-style: italic; color: var(--crimson); }
+
+        .section-desc {
+            font-size: 1rem;
+            color: var(--ink-light);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* ─── PRICING CARDS ─── */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s var(--transition), box-shadow 0.4s ease;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: var(--crimson);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--transition);
+        }
+
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(139,26,42,0.12); }
+        .pricing-card:hover::before { transform: scaleX(1); }
+
+        .pricing-card.featured {
+            background: var(--ink);
+            color: var(--white);
+        }
+
+        .pricing-card.featured::before { background: var(--crimson-bright); transform: scaleX(1); }
+        .pricing-card.featured:hover { box-shadow: 0 30px 70px rgba(0,0,0,0.3); }
+
+        .card-badge {
+            display: inline-block;
+            background: var(--crimson);
+            color: var(--white);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card.featured .card-badge {
+            background: var(--crimson-bright);
+        }
+
+        .card-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card.featured .card-name { color: var(--white); }
+
+        .card-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            color: var(--crimson);
+        }
+
+        .pricing-card.featured .card-price { color: var(--crimson-bright); }
+
+        .card-price-note {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-card.featured .card-price-note { color: rgba(255,255,255,0.4); }
+
+        .card-divider {
+            height: 1px;
+            background: rgba(139,26,42,0.12);
+            margin-bottom: 2rem;
+        }
+        .pricing-card.featured .card-divider { background: rgba(255,255,255,0.1); }
+
+        .card-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            color: var(--ink-light);
+        }
+
+        .pricing-card.featured .card-features li { color: rgba(255,255,255,0.75); }
+
+        .card-features li::before {
+            content: '✓';
+            color: var(--crimson);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .pricing-card.featured .card-features li::before { color: var(--crimson-bright); }
+
+        .card-cta {
+            display: block;
+            text-align: center;
+            padding: 0.9rem;
+            border: 1.5px solid rgba(139,26,42,0.25);
+            color: var(--crimson);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .card-cta:hover {
+            background: var(--crimson);
+            color: var(--white);
+            border-color: var(--crimson);
+        }
+
+        .pricing-card.featured .card-cta {
+            background: var(--crimson);
+            color: var(--white);
+            border-color: var(--crimson);
+        }
+
+        .pricing-card.featured .card-cta:hover {
+            background: var(--crimson-bright);
+            border-color: var(--crimson-bright);
+        }
+
+        /* ─── RETAINER / ADD-ON CARD ─── */
+        .addon-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+
+        .addon-card {
+            background: var(--ink);
+            padding: 3rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            transition: background 0.3s ease;
+        }
+
+        .addon-card:hover { background: var(--crimson-deep); }
+
+        .addon-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--crimson-bright);
+            margin-bottom: 0.5rem;
+        }
+
+        .addon-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .addon-desc {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .addon-price {
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .addon-price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            display: block;
+            line-height: 1;
+        }
+
+        .addon-price-note {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ─── PAYMENT SECTION ─── */
+        .payment-section {
+            padding: 6rem 5%;
+            background: var(--ink);
+        }
+
+        .payment-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .payment-inner h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--white);
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .payment-inner h2 em { font-style: italic; color: var(--crimson-bright); }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .payment-card {
+            background: rgba(255,255,255,0.04);
+            padding: 3rem 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            transition: background 0.3s ease;
+        }
+
+        .payment-card:hover { background: rgba(139,26,42,0.2); }
+
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .payment-desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+        }
+
+        /* ─── FAQ ─── */
+        .faq {
+            padding: 8rem 5%;
+            background: var(--cream);
+        }
+
+        .faq-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .faq h2 em { font-style: italic; color: var(--crimson); }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(139,26,42,0.15);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.8rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--ink);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover { color: var(--crimson); }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--crimson);
+            transition: transform 0.3s var(--transition);
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s var(--transition), padding 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.8rem; }
+
+        .faq-answer p {
+            font-size: 0.95rem;
+            color: var(--ink-light);
+            line-height: 1.9;
+        }
+
+        /* ─── CTA BAND ─── */
+        .cta-band {
+            padding: 8rem 5%;
+            background: var(--crimson-deep);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band::before {
+            content: 'HIRE ME';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(100px, 18vw, 200px);
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .cta-band-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-band h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .cta-band h2 em { font-style: italic; }
+
+        .cta-band p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--white);
+            color: var(--crimson-deep);
+            padding: 1.1rem 3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 100px;
+            transition: transform 0.3s var(--transition), box-shadow 0.3s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--ink);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+        footer a { color: rgba(255,255,255,0.3); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.3s ease; }
+        footer a:hover { color: var(--crimson-bright); }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1000px) {
+            .pricing-cards { grid-template-columns: 1fr; }
+            .addon-row { grid-template-columns: 1fr; }
+            .payment-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            nav ul { display: none; }
+            .pricing-hero h1 { font-size: 3rem; }
+            .process-steps { grid-template-columns: 1fr; }
+            .addon-card { flex-direction: column; align-items: flex-start; }
+            .addon-price { text-align: left; }
+        }
+
+        /* ─── LOADER ─── */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: var(--ink);
+            z-index: 99997;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .page-loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--white);
+            font-style: italic;
+            letter-spacing: 4px;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-loader" id="loader"><div class="loader-text">Pricing</div></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="index.html" class="logo">La'<span>T</span>ahvia Williams</a>
+        <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#projects">Work</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="index.html" class="nav-back">← Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pricing-hero">
+        <div class="pricing-hero-bg">RATES</div>
+        <p class="pricing-hero-label">Freelance Services · 2026</p>
+        <h1>Transparent<br><em>Pricing.</em></h1>
+        <p class="pricing-hero-sub">Five years of experience. Professional-quality design and analysis with honest, fixed-price packages — no hidden fees, no surprises.</p>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap">
+        <div class="marquee-inner">
+            <span class="marquee-item">Website Design</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Graphic Design</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Data Analysis</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Brand Identity</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">50% Upfront</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Installment Plans Available</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Website Design</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Graphic Design</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Data Analysis</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Brand Identity</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">50% Upfront</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Installment Plans Available</span>
+            <span class="marquee-sep">✦</span>
+        </div>
+    </div>
+
+    <!-- PROCESS -->
+    <section class="process">
+        <div class="process-inner">
+            <h2 class="reveal">How <em>We Work Together</em></h2>
+            <div class="process-steps">
+                <div class="process-step reveal delay-1">
+                    <div class="process-step-num">01</div>
+                    <div class="process-step-title">Discovery Call</div>
+                    <div class="process-step-desc">We discuss your goals, timeline, and budget. I'll recommend the right package and answer all your questions.</div>
+                </div>
+                <div class="process-step reveal delay-2">
+                    <div class="process-step-num">02</div>
+                    <div class="process-step-title">Proposal & Contract</div>
+                    <div class="process-step-desc">You receive a detailed scope of work and contract. 50% deposit secures your spot in my schedule.</div>
+                </div>
+                <div class="process-step reveal delay-3">
+                    <div class="process-step-num">03</div>
+                    <div class="process-step-title">Design & Delivery</div>
+                    <div class="process-step-desc">I work through the agreed deliverables with regular check-ins and revision rounds built in.</div>
+                </div>
+                <div class="process-step reveal delay-4">
+                    <div class="process-step-num">04</div>
+                    <div class="process-step-title">Launch & Support</div>
+                    <div class="process-step-desc">Final delivery upon remaining payment. Ongoing retainer available to keep things running smoothly.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- WEBSITE DESIGN PRICING              -->
+    <!-- ════════════════════════════════════ -->
+    <section class="pricing-section" id="website">
+        <div class="pricing-section-inner">
+            <div class="section-header">
+                <span class="section-label reveal">Service 01</span>
+                <h2 class="section-title reveal delay-1">Website <em>Design</em></h2>
+                <p class="section-desc reveal delay-2">Custom, responsive websites built for small businesses and creatives. Every site includes mobile optimization, SEO fundamentals, and a content management system so you can update it yourself.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Starter -->
+                <div class="pricing-card reveal delay-1">
+                    <div class="card-badge">Starter</div>
+                    <div class="card-name">Starter Site</div>
+                    <div class="card-price">$2,000</div>
+                    <div class="card-price-note">Fixed price · 3–4 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Up to 5 pages</li>
+                        <li>Mobile-responsive design</li>
+                        <li>Basic SEO setup (meta tags, sitemap)</li>
+                        <li>Contact form integration</li>
+                        <li>2 rounds of revisions</li>
+                        <li>30-day post-launch support</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Starter Site Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Business — FEATURED -->
+                <div class="pricing-card featured reveal delay-2">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-name">Business Site</div>
+                    <div class="card-price">$3,500</div>
+                    <div class="card-price-note">Fixed price · 5–7 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>5–10 pages</li>
+                        <li>Mobile-responsive design</li>
+                        <li>Full SEO optimization</li>
+                        <li>CMS integration (WordPress or Webflow)</li>
+                        <li>Blog or portfolio section</li>
+                        <li>Analytics setup (Google Analytics)</li>
+                        <li>3 rounds of revisions</li>
+                        <li>60-day post-launch support</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Business Site Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card reveal delay-3">
+                    <div class="card-badge">Premium</div>
+                    <div class="card-name">Premium Build</div>
+                    <div class="card-price">$6,500</div>
+                    <div class="card-price-note">Fixed price · 8–12 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>10–20 pages</li>
+                        <li>Custom animations & interactions</li>
+                        <li>Advanced SEO strategy</li>
+                        <li>E-commerce ready</li>
+                        <li>Full CMS training session</li>
+                        <li>Performance optimization</li>
+                        <li>Unlimited revisions</li>
+                        <li>90-day post-launch support</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Premium Build Inquiry" class="card-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Retainer -->
+            <div class="addon-row">
+                <div class="addon-card reveal">
+                    <div>
+                        <div class="addon-label">Ongoing Support</div>
+                        <div class="addon-title">Maintenance Retainer</div>
+                        <div class="addon-desc">Monthly hosting management, security updates, backups, and up to 2 hours of content edits. Available to all website clients after launch.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$200</span>
+                        <span class="addon-price-note">/ month</span>
+                    </div>
+                </div>
+                <div class="addon-card reveal delay-1">
+                    <div>
+                        <div class="addon-label">À La Carte</div>
+                        <div class="addon-title">Hourly Support</div>
+                        <div class="addon-desc">One-time fixes, updates, feature additions, or troubleshooting for existing websites. Billed in 1-hour increments.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$100</span>
+                        <span class="addon-price-note">/ hour</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- GRAPHIC DESIGN PRICING             -->
+    <!-- ════════════════════════════════════ -->
+    <section class="pricing-section" id="graphic">
+        <div class="pricing-section-inner">
+            <div class="section-header">
+                <span class="section-label reveal">Service 02</span>
+                <h2 class="section-title reveal delay-1">Graphic <em>Design</em></h2>
+                <p class="section-desc reveal delay-2">Brand identities, campaign graphics, and visual systems for businesses and creatives who want to look as professional as they are. Built in Adobe Illustrator and Photoshop with strategy behind every design decision.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Brand Starter -->
+                <div class="pricing-card reveal delay-1">
+                    <div class="card-badge">Brand Starter</div>
+                    <div class="card-name">Brand Starter</div>
+                    <div class="card-price">$800</div>
+                    <div class="card-price-note">Fixed price · 2–3 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Primary logo + 1 variation</li>
+                        <li>Color palette (4–5 colors)</li>
+                        <li>2 brand typefaces</li>
+                        <li>Brand guidelines PDF</li>
+                        <li>All files in print & web formats</li>
+                        <li>2 rounds of revisions</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Brand Starter Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Brand Standard — FEATURED -->
+                <div class="pricing-card featured reveal delay-2">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-name">Brand Standard</div>
+                    <div class="card-price">$1,800</div>
+                    <div class="card-price-note">Fixed price · 4–5 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Logo suite (5 variations)</li>
+                        <li>Full brand guidelines (20+ pages)</li>
+                        <li>Color palette + typography system</li>
+                        <li>3 collateral pieces (cards, flyer, etc.)</li>
+                        <li>Social media profile templates</li>
+                        <li>3 rounds of revisions</li>
+                        <li>All source files included</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Brand Standard Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Brand Premium -->
+                <div class="pricing-card reveal delay-3">
+                    <div class="card-badge">Full Identity</div>
+                    <div class="card-name">Brand Premium</div>
+                    <div class="card-price">$3,500</div>
+                    <div class="card-price-note">Fixed price · 6–8 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Everything in Brand Standard</li>
+                        <li>Custom pattern / texture system</li>
+                        <li>Full collateral suite (unlimited)</li>
+                        <li>Packaging design concepts</li>
+                        <li>Environmental / signage graphics</li>
+                        <li>Social media content kit (12 templates)</li>
+                        <li>Unlimited revisions</li>
+                        <li>Brand strategy session included</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Brand Premium Inquiry" class="card-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- A La Carte -->
+            <div class="addon-row">
+                <div class="addon-card reveal">
+                    <div>
+                        <div class="addon-label">One-Off Design</div>
+                        <div class="addon-title">Graphic Design À La Carte</div>
+                        <div class="addon-desc">Single pieces — event flyers, social media graphics, posters, infographics, presentation decks, and more. Priced per deliverable.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$150</span>
+                        <span class="addon-price-note">per piece (from)</span>
+                    </div>
+                </div>
+                <div class="addon-card reveal delay-1">
+                    <div>
+                        <div class="addon-label">Ongoing Creative</div>
+                        <div class="addon-title">Monthly Design Retainer</div>
+                        <div class="addon-desc">Consistent branded content every month — social media graphics, email headers, marketing materials. Perfect for active brands.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$600</span>
+                        <span class="addon-price-note">/ month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════ -->
+    <!-- DATA ANALYSIS PRICING              -->
+    <!-- ════════════════════════════════════ -->
+    <section class="pricing-section" id="data">
+        <div class="pricing-section-inner">
+            <div class="section-header">
+                <span class="section-label reveal">Service 03</span>
+                <h2 class="section-title reveal delay-1">Data <em>Analysis</em></h2>
+                <p class="section-desc reveal delay-2">Freelance data analysis for nonprofits, small businesses, researchers, and students. From exploratory summaries to full predictive modeling with visualization dashboards and written reports you can actually present.</p>
+            </div>
+
+            <div class="pricing-cards">
+                <!-- Exploratory -->
+                <div class="pricing-card reveal delay-1">
+                    <div class="card-badge">Starter</div>
+                    <div class="card-name">Exploratory Analysis</div>
+                    <div class="card-price">$500</div>
+                    <div class="card-price-note">Fixed price · 1–2 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Data cleaning & preparation</li>
+                        <li>Summary statistics</li>
+                        <li>5–8 static visualizations</li>
+                        <li>Written findings report (5 pages)</li>
+                        <li>1 round of follow-up questions</li>
+                        <li>Data delivered in CSV/Excel</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Exploratory Analysis Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Standard — FEATURED -->
+                <div class="pricing-card featured reveal delay-2">
+                    <div class="card-badge">Most Popular</div>
+                    <div class="card-name">Standard Analysis</div>
+                    <div class="card-price">$1,200</div>
+                    <div class="card-price-note">Fixed price · 2–3 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Full EDA + data cleaning</li>
+                        <li>Statistical modeling (regression, clustering)</li>
+                        <li>Interactive dashboard (Plotly / Tableau)</li>
+                        <li>10-page analysis report</li>
+                        <li>Visualizations in print & web formats</li>
+                        <li>2 rounds of revisions</li>
+                        <li>30-min results presentation call</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Standard Analysis Inquiry" class="card-cta">Get Started</a>
+                </div>
+
+                <!-- Research Package -->
+                <div class="pricing-card reveal delay-3">
+                    <div class="card-badge">Research</div>
+                    <div class="card-name">Research Package</div>
+                    <div class="card-price">$2,500</div>
+                    <div class="card-price-note">Fixed price · 4–6 week delivery</div>
+                    <div class="card-divider"></div>
+                    <ul class="card-features">
+                        <li>Comprehensive study design</li>
+                        <li>Machine learning models</li>
+                        <li>Full interactive dashboard</li>
+                        <li>Policy/business recommendations</li>
+                        <li>20+ page written report</li>
+                        <li>Slide deck for presentation</li>
+                        <li>1-hour presentation session</li>
+                        <li>Unlimited revisions</li>
+                    </ul>
+                    <a href="mailto:latahviawilliams@uchicago.edu?subject=Research Package Inquiry" class="card-cta">Get Started</a>
+                </div>
+            </div>
+
+            <!-- Retainer -->
+            <div class="addon-row">
+                <div class="addon-card reveal">
+                    <div>
+                        <div class="addon-label">Ongoing Analysis</div>
+                        <div class="addon-title">Monthly Data Retainer</div>
+                        <div class="addon-desc">Monthly reporting, dashboards, and up to 8 hours of ad-hoc analysis. Ideal for businesses tracking KPIs or nonprofits with regular reporting needs.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$750</span>
+                        <span class="addon-price-note">/ month</span>
+                    </div>
+                </div>
+                <div class="addon-card reveal delay-1">
+                    <div>
+                        <div class="addon-label">Quick Turnaround</div>
+                        <div class="addon-title">Hourly Consulting</div>
+                        <div class="addon-desc">Code review, data troubleshooting, methodology guidance, or help interpreting results. Great for researchers and students who need a second opinion.</div>
+                    </div>
+                    <div class="addon-price">
+                        <span class="addon-price-amount">$85</span>
+                        <span class="addon-price-note">/ hour</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAYMENT TERMS -->
+    <section class="payment-section">
+        <div class="payment-inner">
+            <h2 class="reveal">Payment <em>Terms & Structure</em></h2>
+            <div class="payment-grid">
+                <div class="payment-card reveal delay-1">
+                    <div class="payment-icon">50 / 50</div>
+                    <div class="payment-title">Standard Split</div>
+                    <div class="payment-desc">50% deposit to start, 50% on final delivery. This is the default for all projects and protects both of us throughout the process.</div>
+                </div>
+                <div class="payment-card reveal delay-2">
+                    <div class="payment-icon">3 ×</div>
+                    <div class="payment-title">Installment Plan</div>
+                    <div class="payment-desc">Available on projects over $1,500. Split into 3 monthly payments — no interest, no fees. Makes professional work accessible for small budgets.</div>
+                </div>
+                <div class="payment-card reveal delay-3">
+                    <div class="payment-icon">↻</div>
+                    <div class="payment-title">Retainer Billing</div>
+                    <div class="payment-desc">Monthly retainers billed on the 1st of each month. Cancel anytime with 14-day notice. No long-term contracts required.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="faq-inner">
+            <h2 class="reveal">Frequently <em>Asked</em></h2>
+
+            <div class="faq-item reveal delay-1">
+                <button class="faq-question">How long does a typical project take? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Delivery timelines are listed on each package. Website projects typically take 3–12 weeks depending on complexity. Brand identity projects take 2–8 weeks. Data analysis ranges from 1–6 weeks. Rush delivery is available for a 25% fee.</p></div>
+            </div>
+
+            <div class="faq-item reveal delay-2">
+                <button class="faq-question">What if I need something not listed? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>All packages are a starting point. If your project needs something custom — a unique scope, combination of services, or a tight timeline — reach out and we'll put together a custom quote. I'm flexible and happy to tailor a package to your needs.</p></div>
+            </div>
+
+            <div class="faq-item reveal delay-3">
+                <button class="faq-question">Do you work with nonprofits or students? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>Absolutely. I'm passionate about mission-driven work. Nonprofits and student organizations get a 10% discount on all packages. Just mention it when you reach out and I'll apply it to your quote.</p></div>
+            </div>
+
+            <div class="faq-item reveal delay-4">
+                <button class="faq-question">What do I need to provide to get started? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>For design projects: any existing brand assets, inspiration references, and a brief description of your goals. For data projects: your dataset (or a description of your data source), your research questions, and any existing reports. I'll guide you through the rest in our discovery call.</p></div>
+            </div>
+
+            <div class="faq-item reveal delay-5">
+                <button class="faq-question">What happens after the project is done? <span class="faq-icon">+</span></button>
+                <div class="faq-answer"><p>You get all source files and deliverables in agreed formats. Website clients get a 30–90 day support window depending on their package. After that, maintenance retainers keep everything running smoothly. I don't disappear after delivery — I want your project to keep performing.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <section class="cta-band">
+        <div class="cta-band-inner">
+            <h2 class="reveal">Let's build<br><em>something great.</em></h2>
+            <p class="reveal delay-2">Ready to get started? Send me a message and I'll get back to you within 24 hours with next steps.</p>
+            <a href="mailto:latahviawilliams@uchicago.edu?subject=Freelance Inquiry" class="btn-white reveal delay-3">Get In Touch →</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 La'Tahvia Williams · Freelance Services</p>
+        <a href="index.html">← Back to Portfolio</a>
+    </footer>
+
+    <script>
+        // LOADER
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
+
+        // CURSOR
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.12;
+            followerY += (mouseY - followerY) * 0.12;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        document.querySelectorAll('a, button, .pricing-card, .process-step, .addon-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.classList.add('expanded'); follower.classList.add('expanded'); });
+            el.addEventListener('mouseleave', () => { cursor.classList.remove('expanded'); follower.classList.remove('expanded'); });
+        });
+
+        // NAV SCROLL
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // SCROLL REVEAL
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left');
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealEls.forEach(el => revealObs.observe(el));
+
+        // FAQ ACCORDION
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            });
+        });
+
+        // MAGNETIC BUTTONS
+        document.querySelectorAll('.btn-white, .card-cta').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translateY(-4px) translate(${x * 0.12}px, ${y * 0.12}px)`;
+            });
+            btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+        });
+
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+    </script>
+</body>
+</html>

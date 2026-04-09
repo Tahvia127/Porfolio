@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La'Tahvia Williams — Data Scientist & Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Medino';
+            src: url('Medino-Regular.otf') format('opentype');
+        }
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Regular.otf') format('opentype');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Light.otf') format('opentype');
+            font-weight: 300;
+        }
+        @font-face {
+            font-family: 'Aileron';
+            src: url('Aileron-Bold.otf') format('opentype');
+            font-weight: 700;
+        }
+
+        :root {
+            --crimson: #8B1A2A;
+            --crimson-deep: #5C0F1B;
+            --crimson-bright: #C41E3A;
+            --cream: #F5F0E8;
+            --cream-dark: #EDE8DF;
+            --ink: #1A1410;
+            --ink-light: #3D342C;
+            --muted: #9A8A7A;
+            --white: #FDFAF6;
+            --transition: cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Aileron', 'Inter', sans-serif;
+            font-weight: 400;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ─── CUSTOM CURSOR ─── */
+        .cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--crimson);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease, width 0.3s var(--transition), height 0.3s var(--transition), background 0.3s ease;
+            mix-blend-mode: multiply;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--crimson);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s var(--transition), width 0.3s var(--transition), height 0.3s var(--transition), border-color 0.3s ease;
+        }
+
+        .cursor.expanded { width: 20px; height: 20px; }
+        .cursor-follower.expanded { width: 60px; height: 60px; }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: background 0.4s ease, padding 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(245, 240, 232, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 1rem 5%;
+            border-bottom: 1px solid rgba(139, 26, 42, 0.15);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo span {
+            color: var(--crimson);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--crimson);
+            transition: width 0.3s var(--transition);
+        }
+
+        nav a:hover { color: var(--crimson); }
+        nav a:hover::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--crimson) !important;
+            color: var(--white) !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 100px;
+            font-size: 0.8rem !important;
+            transition: background 0.3s ease, transform 0.3s ease !important;
+        }
+
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover { background: var(--crimson-deep) !important; transform: translateY(-2px); }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            background: var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 5% 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(150px, 25vw, 300px);
+            font-weight: 700;
+            color: rgba(255,255,255,0.025);
+            white-space: nowrap;
+            pointer-events: none;
+            letter-spacing: -5px;
+            animation: slowFloat 12s ease-in-out infinite;
+        }
+
+        @keyframes slowFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-20px); }
+        }
+
+        .hero-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--crimson-bright);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealUp 0.8s var(--transition) 0.3s forwards;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(4rem, 10vw, 10rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero h1 .line-inner {
+            display: block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: slideUp 1s var(--transition) forwards;
+        }
+
+        .hero h1 .line:nth-child(1) .line-inner { animation-delay: 0.5s; }
+        .hero h1 .line:nth-child(2) .line-inner { animation-delay: 0.7s; }
+        .hero h1 .line:nth-child(3) .line-inner { animation-delay: 0.9s; }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--crimson-bright);
+        }
+
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            opacity: 0;
+            animation: revealUp 0.8s var(--transition) 1.2s forwards;
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: rgba(245, 240, 232, 0.6);
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        .hero-scroll {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: rgba(245, 240, 232, 0.5);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-scroll-line {
+            width: 40px;
+            height: 1px;
+            background: rgba(245, 240, 232, 0.4);
+            animation: expand 2s ease-in-out 1.5s infinite;
+        }
+
+        @keyframes expand {
+            0%, 100% { width: 40px; }
+            50% { width: 70px; }
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: revealUp 0.8s var(--transition) 1.1s forwards;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .hero-stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(245,240,232,0.5);
+            margin-top: 0.3rem;
+        }
+
+        @keyframes revealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── MARQUEE ─── */
+        .marquee-wrap {
+            background: var(--crimson);
+            padding: 1.2rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-item {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--white);
+            letter-spacing: 2px;
+            padding: 0 2.5rem;
+            display: inline-block;
+        }
+
+        .marquee-sep {
+            color: rgba(255,255,255,0.4);
+            display: inline-block;
+            padding: 0 0.5rem;
+        }
+
+        /* ─── REVEAL ANIMATIONS ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+        }
+
+        .reveal-scale.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        .delay-5 { transition-delay: 0.5s; }
+        .delay-6 { transition-delay: 0.6s; }
+
+        /* ─── SECTION LABEL ─── */
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--crimson);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* ─── ABOUT ─── */
+        .about {
+            padding: 10rem 5%;
+            background: var(--cream);
+        }
+
+        .about-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .about-left h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            color: var(--ink);
+            margin-bottom: 2.5rem;
+        }
+
+        .about-left h2 em {
+            font-style: italic;
+            color: var(--crimson);
+        }
+
+        .about-left p {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--crimson);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .about-link:hover { gap: 1.2rem; }
+
+        .about-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.4s var(--transition), box-shadow 0.4s ease;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--crimson);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(139, 26, 42, 0.12);
+        }
+
+        .stat-card:hover::before { transform: scaleX(1); }
+
+        .stat-card-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            color: var(--crimson);
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--muted);
+        }
+
+        /* ─── SECTION DIVIDER ─── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(139,26,42,0.2), transparent);
+            margin: 0 5%;
+        }
+
+        /* ─── SERVICES TEASER ─── */
+        .services-teaser {
+            padding: 8rem 5%;
+            background: var(--ink);
+            overflow: hidden;
+        }
+
+        .services-teaser-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .services-teaser h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.1;
+        }
+
+        .services-teaser h2 em {
+            font-style: italic;
+            color: var(--crimson-bright);
+        }
+
+        .services-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            transition: padding 0.3s ease;
+            text-decoration: none;
+        }
+
+        .service-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+
+        .service-item:hover { padding: 2rem 1rem; }
+
+        .service-item-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .service-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--crimson-bright);
+            font-style: italic;
+        }
+
+        .service-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            color: var(--white);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .service-item:hover .service-name { color: var(--crimson-bright); }
+
+        .service-arrow {
+            color: rgba(255,255,255,0.3);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .service-item:hover .service-arrow {
+            transform: translateX(10px);
+            color: var(--crimson-bright);
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects {
+            padding: 10rem 5%;
+            background: var(--cream);
+        }
+
+        .projects-header {
+            max-width: 1300px;
+            margin: 0 auto 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .projects-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .projects-header h2 em { font-style: italic; color: var(--crimson); }
+
+        .projects-header p {
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            max-width: 200px;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .project-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            gap: 2px;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--white);
+            overflow: hidden;
+            transition: transform 0.5s var(--transition);
+        }
+
+        .project-item:nth-child(even) { direction: rtl; }
+        .project-item:nth-child(even) > * { direction: ltr; }
+
+        .project-item:hover { transform: scale(1.005); }
+
+        .project-visual {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            background: var(--ink);
+        }
+
+        .project-visual-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ink);
+        }
+
+        .project-visual-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: rgba(255,255,255,0.15);
+            text-align: center;
+            line-height: 1.3;
+            transition: color 0.4s ease, transform 0.4s ease;
+            padding: 2rem;
+        }
+
+        .project-item:hover .project-visual-text {
+            color: rgba(255,255,255,0.4);
+            transform: scale(1.05);
+        }
+
+        /* Colored project covers */
+        .cover-data { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        .cover-healthcare { background: linear-gradient(135deg, #1a0a0a 0%, #3d0f1e 50%, #5c1a2e 100%); }
+        .cover-conflict { background: linear-gradient(135deg, #0d1117 0%, #1a2438 50%, #243050 100%); }
+        .cover-financial { background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #2a5a2a 100%); }
+        .cover-social { background: linear-gradient(135deg, #1a0d1a 0%, #3d1a3d 50%, #5c2a5c 100%); }
+        .cover-soccer { background: linear-gradient(135deg, #1a1205 0%, #3d2a0f 50%, #5c3a18 100%); }
+        .cover-alumni { background: linear-gradient(135deg, #05100a 0%, #0f2a1a 50%, #1a3d28 100%); }
+        .cover-infographic { background: linear-gradient(135deg, #1a0505 0%, #3d0f0f 50%, #5c1a1a 100%); }
+        .cover-layout { background: linear-gradient(135deg, #08051a 0%, #1a0f3d 50%, #2a1a5c 100%); }
+        .cover-student { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3d 50%, #2a2a5c 100%); }
+
+        .project-content {
+            padding: 4rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-category {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--crimson);
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .project-content h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            line-height: 1.9;
+            color: var(--ink-light);
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.9rem;
+            border: 1px solid rgba(139,26,42,0.25);
+            color: var(--crimson);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 100px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--crimson);
+            color: var(--white);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--ink);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            width: fit-content;
+            position: relative;
+        }
+
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--crimson);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--transition);
+        }
+
+        .project-link:hover::after { transform: scaleX(1); }
+
+        /* ─── DESIGN SECTION ─── */
+        .design-section {
+            padding: 10rem 5%;
+            background: var(--ink);
+        }
+
+        .design-header {
+            max-width: 1300px;
+            margin: 0 auto 6rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .design-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .design-header h2 em { font-style: italic; color: var(--crimson-bright); }
+
+        .design-header p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            max-width: 200px;
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .design-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .design-card {
+            background: var(--ink-light);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .design-card-visual {
+            height: 320px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s var(--transition);
+        }
+
+        .design-card:hover .design-card-visual {
+            transform: scale(1.05);
+        }
+
+        .design-card-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .design-card-overlay-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.2);
+            text-align: center;
+            line-height: 1.4;
+            transition: color 0.4s ease;
+        }
+
+        .design-card:hover .design-card-overlay-text {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .design-card-info {
+            padding: 2rem;
+        }
+
+        .design-card-cat {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--crimson-bright);
+            margin-bottom: 0.7rem;
+        }
+
+        .design-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .design-card-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.7;
+        }
+
+        /* ─── PRICING TEASER ─── */
+        .pricing-teaser {
+            padding: 10rem 5%;
+            background: var(--crimson-deep);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-teaser::before {
+            content: 'RATES';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(150px, 25vw, 250px);
+            font-weight: 700;
+            color: rgba(255,255,255,0.03);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .pricing-teaser-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-teaser h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-teaser h2 em {
+            font-style: italic;
+        }
+
+        .pricing-teaser p {
+            color: rgba(255,255,255,0.65);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-services-preview {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pricing-preview-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .pricing-preview-from {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .pricing-preview-price {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: var(--white);
+            font-weight: 300;
+        }
+
+        .pricing-preview-service {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: var(--white);
+            color: var(--crimson-deep);
+            padding: 1.1rem 3rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 100px;
+            transition: transform 0.3s var(--transition), box-shadow 0.3s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* ─── SKILLS ─── */
+        .skills {
+            padding: 10rem 5%;
+            background: var(--cream-dark);
+        }
+
+        .skills-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .skills h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 400;
+            margin-bottom: 5rem;
+        }
+
+        .skills h2 em { font-style: italic; color: var(--crimson); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(139,26,42,0.2);
+            color: var(--ink);
+        }
+
+        .skill-category ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-category li {
+            font-size: 0.9rem;
+            color: var(--ink-light);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+            cursor: default;
+        }
+
+        .skill-category li::before {
+            content: '—';
+            color: var(--crimson);
+            font-size: 0.7rem;
+        }
+
+        .skill-category li:hover {
+            color: var(--crimson);
+            padding-left: 5px;
+        }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            padding: 12rem 5%;
+            background: var(--ink);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139,26,42,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact h2 em {
+            font-style: italic;
+            color: var(--crimson-bright);
+        }
+
+        .contact p {
+            color: rgba(255,255,255,0.5);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 3.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 2rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 100px;
+            transition: all 0.3s var(--transition);
+        }
+
+        .contact-btn-primary {
+            background: var(--crimson);
+            color: var(--white);
+        }
+
+        .contact-btn-primary:hover {
+            background: var(--crimson-bright);
+            transform: translateY(-3px);
+        }
+
+        .contact-btn-secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .contact-btn-secondary:hover {
+            border-color: rgba(255,255,255,0.6);
+            transform: translateY(-3px);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--ink);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 1px;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.3);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { color: var(--crimson-bright); }
+
+        /* ─── QUOTE BAND ─── */
+        .quote-band {
+            padding: 6rem 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .quote-band blockquote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            font-style: italic;
+            color: var(--ink);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .quote-band cite {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--muted);
+            font-style: normal;
+        }
+
+        /* ─── MOBILE ─── */
+        @media (max-width: 900px) {
+            nav ul { gap: 1.5rem; }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .about-right {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .services-teaser-inner {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .project-item {
+                grid-template-columns: 1fr;
+            }
+
+            .project-item:nth-child(even) { direction: ltr; }
+
+            .project-visual { height: 280px; }
+
+            .design-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .projects-header,
+            .design-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .projects-header p,
+            .design-header p {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero-stats { gap: 2rem; }
+            .design-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            nav ul { display: none; }
+            .project-content { padding: 2.5rem 2rem; }
+        }
+
+        /* ─── PAGE LOAD ─── */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: var(--ink);
+            z-index: 99997;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--white);
+            font-style: italic;
+            letter-spacing: 4px;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* ─── HOVER LINE EFFECT ON SECTIONS ─── */
+        .section-line {
+            width: 60px;
+            height: 2px;
+            background: var(--crimson);
+            margin-bottom: 2rem;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s var(--transition);
+        }
+
+        .section-line.visible { transform: scaleX(1); }
+    </style>
+</head>
+<body>
+
+    <!-- Page Loader -->
+    <div class="page-loader" id="loader">
+        <div class="loader-text">La'Tahvia</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <a href="#" class="logo">La'<span>T</span>ahvia Williams</a>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Data & Analysis</a></li>
+            <li><a href="#design">Design</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="pricing.html" class="nav-cta">View Pricing →</a></li>
+        </ul>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section class="hero">
+        <div class="hero-bg-text">LTW</div>
+        <div class="hero-label">Portfolio · 2026</div>
+        <h1>
+            <span class="line"><span class="line-inner">Data.</span></span>
+            <span class="line"><span class="line-inner">Design.</span></span>
+            <span class="line"><span class="line-inner"><em>Impact.</em></span></span>
+        </h1>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-number">20+</div>
+                <div class="hero-stat-label">Projects</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">5</div>
+                <div class="hero-stat-label">Years Experience</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">100+</div>
+                <div class="hero-stat-label">Students Mentored</div>
+            </div>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-tagline">Turning complex data into stories that drive real-world change.</p>
+            <div class="hero-scroll">
+                <div class="hero-scroll-line"></div>
+                Scroll to explore
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MARQUEE ─── -->
+    <div class="marquee-wrap">
+        <div class="marquee-inner">
+            <span class="marquee-item">Data Scientist</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Policy Researcher</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Graphic Designer</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Web Designer</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Data Analyst</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Brand Strategist</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Data Scientist</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Policy Researcher</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Graphic Designer</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Web Designer</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Data Analyst</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">Brand Strategist</span>
+            <span class="marquee-sep">✦</span>
+        </div>
+    </div>
+
+    <!-- ─── ABOUT ─── -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-left">
+                <p class="section-label reveal">About Me</p>
+                <div class="section-line reveal delay-1"></div>
+                <h2 class="reveal delay-2">Where <em>Data</em><br>Meets Design</h2>
+                <p class="reveal delay-3">
+                    I'm a data science and public policy student at the University of Chicago
+                    who turns numbers into narratives. I believe the most powerful insights
+                    live at the intersection of rigorous analysis and compelling visual design.
+                </p>
+                <p class="reveal delay-4">
+                    From writing data-driven articles for The Chicago Maroon to building
+                    machine learning models and leading campus initiatives, I bring both
+                    technical depth and creative vision to every project.
+                </p>
+                <a href="pricing.html" class="about-link reveal delay-5">
+                    Work With Me →
+                </a>
+            </div>
+            <div class="about-right">
+                <div class="stat-card reveal delay-1">
+                    <span class="stat-card-number">20+</span>
+                    <span class="stat-card-label">Projects Completed</span>
+                </div>
+                <div class="stat-card reveal delay-2">
+                    <span class="stat-card-number">4</span>
+                    <span class="stat-card-label">Internships</span>
+                </div>
+                <div class="stat-card reveal delay-3">
+                    <span class="stat-card-number">6+</span>
+                    <span class="stat-card-label">Leadership Roles</span>
+                </div>
+                <div class="stat-card reveal delay-4">
+                    <span class="stat-card-number">100+</span>
+                    <span class="stat-card-label">Students Mentored</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─── SERVICES TEASER ─── -->
+    <section class="services-teaser">
+        <div class="services-teaser-inner">
+            <div>
+                <p class="section-label reveal" style="color: var(--crimson-bright);">What I Offer</p>
+                <div class="section-line reveal delay-1" style="background: var(--crimson-bright);"></div>
+                <h2 class="reveal delay-2">I help brands<br>grow through<br><em>data & design</em></h2>
+            </div>
+            <div class="services-list">
+                <a href="pricing.html#website" class="service-item reveal delay-1">
+                    <div class="service-item-left">
+                        <span class="service-num">01</span>
+                        <span class="service-name">Website Design</span>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+                <a href="pricing.html#graphic" class="service-item reveal delay-2">
+                    <div class="service-item-left">
+                        <span class="service-num">02</span>
+                        <span class="service-name">Graphic Design</span>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+                <a href="pricing.html#data" class="service-item reveal delay-3">
+                    <div class="service-item-left">
+                        <span class="service-num">03</span>
+                        <span class="service-name">Data Analysis</span>
+                    </div>
+                    <span class="service-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── DATA SCIENCE PROJECTS ─── -->
+    <section class="projects" id="projects">
+        <div class="projects-header">
+            <div>
+                <p class="section-label reveal">Selected Work</p>
+                <h2 class="reveal delay-1">Data &<br><em>Analysis</em></h2>
+            </div>
+            <p class="reveal delay-2">Machine learning,<br>policy research &<br>data journalism</p>
+        </div>
+
+        <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project-item reveal">
+                <div class="project-visual cover-student">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Student Performance<br>Analysis</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Machine Learning</div>
+                    <h3>Academic Performance Modeling</h3>
+                    <p class="project-description">
+                        Predictive model analyzing 6,607 students — discovered that for high achievers,
+                        more study hours actually hurts performance. Partitioned regression achieved R² = 0.968.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">LASSO</span>
+                        <span class="tech-tag">Regression</span>
+                    </div>
+                    <a href="project-student-performance-final.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item reveal delay-1">
+                <div class="project-visual cover-healthcare">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Healthcare Payment<br>Analysis</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Health Policy</div>
+                    <h3>Pharmaceutical Industry Transparency</h3>
+                    <p class="project-description">
+                        Analyzed $157.8M in pharmaceutical payments to OB/GYN specialists.
+                        Discovered a 140% surge in fertility treatment investments post-COVID.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">pandas</span>
+                        <span class="tech-tag">Plotly</span>
+                        <span class="tech-tag">CMS Data</span>
+                    </div>
+                    <a href="project-healthcare-final.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item reveal delay-2">
+                <div class="project-visual cover-conflict">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Forgotten<br>Wars</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Human Rights Research</div>
+                    <h3>Conflict Attention Analysis</h3>
+                    <p class="project-description">
+                        Analyzed media coverage disparities across global conflicts, revealing
+                        systemic gaps in attention to ongoing humanitarian crises worldwide.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Data Viz</span>
+                        <span class="tech-tag">GDELT</span>
+                    </div>
+                    <a href="project-conflict-final.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-item reveal">
+                <div class="project-visual cover-financial">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Financial Aid<br>Analysis</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Education Policy</div>
+                    <h3>Financial Aid Equity Study</h3>
+                    <p class="project-description">
+                        Examined disparities in financial aid distribution across demographic groups,
+                        informing policy recommendations for more equitable higher education funding.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">R</span>
+                        <span class="tech-tag">ggplot2</span>
+                        <span class="tech-tag">Statistical Analysis</span>
+                    </div>
+                    <a href="project-financial-aid.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-item reveal delay-1">
+                <div class="project-visual cover-social">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Hashtag<br>Analysis</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Social Media Analytics</div>
+                    <h3>Social Movement Tracking</h3>
+                    <p class="project-description">
+                        Tracked hashtag virality patterns to understand how social movements
+                        gain and lose traction, mapping the lifecycle of digital activism.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Twitter API</span>
+                        <span class="tech-tag">Network Analysis</span>
+                    </div>
+                    <a href="project-hashtags.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── QUOTE ─── -->
+    <div class="quote-band">
+        <blockquote class="reveal">
+            "The goal is to turn data into information,<br>and information into insight."
+        </blockquote>
+        <cite class="reveal delay-2">— Carly Fiorina</cite>
+    </div>
+
+    <!-- ─── DESIGN SECTION ─── -->
+    <section class="design-section" id="design">
+        <div class="design-header">
+            <div>
+                <p class="section-label reveal" style="color: var(--crimson-bright);">Creative Work</p>
+                <h2 class="reveal delay-1">Brand &<br><em>Design</em></h2>
+            </div>
+            <p class="reveal delay-2" style="color: rgba(255,255,255,0.4);">Brand identity,<br>campaign design &<br>visual systems</p>
+        </div>
+
+        <div class="design-grid">
+            <a href="project-prelude-brand.html" class="design-card reveal">
+                <div class="design-card-visual cover-infographic">
+                    <div class="design-card-overlay">
+                        <div class="design-card-overlay-text">Prelude<br>Brand Identity</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat">Brand Identity · Visual System</div>
+                    <div class="design-card-title">Prelude After-School Program</div>
+                    <div class="design-card-desc">Complete brand identity including logo, 5-color palette, pattern system, merchandise, and signage.</div>
+                </div>
+            </a>
+
+            <a href="project-kickinit-314.html" class="design-card reveal delay-1">
+                <div class="design-card-visual cover-layout">
+                    <div class="design-card-overlay">
+                        <div class="design-card-overlay-text">Kickin' It<br>314 Day</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat">Brand Campaign · Environmental</div>
+                    <div class="design-card-title">St. Louis Sneaker Campaign</div>
+                    <div class="design-card-desc">Full brand identity and 314 Day marketing campaign with murals, displays, and social media.</div>
+                </div>
+            </a>
+
+            <a href="project-spellbound-bakery.html" class="design-card reveal delay-2">
+                <div class="design-card-visual cover-social">
+                    <div class="design-card-overlay">
+                        <div class="design-card-overlay-text">Spellbound<br>Bakery</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat">Brand Identity · Packaging</div>
+                    <div class="design-card-title">Fantasy Bakery Brand</div>
+                    <div class="design-card-desc">Magical-themed artisanal bakery brand with jewel-tone palette and custom packaging system.</div>
+                </div>
+            </a>
+
+            <a href="project-soccer-seniors.html" class="design-card reveal delay-1">
+                <div class="design-card-visual cover-soccer">
+                    <div class="design-card-overlay">
+                        <div class="design-card-overlay-text">Soccer<br>Senior Portraits</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat">Photography · Sports Graphics</div>
+                    <div class="design-card-title">Soccer Senior Portraits</div>
+                    <div class="design-card-desc">Professional keepsakes celebrating athletes' achievements through editorial photography and design.</div>
+                </div>
+            </a>
+
+            <a href="project-alumni-basketball.html" class="design-card reveal delay-2">
+                <div class="design-card-visual cover-alumni">
+                    <div class="design-card-overlay">
+                        <div class="design-card-overlay-text">Alumni<br>Basketball</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat">Event Design · Sports</div>
+                    <div class="design-card-title">Alumni Basketball Event</div>
+                    <div class="design-card-desc">Complete event branding, promotional materials, and visual identity for alumni sports event.</div>
+                </div>
+            </a>
+
+            <a href="pricing.html" class="design-card reveal delay-3" style="background: var(--crimson); text-decoration: none;">
+                <div class="design-card-visual" style="background: var(--crimson-deep); height: 320px; display: flex; align-items: center; justify-content: center;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: rgba(255,255,255,0.15); font-weight: 700;">$</div>
+                        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: rgba(255,255,255,0.5); font-style: italic;">Work with me</div>
+                    </div>
+                </div>
+                <div class="design-card-info">
+                    <div class="design-card-cat" style="color: rgba(255,255,255,0.6);">Freelance Services</div>
+                    <div class="design-card-title">View Pricing & Packages</div>
+                    <div class="design-card-desc" style="color: rgba(255,255,255,0.5);">Website design, graphic design, and data analysis — transparent pricing for every budget.</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ─── PRICING TEASER ─── -->
+    <section class="pricing-teaser">
+        <div class="pricing-teaser-inner">
+            <p class="section-label reveal" style="color: rgba(255,255,255,0.5); justify-content: center; display: block; text-align: center;">Freelance Services</p>
+            <h2 class="reveal delay-1">Ready to build<br><em>something great?</em></h2>
+            <p class="reveal delay-2">Five years of experience. Transparent pricing. Real results. I work with small businesses, nonprofits, and individuals who want professional-quality design and analysis without agency markup.</p>
+
+            <div class="pricing-services-preview reveal delay-3">
+                <div class="pricing-preview-item">
+                    <span class="pricing-preview-from">From</span>
+                    <span class="pricing-preview-price">$2,000</span>
+                    <span class="pricing-preview-service">Website Design</span>
+                </div>
+                <div style="width: 1px; background: rgba(255,255,255,0.15); align-self: stretch;"></div>
+                <div class="pricing-preview-item">
+                    <span class="pricing-preview-from">From</span>
+                    <span class="pricing-preview-price">$800</span>
+                    <span class="pricing-preview-service">Graphic Design</span>
+                </div>
+                <div style="width: 1px; background: rgba(255,255,255,0.15); align-self: stretch;"></div>
+                <div class="pricing-preview-item">
+                    <span class="pricing-preview-from">From</span>
+                    <span class="pricing-preview-price">$500</span>
+                    <span class="pricing-preview-service">Data Analysis</span>
+                </div>
+            </div>
+
+            <a href="pricing.html" class="btn-white reveal delay-4">
+                See Full Pricing →
+            </a>
+        </div>
+    </section>
+
+    <!-- ─── SKILLS ─── -->
+    <section class="skills" id="skills">
+        <div class="skills-inner">
+            <p class="section-label reveal">Expertise</p>
+            <h2 class="reveal delay-1">Skills &<br><em>Tools</em></h2>
+            <div class="skills-grid">
+                <div class="skill-category reveal delay-1">
+                    <h3>Programming</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>R</li>
+                        <li>SQL</li>
+                        <li>JavaScript</li>
+                        <li>HTML / CSS</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal delay-2">
+                    <h3>Data Science</h3>
+                    <ul>
+                        <li>Machine Learning</li>
+                        <li>Statistical Analysis</li>
+                        <li>Data Visualization</li>
+                        <li>Predictive Modeling</li>
+                        <li>Data Cleaning</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal delay-3">
+                    <h3>Design Tools</h3>
+                    <ul>
+                        <li>Adobe Illustrator</li>
+                        <li>Photoshop</li>
+                        <li>InDesign</li>
+                        <li>Figma</li>
+                        <li>Canva</li>
+                    </ul>
+                </div>
+                <div class="skill-category reveal delay-4">
+                    <h3>Research</h3>
+                    <ul>
+                        <li>Policy Analysis</li>
+                        <li>Data Journalism</li>
+                        <li>Project Management</li>
+                        <li>Public Speaking</li>
+                        <li>Brand Strategy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <p class="section-label reveal" style="color: var(--crimson-bright); text-align: center; display: block;">Get In Touch</p>
+            <h2 class="reveal delay-1">Let's<br><em>Connect</em></h2>
+            <p class="reveal delay-2">
+                Whether you want to collaborate on a project, discuss the latest in data science,
+                or explore how data and design can work together — I'd love to hear from you.
+            </p>
+            <div class="contact-links reveal delay-3">
+                <a href="mailto:latahviawilliams@uchicago.edu" class="contact-btn contact-btn-primary">Email Me</a>
+                <a href="https://www.linkedin.com/in/la-tahvia-williams-805a96246/" target="_blank" class="contact-btn contact-btn-secondary">LinkedIn</a>
+                <a href="https://github.com/Tahvia127" target="_blank" class="contact-btn contact-btn-secondary">GitHub</a>
+                <a href="pricing.html" class="contact-btn contact-btn-secondary">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+        <p>© 2026 La'Tahvia Williams · Designed with Data & Intention</p>
+        <a href="pricing.html">Freelance Services →</a>
+    </footer>
+
+    <script>
+        // ─── PAGE LOADER ───
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 800);
+        });
+
+        // ─── CUSTOM CURSOR ───
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.12;
+            followerY += (mouseY - followerY) * 0.12;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        const hoverTargets = document.querySelectorAll('a, button, .stat-card, .project-item, .design-card');
+        hoverTargets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('expanded');
+                follower.classList.add('expanded');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('expanded');
+                follower.classList.remove('expanded');
+            });
+        });
+
+        // ─── NAV SCROLL ───
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ─── SCROLL REVEAL ───
+        const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .section-line');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // ─── PARALLAX HERO BG TEXT ───
+        window.addEventListener('scroll', () => {
+            const bgText = document.querySelector('.hero-bg-text');
+            if (bgText) {
+                bgText.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.3}px))`;
+            }
+        });
+
+        // ─── SMOOTH SCROLL ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ─── MAGNETIC BUTTONS ───
+        document.querySelectorAll('.btn-white, .nav-cta, .contact-btn-primary').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translateY(-4px) translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+            });
+        });
+
+        // ─── STAGGER REVEAL FOR PROJECT ITEMS ───
+        const projectItems = document.querySelectorAll('.project-item');
+        projectItems.forEach((item, i) => {
+            item.style.transitionDelay = (i % 2 === 0 ? 0 : 0.15) + 's';
+        });
+
+        // ─── DESIGN CARD TILT ───
+        document.querySelectorAll('.design-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) scale(1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>

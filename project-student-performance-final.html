@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Analysis | La'Tahvia Williams</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ==========================================
+   CONSISTENT TYPOGRAPHY SYSTEM
+   Copy this entire section to ALL your HTML pages
+   ========================================== */
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Base Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings - Playfair Display */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Body Text - Poppins */
+        p, li, span, a, div {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Special Elements */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .project-category,
+        .tech-tag,
+        .tech-badge {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        button, .btn, .contact-btn, .project-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav, nav a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 1.75rem; }
+            h4 { font-size: 1.35rem; }
+            p { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        nav {
+            background: #000000;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3d28 100%);
+            color: #FFFFFF;
+            padding: 8rem 5% 6rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            color: #a8d4ba;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #CCCCCC;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            color: #a8d4ba;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 2.5rem 0 1rem;
+            color: #1a1a1a;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #444444;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-family: 'Medino', serif;
+            font-size: 3rem;
+            color: #2d5a3d;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a3d28 100%);
+            color: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+        }
+
+        .highlight-box h3 {
+            color: #FFFFFF;
+            margin-top: 0;
+        }
+
+        .highlight-box p {
+            color: #CCCCCC;
+        }
+
+        .findings-list {
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 2rem 0;
+        }
+
+        .finding-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+
+        .finding-item:last-child {
+            border-bottom: none;
+        }
+
+        .finding-item h4 {
+            font-family: 'Medino', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d5a3d;
+        }
+
+        .finding-item p {
+            color: #666666;
+            margin-bottom: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: #2d5a3d;
+            color: #FFFFFF;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            background: #FFFFFF;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .chart-container h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .chart-container p {
+            color: #666666;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-member {
+            background: #FFFFFF;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .team-member h4 {
+            font-family: 'Medino', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #2d5a3d;
+        }
+
+        .team-role {
+            color: #666666;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #2d5a3d;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 15px;
+            height: 15px;
+            background: #2d5a3d;
+            border-radius: 50%;
+        }
+
+        .timeline-year {
+            font-family: 'Medino', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d5a3d;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: #CCCCCC;
+        }
+
+        .btn-secondary {
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .hero-meta { gap: 1rem; }
+            .chart-wrapper { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+            <a href="https://github.com/Tahvia127/Tahvia127" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="project-category">Machine Learning • Group Project</div>
+            <h1>Behind the Grade</h1>
+            <p class="hero-subtitle">
+                Analyzing behavioral and background factors influencing student academic performance: How partitioned regression revealed that study habits work differently for high and low performers
+            </p>
+            <div class="hero-meta">
+                <span>DATA 119 Final Project</span>
+                <span>•</span>
+                <span>6,607 Students</span>
+                <span>•</span>
+                <span>R² = 0.968</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="section">
+            <h2>Overview</h2>
+            <p>
+                How do students' behavior and background characteristics influence their academic performance? Our project investigated factors such as study hours, sleep patterns, attendance, and motivation levels as predictors of final exam scores. Using the "Student Performance Factors" dataset from Kaggle, we analyzed 6,607 students across 20 variables with exam scores ranging from 57% to 101%.
+            </p>
+            <p>
+                Inspired by a 2023 New York Times article examining the effectiveness of virtual learning environments, we sought to test how behavioral and demographic factors correlate with academic success. Our analysis revealed that relationships between variables and outcomes are not uniform across all performance levels, leading us to develop a partitioned regression approach that dramatically improved prediction accuracy.
+            </p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">6,607</span>
+                    <span class="stat-label">Students Analyzed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0.968</span>
+                    <span class="stat-label">Final R-Squared</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">20</span>
+                    <span class="stat-label">Variables</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">77%</span>
+                    <span class="stat-label">Critical Threshold</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="highlight-box">
+            <h3>The Study Hours Paradox</h3>
+            <p>
+                For students scoring below 77%, each additional hour of study led to an average 1.78% increase in exam scores. However, for high-performing students above 77%, additional study time correlated with a 3.1% decrease in final exam scores. This counterintuitive finding suggests high performers may benefit more from efficiency and quality over quantity, while struggling students need the extended exposure.
+            </p>
+        </div>
+
+        <section class="section">
+            <h2>Key Findings</h2>
+            
+            <div class="findings-list">
+                <div class="finding-item">
+                    <h4>Attendance Drives Success Universally</h4>
+                    <p>
+                        Regardless of performance level, regular classroom attendance significantly improved exam outcomes. Low-performing students saw an average 2.32% score increase for each 1% attendance increase, while high performers saw 2.64% gains. This aligned with research showing physical presence in learning environments as critical to academic success.
+                    </p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>Previous Performance Compounds</h4>
+                    <p>
+                        Past academic achievement was among the strongest predictors of future success. Low performers gained 0.7% on their final exam for each additional point on previous exams, while high performers gained 1.54%, suggesting academic success builds cumulatively and early interventions have outsized long-term impacts.
+                    </p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>Partitioned Model Dramatically Outperforms Single Model</h4>
+                    <p>
+                        Our initial single regression model achieved R² = 0.7198, performing well for students below 80% but deviating significantly for high performers. After experimenting with thresholds between 77% and 81%, we found 77% optimal for partitioning. The combined partitioned model achieved R² = 0.968, a 34% improvement.
+                    </p>
+                </div>
+
+                <div class="finding-item">
+                    <h4>Motivation, Teacher Quality, and Past Scores Predict High Performance</h4>
+                    <p>
+                        Logistic regression revealed that Motivation Level, Teacher Quality, and Previous Scores were the most important factors in predicting whether students would score above 77%. Students with higher motivation, better teachers, and stronger past scores were consistently more likely to excel on future exams.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Visualizations</h2>
+            
+            <div class="chart-container">
+                <h3>Model Performance Comparison</h3>
+                <p>Comparison of R² values across modeling approaches, showing dramatic improvement from partitioned regression.</p>
+                <div class="chart-wrapper">
+                    <canvas id="modelPerformanceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Study Hours Impact by Performance Level</h3>
+                <p>Relationship between study hours and performance differs dramatically above and below the 77% threshold, revealing the study hours paradox with opposite effects for high vs low performers.</p>
+                <div class="chart-wrapper">
+                    <canvas id="studyHoursChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Top 10 Feature Importance Rankings</h3>
+                <p>Most influential predictors of student performance identified through Random Forest analysis, with Attendance emerging as the strongest predictor.</p>
+                <div class="chart-wrapper">
+                    <canvas id="featureImportanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Methodology</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Data Preparation and Cleaning</div>
+                    <p>Addressed missing values using appropriate imputation: filled Teacher Quality with mode values, and created "Missing" categories for Parental Education Level and Distance from Home. Standardized categorical variables and converted them to numerical form using ordinal encoding for ranked features and dummy encoding for nominal variables.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">LASSO Regularization</div>
+                    <p>Applied LASSO with alpha = 0.01 determined through cross-validation to reduce multicollinearity and filter weak predictors. Successfully removed Physical Activity as a less significant predictor while retaining features with non-zero coefficients.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Initial Multiple Linear Regression</div>
+                    <p>Fit regression model on entire dataset achieving R² = 0.7198. Discovered model performed well below 80% but predictions deviated significantly for high scorers, motivating exploration of fundamental differences between performance groups.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Partitioned Regression Approach</div>
+                    <p>Experimented with thresholds between 77% and 81%, determining 77% as optimal cutoff. Trained separate models for students above and below threshold, combining predictions to achieve final R² = 0.968.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">Logistic Regression Classification</div>
+                    <p>Applied logistic regression to categorize students above/below 77%. ROC curve yielded AUC = 0.393. Model achieved precision of 0.995 for identifying low performers but only 0.007 for high performers, demonstrating classification difficulty between groups.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Technologies Used</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">pandas</span>
+                <span class="tech-badge">NumPy</span>
+                <span class="tech-badge">scikit-learn</span>
+                <span class="tech-badge">LASSO Regularization</span>
+                <span class="tech-badge">Random Forest</span>
+                <span class="tech-badge">Logistic Regression</span>
+                <span class="tech-badge">matplotlib</span>
+                <span class="tech-badge">seaborn</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Team Contributions</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h4>Elizabeth Zhao</h4>
+                    <p class="team-role">Data preparation and cleaning, ensuring proper formatting, imputation, and encoding for analysis</p>
+                </div>
+                <div class="team-member">
+                    <h4>La'Tahvia Williams</h4>
+                    <p class="team-role">Exploratory analysis, visualizations, logistic regression analysis, and examining trends to guide modeling strategy</p>
+                </div>
+                <div class="team-member">
+                    <h4>Thomas Heath</h4>
+                    <p class="team-role">LASSO regularization and multiple linear regression modeling and methodology development</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <h2>Interested in the Details?</h2>
+        <div class="cta-buttons">
+            <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
+            <a href="https://github.com/tahviawilliamshttps://github.com/Tahvia127/Tahvia127"></a>
+    </section>
+
+    <script>
+        const ctx1 = document.getElementById('modelPerformanceChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Single Linear\nRegression', 'Partitioned\nRegression'],
+                datasets: [{
+                    label: 'R² Score',
+                    data: [0.7198, 0.968],
+                    backgroundColor: '#2d5a3d',
+                    borderColor: '#1a3d28',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 1, title: { display: true, text: 'R² Score' } }
+                }
+            }
+        });
+
+        const ctx2 = document.getElementById('studyHoursChart').getContext('2d');
+        
+        function generateStudyData(count, minScore, maxScore, slope) {
+            const data = [];
+            for (let i = 0; i < count; i++) {
+                const studyHours = Math.random() * 35 + 5;
+                const baseScore = Math.random() * (maxScore - minScore) + minScore;
+                const score = Math.max(minScore, Math.min(maxScore, baseScore + slope * (studyHours - 20)));
+                data.push({x: studyHours, y: score});
+            }
+            return data;
+        }
+
+        new Chart(ctx2, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Below 77% (+1.78% per hour)',
+                        data: generateStudyData(150, 57, 77, 0.45),
+                        backgroundColor: 'rgba(45, 90, 61, 0.4)',
+                        borderColor: '#2d5a3d',
+                        pointRadius: 4
+                    },
+                    {
+                        label: 'Above 77% (-3.1% per hour)',
+                        data: generateStudyData(150, 77, 101, -0.75),
+                        backgroundColor: 'rgba(26, 61, 40, 0.6)',
+                        borderColor: '#1a3d28',
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: { title: { display: true, text: 'Hours Studied per Week' } },
+                    y: { title: { display: true, text: 'Final Exam Score (%)' }, min: 55, max: 105 }
+                }
+            }
+        });
+
+        const ctx3 = document.getElementById('featureImportanceChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Attendance', 'Hours Studied', 'Previous Scores', 'Parental Involvement', 'Tutoring Sessions', 'Access to Resources', 'Sleep Hours', 'Motivation Level', 'Teacher Quality', 'Distance from Home'],
+                datasets: [{
+                    label: 'Importance Score',
+                    data: [0.305, 0.244, 0.106, 0.038, 0.036, 0.035, 0.024, 0.022, 0.015, 0.012],
+                    backgroundColor: '#2d5a3d',
+                    borderColor: '#1a3d28',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { beginAtZero: true, max: 0.35, title: { display: true, text: 'Feature Importance' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

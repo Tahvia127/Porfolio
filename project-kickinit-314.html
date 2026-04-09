@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kickin It 314 Day Campaign | La'Tahvia Williams</title>
+    <style>
+        /* ==========================================
+   CONSISTENT TYPOGRAPHY SYSTEM
+   Copy this entire section to ALL your HTML pages
+   ========================================== */
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Base Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings - Playfair Display */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Body Text - Poppins */
+        p, li, span, a, div {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Special Elements */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .project-category,
+        .tech-tag,
+        .tech-badge {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        button, .btn, .contact-btn, .project-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav, nav a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 1.75rem; }
+            h4 { font-size: 1.35rem; }
+            p { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        nav {
+            background: #000000;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: #FFFFFF;
+            padding: 8rem 5% 6rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #CCCCCC;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            color: #999999;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+
+        .section h3 {
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            color: #1B4793;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #444444;
+        }
+
+        .project-details {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item h3 {
+            font-size: 1.2rem;
+            color: #1B4793;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            color: #666666;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .color-palette {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .full-width-img {
+            width: 100%;
+            max-width: 1000px;
+            margin: 3rem auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1.5rem;
+        }
+
+        .gallery-caption h4 {
+            font-family: 'Medino', serif;
+            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            color: #666666;
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: #1B4793;
+            color: #FFFFFF;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .comparison img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .cta-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: #FFD700;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background: #f1c40f;
+        }
+
+        .btn-secondary {
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .hero-meta { gap: 1rem; }
+            .gallery { grid-template-columns: 1fr; }
+            .comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="project-category">Brand Campaign • Environmental Graphics • Social Media</div>
+            <h1>Kickin It</h1>
+            <p class="hero-subtitle">
+                314 Day Campaign for Downtown St. Louis Sneaker Boutique
+            </p>
+            <div class="hero-meta">
+                <span>Fictional Brand Project</span>
+                <span>•</span>
+                <span>Complete Campaign</span>
+                <span>•</span>
+                <span>March 2024</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="section">
+            <h2>Campaign Overview</h2>
+            <p>
+                Kickin It is a conceptual sneaker boutique in downtown St. Louis celebrating 314 Day, a local holiday 
+                honoring the city's area code. I created a complete brand identity and marketing campaign that captures 
+                the spirit of St. Louis streetwear culture while driving foot traffic and sales during the March 9-19 
+                promotional period.
+            </p>
+            <p>
+                The campaign needed to feel authentically St. Louis, appeal to sneaker enthusiasts, and create urgency 
+                around limited-time offers. The result is a bold, urban-inspired identity system featuring graffiti-style 
+                typography, St. Louis landmark imagery, and a color palette drawn directly from the St. Louis city flag.
+            </p>
+
+            <div class="project-details">
+                <h3>Campaign Details</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h3>Brand</h3>
+                        <p>Kickin It Sneakers<br>Downtown St. Louis<br>Urban Streetwear Boutique</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Promotion</h3>
+                        <p>314 Day Sale<br>March 9-19, 2024<br>St. Louis Area Code Celebration</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Special Offers</h3>
+                        <p>BOGO 50% Off Arch Sneakers<br>25% Off Music Themed Shoes<br>Free Socks with Running Shoes<br>20% Off Red & Blue Shoes</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Deliverables</h3>
+                        <p>Logo Design<br>Environmental Graphics<br>Window Displays<br>Wall Murals<br>Social Media Campaign<br>Sidewalk Signage</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Brand Identity</h2>
+
+            <h3>Logo Design</h3>
+            <p>
+                The Kickin It logo combines bold, italic graffiti-style lettering with clean "SNEAKERS" branding underneath. 
+                The urban-inspired typography embodies streetwear culture while remaining legible across all applications. 
+                The italic slant suggests motion and energy perfect for a sneaker brand.
+            </p>
+
+            <img src="Photos/f7ef420b-eb97-4b61-ae2d-3fc0a57bb080_rw_1920.png" alt="Kickin It Logo Design" class="full-width-img">
+
+            <h3>Strategic Color Palette</h3>
+            <p>
+                The color system draws direct inspiration from the St. Louis flag, creating immediate local recognition 
+                and authenticity. The palette features bold shades of navy blue, red, and gold against neutral black, 
+                white, and gray foundations evoking both the city's heritage and contemporary streetwear aesthetics.
+            </p>
+
+            <img src="Photos/3acc5606-1917-48a9-aaa6-1535d1b2da94_rw_1920.png" alt="Kickin It Color Palette" class="full-width-img">
+        </section>
+
+        <section class="section">
+            <h2>Campaign Design Process</h2>
+            <p>
+                Each campaign element began with hand-drawn sketches to establish composition and messaging hierarchy 
+                before moving into digital mockups. This iterative approach ensured designs would work effectively 
+                in their intended physical environments.
+            </p>
+
+            <h3>Environmental Graphics Development</h3>
+
+            <div class="comparison">
+                <div>
+                    <img src="Photos/7e6ab198-44b0-4e6f-8641-b934015047e5_rw_1920.png" alt="Wall Display Sketch to Mockup">
+                    <p style="text-align: center; margin-top: 1rem; color: #666;">Wall mural featuring St. Louis map and "Where do you kick it?" messaging</p>
+                </div>
+                <div>
+                    <img src="Photos/8019684b-3a7d-43b4-a0e5-1e3aa8ba08d9_rw_1920.png" alt="Window Display Sketch to Mockup">
+                    <p style="text-align: center; margin-top: 1rem; color: #666;">Window graphics with St. Louis skyline silhouette and promotional badges</p>
+                </div>
+            </div>
+
+            <p>
+                The wall display features an illustrated St. Louis map with the question "Where do you kick it?", connecting 
+                the brand to specific neighborhoods and creating community relevance. The window display uses the iconic 
+                Gateway Arch and city skyline silhouette alongside promotional offers, making the St. Louis connection 
+                immediately recognizable to passersby.
+            </p>
+
+            <img src="Photos/e8be55dc-236b-4107-9642-865e8554c2b2_rw_1920.png" alt="Sidewalk Display Mockup" class="full-width-img">
+        </section>
+
+        <section class="section">
+            <h2>Marketing Campaign</h2>
+
+            <h3>Sale Messaging</h3>
+            <p>
+                Created bold, high-contrast promotional graphics featuring the hand-lettered "314 DAY SALE" typography. 
+                The graffiti inspired letterforms feel authentic to sneaker culture while maintaining excellent readability. 
+                Multiple offers are clearly hierarchized to drive specific purchasing behaviors.
+            </p>
+
+            <img src="Photos/76df45d2-ddb3-4413-8688-4c1001637c8f_rw_1200.png" alt="314 Day Sale Typography" class="full-width-img">
+
+            <h3>Social Media Campaign</h3>
+            <p>
+                Designed a comprehensive social media presence with templates for Instagram and Facebook. Created both 
+                light and dark background variations to test engagement, featuring product photography, promotional text, 
+                and clear calls-to-action.
+            </p>
+
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="Photos/7871873e-122f-41c5-b637-835f0535fdc8_rw_1200.png" alt="Social Media Light Background">
+                    <div class="gallery-caption">
+                        <h4>Daily Reminder Posts</h4>
+                        <p>Light background version with bold black typography for feed variety</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/a1f73cb6-95e1-41ff-ba31-cd874ce88983_rw_1200.png" alt="Social Media Dark Background">
+                    <div class="gallery-caption">
+                        <h4>Daily Reminder Posts</h4>
+                        <p>Dark background version with white typography for dramatic impact</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/454cb061-45c9-411d-8d2a-c9746f9c1353_rw_1200.png" alt="New Arrival Post">
+                    <div class="gallery-caption">
+                        <h4>Product Launch Content</h4>
+                        <p>"New Arrival" announcement template with circular branding and halftone effects</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/ca71415a-1095-4871-80d7-de7efe18e6ee_rw_1200.png" alt="Red Sneaker Sale">
+                    <div class="gallery-caption">
+                        <h4>Promotional Sale Graphics</h4>
+                        <p>Product-focused sale announcement: "314 DAY SALE - RED & BLUE - 20% OFF"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Design Approach</h2>
+            <p>
+                The Kickin It campaign demonstrates a complete brand ecosystem created from scratch. Every element from 
+                logo to environmental graphics to social media works together to create a cohesive identity that feels 
+                both locally authentic and culturally relevant to sneaker enthusiasts.
+            </p>
+            <p>
+                The hand-lettered typography system provides flexibility across applications while maintaining consistent 
+                brand personality. By grounding the campaign in St. Louis pride (314 area code, Gateway Arch, city flag 
+                colors), the design creates immediate emotional connection with the target audience.
+            </p>
+            <p>
+                The sketching process allowed rapid iteration on layouts before committing to digital production, ensuring 
+                each design would function effectively in its intended environment—whether viewed from across a street 
+                (window displays) or scrolled past quickly (social media).
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Results & Learnings</h2>
+            <p>
+                This conceptual project showcases my ability to develop complete brand identities and multi-channel marketing 
+                campaigns. The Kickin It system demonstrates strategic thinking about color psychology, typography for 
+                different contexts, environmental design, and integrated social media presence.
+            </p>
+            <p>
+                Key skills demonstrated include brand strategy tied to local culture, sketch-to-mockup workflow, environmental 
+                graphic design, social media campaign development, and creating flexible design systems that maintain 
+                consistency across diverse applications.
+            </p>
+            <p>
+                The project also shows understanding of retail marketing principles: creating urgency through limited-time 
+                offers, using strategic color (red & blue) to tie promotions to city pride, and designing attention grabbing 
+                environmental graphics that drive foot traffic to physical locations.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Tools & Techniques</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Hand Sketching</span>
+                <span class="tech-badge">Adobe Illustrator</span>
+                <span class="tech-badge">Adobe Photoshop</span>
+                <span class="tech-badge">Typography Design</span>
+                <span class="tech-badge">Brand Strategy</span>
+                <span class="tech-badge">Environmental Graphics</span>
+                <span class="tech-badge">Social Media Design</span>
+                <span class="tech-badge">Campaign Development</span>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <h2>See More Work</h2>
+        <div class="cta-buttons">
+            <a href="index.html#design" class="btn btn-secondary">More Design Projects</a>
+            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+</html>

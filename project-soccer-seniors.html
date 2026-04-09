@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEAM Soccer Senior Night | La'Tahvia Williams</title>
+    <style>
+        /* ==========================================
+   CONSISTENT TYPOGRAPHY SYSTEM
+   Copy this entire section to ALL your HTML pages
+   ========================================== */
+
+        /* Google Fonts Import */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        /* Base Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings - Playfair Display */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        h6 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Body Text - Poppins */
+        p, li, span, a, div {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Special Elements */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .project-category,
+        .tech-tag,
+        .tech-badge {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        button, .btn, .contact-btn, .project-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav, nav a {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            h3 { font-size: 1.75rem; }
+            h4 { font-size: 1.35rem; }
+            p { font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        nav {
+            background: #000000;
+            padding: 1.5rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: #FFFFFF;
+            padding: 8rem 5% 6rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-category {
+            color: #d4e8f7;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            color: #d4e8f7;
+            font-size: 0.9rem;
+        }
+
+        .content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #000000;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #444444;
+        }
+
+        .project-details {
+            background: #FFFFFF;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 3rem 0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item h3 {
+            font-size: 1.2rem;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            color: #666666;
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .gallery-caption h4 {
+            font-family: 'Medino', serif;
+            font-size: 1.2rem;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-caption p {
+            color: #666666;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: #3498db;
+            color: #FFFFFF;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #FFFFFF;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            border: 1px solid #FFFFFF;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section h2 { font-size: 2.5rem; }
+            .hero-meta { gap: 1rem; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="index.html">Back to Portfolio</a>
+            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="project-category">Sports Photography • Graphic Design • Editorial Design</div>
+            <h1>STEAM Soccer Senior Night</h1>
+            <p class="hero-subtitle">
+                Professional senior night posters combining portrait photography with dynamic sports graphics for STEAM Academy high school soccer team
+            </p>
+            <div class="hero-meta">
+                <span>Photography & Design</span>
+                <span>•</span>
+                <span>4 Senior Players</span>
+                <span>•</span>
+                <span>2024</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="content">
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>
+                For STEAM Academy's 2024 soccer season, I created a complete senior night poster series celebrating four graduating players. This project combined my photography and graphic design skills, I conducted the teen portrait photo shoots, then designed dramatic sports posters using Adobe Illustrator and Photoshop.
+            </p>
+            <p>
+                The challenge was creating a cohesive visual identity that honored each athlete individually while maintaining consistent branding across the series. The design needed to capture the energy and prestige of senior night while creating keepsakes families would treasure.
+            </p>
+
+            <div class="project-details">
+                <h3>Project Details</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h3>Team</h3>
+                        <p>STEAM Academy<br>High School Soccer<br>Senior Night 2024</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Services</h3>
+                        <p>Portrait Photography<br>Photo Editing<br>Poster Design<br>Print Production</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Featured Athletes</h3>
+                        <p>Shawn Smith (#20)<br>Ne'Miah Barnett (#10)<br>Roshad Gregory (#13)<br>Jaidon Evans (#17)</p>
+                    </div>
+                    <div class="detail-item">
+                        <h3>Design Elements</h3>
+                        <p>Custom Typography<br>Dramatic Backgrounds<br>Team Branding<br>Photo Compositing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Design Process</h2>
+            <p>
+                The project began with coordinated portrait sessions where I photographed each senior in their soccer uniforms. I directed poses that showcased their confidence and connection to the sport (holding soccer balls) standing in athletic stances, and capturing their personalities beyond just being athletes.
+            </p>
+            <p>
+                For the poster design, I developed a dramatic blue textured background system that evokes both the intensity of competitive sports and the school's colors. Using Photoshop, I carefully masked each athlete from their original background and integrated them into the designed environment, ensuring realistic lighting and shadows.
+            </p>
+            <p>
+                The typography system features bold, italic letterforms for player names that convey motion and energy, complemented by the clean "STEAM SOCCER" branding at the top. Each player's jersey number is subtly integrated into the background design, creating depth and personalization. The "SENIOR 2024" designation anchors each composition while marking this milestone moment in their athletic careers.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Senior Poster Gallery</h2>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="Photos/42c57145-bbdc-4b9f-9759-692809640dc1_rw_1920.png" alt="Shawn Smith Senior Poster">
+                    <div class="gallery-caption">
+                        <h4>Shawn Smith</h4>
+                        <p>Senior 2024 • #20 • Dramatic blue jersey composition</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/b4e1ec12-b655-47da-9769-8b52f7686101_rw_1920.png" alt="Ne'Miah Barnett Senior Poster">
+                    <div class="gallery-caption">
+                        <h4>Ne'Miah Barnett</h4>
+                        <p>Senior 2024 • #10 • Confident portrait with soccer ball</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/7a9eabac-d78b-4b37-a5d8-93269e8ce3d1_rw_1920.png" alt="Roshad Gregory Senior Poster">
+                    <div class="gallery-caption">
+                        <h4>Roshad Gregory</h4>
+                        <p>Senior 2024 • #13 • White jersey alternate design</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="Photos/fdce7e60-0ba2-4782-977a-c26d8749cf5e_rw_1920.png" alt="Jaidon Evans Senior Poster">
+                    <div class="gallery-caption">
+                        <h4>Jaidon Evans</h4>
+                        <p>Senior 2024 • #17 • Dynamic pose with elevated ball</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Results & Impact</h2>
+            <p>
+                The senior night posters successfully celebrated each athlete while creating a unified visual campaign for STEAM Academy's soccer program. The dramatic, professional designs elevated the standard senior night experience, providing families with high-quality keepsakes commemorating their students' athletic achievements.
+            </p>
+            <p>
+                By handling both the photography and design phases, I ensured complete creative control over the final aesthetic—from initial pose direction through final color grading and typography. This integrated approach resulted in cohesive posters that felt professionally produced while maintaining authentic representations of each athlete's personality.
+            </p>
+            <p>
+                The project demonstrated my ability to execute complete creative campaigns from concept through delivery, combining technical photography skills with advanced graphic design capabilities. The posters were displayed at the senior night ceremony and became treasured mementos for graduating athletes and their families.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Tools & Techniques</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">Photography</span>
+                <span class="tech-badge">Adobe Photoshop</span>
+                <span class="tech-badge">Adobe Illustrator</span>
+                <span class="tech-badge">Photo Editing</span>
+                <span class="tech-badge">Photo Compositing</span>
+                <span class="tech-badge">Typography</span>
+                <span class="tech-badge">Sports Graphics</span>
+                <span class="tech-badge">Print Design</span>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta-section">
+        <h2>See More Work</h2>
+        <div class="cta-buttons">
+            <a href="index.html#design" class="btn btn-secondary">More Design Projects</a>
+            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+        </div>
+    </section>
+</body>
+</html>
