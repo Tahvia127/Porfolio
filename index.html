@@ -60,12 +60,6 @@
             overflow-x: hidden;
         }
 
-        /* Only hide system cursor for mouse users after JS activates custom cursor */
-        @media (pointer: fine) {
-            .has-custom-cursor,
-            .has-custom-cursor * { cursor: none !important; }
-        }
-
         /* ─── SKIP LINK ─── */
         .skip-link {
             position: absolute;
@@ -104,37 +98,7 @@
             .section-line { transform: scaleX(1) !important; }
             .hero h1 .line-inner { opacity: 1 !important; transform: none !important; }
             .hero-label, .hero-stats, .hero-bottom { opacity: 1 !important; transform: none !important; }
-            .marquee-inner { animation: none !important; }
         }
-
-        /* ─── CUSTOM CURSOR ─── */
-        .cursor {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--crimson);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99999;
-            transform: translate(-50%, -50%);
-            transition: transform 0.1s ease, width 0.3s var(--transition), height 0.3s var(--transition), background 0.3s ease;
-            mix-blend-mode: multiply;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid var(--crimson);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 99998;
-            transform: translate(-50%, -50%);
-            transition: transform 0.35s var(--transition), width 0.3s var(--transition), height 0.3s var(--transition), border-color 0.3s ease;
-        }
-
-        .cursor.expanded { width: 20px; height: 20px; }
-        .cursor-follower.expanded { width: 60px; height: 60px; }
 
         /* ─── NAVIGATION ─── */
         nav {
@@ -362,40 +326,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ─── MARQUEE ─── */
-        .marquee-wrap {
-            background: var(--crimson);
-            padding: 1.2rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-inner {
-            display: inline-block;
-            animation: marquee 25s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .marquee-item {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            color: var(--white);
-            letter-spacing: 2px;
-            padding: 0 2.5rem;
-            display: inline-block;
-        }
-
-        .marquee-sep {
-            color: rgba(255,255,255,0.4);
-            display: inline-block;
-            padding: 0 0.5rem;
-        }
-
         /* ─── REVEAL ANIMATIONS ─── */
         .reveal {
             opacity: 0;
@@ -560,95 +490,48 @@
             color: var(--muted);
         }
 
+        /* ─── SKILLS STRIP (in About) ─── */
+        .skills-strip {
+            max-width: 1400px;
+            margin: 5rem auto 0;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(139, 26, 42, 0.18);
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .skills-strip-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--crimson);
+            white-space: nowrap;
+        }
+
+        .skills-strip-list {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .skills-strip {
+                flex-direction: column;
+                gap: 1rem;
+                margin-top: 3.5rem;
+                padding-top: 2rem;
+            }
+            .skills-strip-list { font-size: 1.1rem; }
+        }
+
         /* ─── SECTION DIVIDER ─── */
         .divider {
             height: 1px;
             background: linear-gradient(to right, transparent, rgba(139,26,42,0.2), transparent);
             margin: 0 5%;
-        }
-
-        /* ─── SERVICES TEASER ─── */
-        .services-teaser {
-            padding: 8rem 5%;
-            background: var(--crimson-deep);
-            overflow: hidden;
-        }
-
-        .services-teaser-inner {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .services-teaser h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            font-weight: 300;
-            color: var(--white);
-            line-height: 1.1;
-        }
-
-        .services-teaser h2 em {
-            font-style: italic;
-            color: var(--crimson-bright);
-        }
-
-        .services-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .service-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            cursor: pointer;
-            transition: padding 0.3s ease;
-            text-decoration: none;
-        }
-
-        .service-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
-
-        .service-item:hover { padding: 2rem 1rem; }
-
-        .service-item-left {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .service-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: var(--crimson-bright);
-            font-style: italic;
-        }
-
-        .service-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: var(--white);
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .service-item:hover .service-name { color: var(--crimson-bright); }
-
-        .service-arrow {
-            color: rgba(255,255,255,0.7);
-            font-size: 1.5rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .service-item:hover .service-arrow {
-            transform: translateX(10px);
-            color: var(--crimson-bright);
         }
 
         /* ─── PROJECTS ─── */
@@ -703,6 +586,20 @@
         .project-item:nth-child(even) > * { direction: ltr; }
 
         .project-item:hover { transform: scale(1.005); }
+        .project-item .project-visual { transition: transform 0.7s var(--transition); }
+        .project-item:hover .project-visual { transform: scale(1.03); }
+        .project-item .project-content h3 { position: relative; display: inline-block; }
+        .project-item .project-content h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -4px;
+            width: 100%; height: 1px;
+            background: var(--crimson);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s var(--transition);
+        }
+        .project-item:hover .project-content h3::after { transform: scaleX(1); }
 
         .project-visual {
             height: 400px;
@@ -766,6 +663,12 @@
             background-position: center;
         }
         .cover-student { background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%); }
+        .cover-policyguesser { background: linear-gradient(135deg, #0c2461 0%, #1a4480 50%, #1e7a78 100%); }
+        .cover-geography { background: linear-gradient(135deg, #4a1d4a 0%, #6b2660 45%, #6b4d18 100%); }
+        .cover-sentenced { background: linear-gradient(135deg, #1c1917 0%, #2a2724 45%, #5b1f0c 100%); }
+        .cover-crown { background: linear-gradient(135deg, #3f2a14 0%, #5e2a0c 45%, #6f4f1f 100%); }
+        .cover-unity { background: linear-gradient(135deg, #064e3b 0%, #0a5d52 50%, #0a6e63 100%); }
+        .cover-publicpath { background: linear-gradient(135deg, #312e81 0%, #3730a3 45%, #4338ca 100%); }
 
         .project-content {
             padding: 4rem 4rem;
@@ -1070,68 +973,96 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        /* ─── SKILLS ─── */
-        .skills {
+        /* ─── TESTIMONIALS ─── */
+        .testimonials {
             padding: 10rem 5%;
             background: var(--cream-dark);
         }
 
-        .skills-inner {
-            max-width: 1300px;
+        .testimonials-inner {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .skills h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            font-weight: 400;
+        .testimonials-header {
+            text-align: center;
             margin-bottom: 5rem;
         }
 
-        .skills h2 em { font-style: italic; color: var(--crimson); }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .skill-category h3 {
+        .testimonials h2 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(139,26,42,0.2);
-            color: var(--ink);
+            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-top: 1rem;
         }
 
-        .skill-category ul {
-            list-style: none;
+        .testimonials h2 em {
+            font-style: italic;
+            color: var(--crimson);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2.5rem;
+            border-left: 3px solid var(--crimson);
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            transition: transform 0.5s var(--transition), box-shadow 0.5s var(--transition);
         }
 
-        .skill-category li {
-            font-size: 0.9rem;
+        .testimonial:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px -20px rgba(139, 26, 42, 0.25);
+        }
+
+        .testimonial-mark {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            line-height: 0.8;
+            color: var(--crimson);
+            margin-bottom: 0.6rem;
+        }
+
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            line-height: 1.55;
+            color: var(--ink);
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid rgba(139, 26, 42, 0.15);
+            padding-top: 1.2rem;
+        }
+
+        .testimonial-author .name {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-author .role {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             color: var(--ink-light);
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            transition: color 0.3s ease, padding-left 0.3s ease;
-            cursor: default;
         }
 
-        .skill-category li::before {
-            content: '—';
-            color: var(--crimson);
-            font-size: 0.7rem;
-        }
-
-        .skill-category li:hover {
-            color: var(--crimson);
-            padding-left: 5px;
+        @media (max-width: 768px) {
+            .testimonials { padding: 6rem 5%; }
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
 
         /* ─── CONTACT ─── */
@@ -1250,33 +1181,6 @@
 
         footer a:hover { color: var(--crimson-bright); }
 
-        /* ─── QUOTE BAND ─── */
-        .quote-band {
-            padding: 6rem 5%;
-            background: var(--white);
-            text-align: center;
-        }
-
-        .quote-band blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-style: italic;
-            color: var(--ink);
-            max-width: 900px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .quote-band cite {
-            display: block;
-            margin-top: 1.5rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--muted);
-            font-style: normal;
-        }
-
         /* ─── MOBILE ─── */
         @media (max-width: 900px) {
             nav ul { gap: 1.5rem; }
@@ -1290,11 +1194,6 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .services-teaser-inner {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
             .project-item {
                 grid-template-columns: 1fr;
             }
@@ -1304,10 +1203,6 @@
             .project-visual { height: 280px; }
 
             .design-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .skills-grid {
                 grid-template-columns: 1fr 1fr;
             }
 
@@ -1328,7 +1223,6 @@
             .hero h1 { font-size: 3.5rem; }
             .hero-stats { gap: 2rem; }
             .design-grid { grid-template-columns: 1fr; }
-            .skills-grid { grid-template-columns: 1fr; }
             nav ul { display: none; }
             .project-content { padding: 2.5rem 2rem; }
         }
@@ -1388,10 +1282,6 @@
             border: 0;
         }
 
-        /* Hide custom cursor elements until mouse activates them */
-        .cursor, .cursor-follower { display: none; }
-        .has-custom-cursor .cursor,
-        .has-custom-cursor .cursor-follower { display: block; }
     </style>
 </head>
 <body>
@@ -1403,10 +1293,6 @@
     <div class="page-loader" id="loader" role="status" aria-live="polite" aria-label="Loading">
         <div class="loader-text" aria-hidden="true">La'Tahvia</div>
     </div>
-
-    <!-- Custom Cursor (decorative) -->
-    <div class="cursor" id="cursor" aria-hidden="true"></div>
-    <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
     <!-- Navigation -->
     <nav id="nav" aria-label="Main navigation">
@@ -1454,36 +1340,6 @@
         </div>
     </section>
 
-    <!-- ─── MARQUEE ─── -->
-    <div class="marquee-wrap" aria-hidden="true" role="presentation">
-        <div class="marquee-inner">
-            <span class="marquee-item">Data Scientist</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Policy Researcher</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Graphic Designer</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Web Designer</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Data Analyst</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Brand Strategist</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Data Scientist</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Policy Researcher</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Graphic Designer</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Web Designer</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Data Analyst</span>
-            <span class="marquee-sep">✦</span>
-            <span class="marquee-item">Brand Strategist</span>
-            <span class="marquee-sep">✦</span>
-        </div>
-    </div>
-
     <!-- ─── ABOUT ─── -->
     <section class="about" id="about" aria-labelledby="about-heading">
         <div class="about-grid">
@@ -1524,49 +1380,19 @@
                 </div>
             </div>
         </div>
+        <div class="skills-strip reveal delay-2">
+            <span class="skills-strip-label">Toolkit</span>
+            <span class="skills-strip-list">Python · R · SQL · JavaScript · scikit-learn · pandas · statsmodels · D3 · Altair · Figma · Illustrator · InDesign · Photoshop · WordPress</span>
+        </div>
     </section>
 
     <div class="divider"></div>
-
-    <!-- ─── SERVICES TEASER ─── -->
-    <section class="services-teaser">
-        <div class="services-teaser-inner">
-            <div>
-                <p class="section-label reveal" style="color: rgba(255,255,255,0.9);">What I Offer</p>
-                <div class="section-line reveal delay-1" style="background: var(--crimson-bright);"></div>
-                <h2 class="reveal delay-2">I help brands<br>grow through<br><em>data & design</em></h2>
-            </div>
-            <div class="services-list">
-                <a href="pricing.html#website" class="service-item reveal delay-1">
-                    <div class="service-item-left">
-                        <span class="service-num">01</span>
-                        <span class="service-name">Website Design</span>
-                    </div>
-                    <span class="service-arrow">→</span>
-                </a>
-                <a href="pricing.html#graphic" class="service-item reveal delay-2">
-                    <div class="service-item-left">
-                        <span class="service-num">02</span>
-                        <span class="service-name">Graphic Design</span>
-                    </div>
-                    <span class="service-arrow">→</span>
-                </a>
-                <a href="pricing.html#data" class="service-item reveal delay-3">
-                    <div class="service-item-left">
-                        <span class="service-num">03</span>
-                        <span class="service-name">Data Analysis</span>
-                    </div>
-                    <span class="service-arrow">→</span>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- ─── DATA SCIENCE PROJECTS ─── -->
     <section class="projects" id="projects">
         <div class="projects-header">
             <div>
-                <p class="section-label reveal">Selected Work</p>
+                <p class="section-label reveal">Selected Work · 16 Projects</p>
                 <h2 class="reveal delay-1">Data &<br><em>Analysis</em></h2>
             </div>
             <p class="reveal delay-2">Machine learning,<br>policy research &<br>data journalism</p>
@@ -1690,16 +1516,155 @@
                     <a href="project-hashtags.html" class="project-link">Explore Project →</a>
                 </div>
             </div>
+
+            <!-- Project 6 -->
+            <div class="project-item reveal delay-2">
+                <div class="project-visual cover-policyguesser">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">PolicyGuesser<br>UN Voting Game</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Interactive · Civic Tech</div>
+                    <h3>PolicyGuesser: Would You Have Voted Yes?</h3>
+                    <p class="project-description">
+                        A web game built on real UN Security Council and General Assembly resolutions.
+                        Players read a plain-English summary, vote, then watch the actual country-by-country outcome animate on a D3 world map.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Django REST</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                    <a href="project-policyguesser.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="project-item reveal">
+                <div class="project-visual cover-geography">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Geography<br>of Rights</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Data &amp; Policy</div>
+                    <h3>The Geography of Rights</h3>
+                    <p class="project-description">
+                        A composite Human Rights Policy Index scoring all 50 U.S. states across reproductive rights,
+                        LGBTQ+ protections, voting access, labor, and criminal justice — with PCA weighting and OLS regression on political and demographic predictors.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">statsmodels</span>
+                        <span class="tech-tag">Altair</span>
+                        <span class="tech-tag">Chart.js</span>
+                    </div>
+                    <a href="project-geography-of-rights.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="project-item reveal delay-1">
+                <div class="project-visual cover-sentenced">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Sentenced<br>Differently</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Criminal Justice · Statistics</div>
+                    <h3>Sentenced Differently</h3>
+                    <p class="project-description">
+                        300,000+ federal sentencing records (FY2020–FY2024) tested for residual race and gender disparities
+                        after legal controls. Two-stage modeling separates the incarceration decision from sentence length, with a live disparity calculator.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">statsmodels</span>
+                        <span class="tech-tag">pyreadstat</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">USSC Data</span>
+                    </div>
+                    <a href="project-sentenced-differently.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 9 -->
+            <div class="project-item reveal delay-2">
+                <div class="project-visual cover-crown">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">More Than Hair<br>CROWN Act</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Policy Research</div>
+                    <h3>More Than Hair: A CROWN Act Evaluation</h3>
+                    <p class="project-description">
+                        An intersectional policy evaluation of the CROWN Act's impact on Black women in the workplace —
+                        combining legal analysis, the scholarly record on hair bias, and original interviews to surface the gap between law and lived experience.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Policy Analysis</span>
+                        <span class="tech-tag">Qualitative Research</span>
+                        <span class="tech-tag">Intersectionality</span>
+                    </div>
+                    <a href="project-crown-act.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 10 -->
+            <div class="project-item reveal">
+                <div class="project-visual cover-unity">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">Project Unity<br>NFP Website</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Web Development · Nonprofit</div>
+                    <h3>Project Unity NFP Site Rebuild</h3>
+                    <p class="project-description">
+                        A static-site rebuild for Project Unity NFP — multi-page architecture covering Catalyst Academy cohorts,
+                        Y-PHIC programming, leadership and research, an interactive U.S. presence map, and Zeffy donation integration.
+                        Designed as the foundation for a custom WordPress theme migration on SiteGround.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">WordPress</span>
+                    </div>
+                    <a href="project-unity.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
+
+            <!-- Project 11 -->
+            <div class="project-item reveal delay-1">
+                <div class="project-visual cover-publicpath">
+                    <div class="project-visual-overlay">
+                        <div class="project-visual-text">PublicPath<br>Job &amp; Partner Hub</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <div class="project-category">Web App · Civic Tech</div>
+                    <h3>PublicPath: Public-Sector Job &amp; Partner Hub</h3>
+                    <p class="project-description">
+                        A jobs-and-partnerships platform with Python sync scripts (sync_jobs, generate_digest) feeding a Postgres backend
+                        and HTML pages for jobs, partners, and resources. GitHub Actions automate the daily ingestion and digest pipeline.
+                    </p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                    </div>
+                    <a href="project-publicpath.html" class="project-link">Explore Project →</a>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ─── QUOTE ─── -->
-    <div class="quote-band">
-        <blockquote class="reveal">
-            "The goal is to turn data into information,<br>and information into insight."
-        </blockquote>
-        <cite class="reveal delay-2">— Carly Fiorina</cite>
-    </div>
 
     <!-- ─── DESIGN SECTION ─── -->
     <section class="design-section" id="design">
@@ -1826,51 +1791,37 @@
         </div>
     </section>
 
-    <!-- ─── SKILLS ─── -->
-    <section class="skills" id="skills">
-        <div class="skills-inner">
-            <p class="section-label reveal">Expertise</p>
-            <h2 class="reveal delay-1">Skills &<br><em>Tools</em></h2>
-            <div class="skills-grid">
-                <div class="skill-category reveal delay-1">
-                    <h3>Programming</h3>
-                    <ul>
-                        <li>Python</li>
-                        <li>R</li>
-                        <li>SQL</li>
-                        <li>JavaScript</li>
-                        <li>HTML / CSS</li>
-                    </ul>
+    <!-- ─── TESTIMONIALS ─── -->
+    <section class="testimonials" id="testimonials">
+        <div class="testimonials-inner">
+            <div class="testimonials-header">
+                <p class="section-label reveal">Kind Words</p>
+                <h2 class="reveal delay-1">What people <em>say</em></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial reveal delay-1">
+                    <div class="testimonial-mark">&ldquo;</div>
+                    <p class="testimonial-quote">La'Tahvia turned a messy dataset into a story our board could actually act on. The visualizations were beautiful and the analysis was airtight.</p>
+                    <div class="testimonial-author">
+                        <p class="name">Add a client name</p>
+                        <p class="role">Role · Organization</p>
+                    </div>
                 </div>
-                <div class="skill-category reveal delay-2">
-                    <h3>Data Science</h3>
-                    <ul>
-                        <li>Machine Learning</li>
-                        <li>Statistical Analysis</li>
-                        <li>Data Visualization</li>
-                        <li>Predictive Modeling</li>
-                        <li>Data Cleaning</li>
-                    </ul>
+                <div class="testimonial reveal delay-2">
+                    <div class="testimonial-mark">&ldquo;</div>
+                    <p class="testimonial-quote">She rebuilt our nonprofit's site from the ground up and made the donation flow effortless. Donations went up the week it launched.</p>
+                    <div class="testimonial-author">
+                        <p class="name">Add a client name</p>
+                        <p class="role">Role · Organization</p>
+                    </div>
                 </div>
-                <div class="skill-category reveal delay-3">
-                    <h3>Design Tools</h3>
-                    <ul>
-                        <li>Adobe Illustrator</li>
-                        <li>Photoshop</li>
-                        <li>InDesign</li>
-                        <li>Figma</li>
-                        <li>Canva</li>
-                    </ul>
-                </div>
-                <div class="skill-category reveal delay-4">
-                    <h3>Research</h3>
-                    <ul>
-                        <li>Policy Analysis</li>
-                        <li>Data Journalism</li>
-                        <li>Project Management</li>
-                        <li>Public Speaking</li>
-                        <li>Brand Strategy</li>
-                    </ul>
+                <div class="testimonial reveal delay-3">
+                    <div class="testimonial-mark">&ldquo;</div>
+                    <p class="testimonial-quote">Equal parts data scientist, designer, and project manager. La'Tahvia is the rare collaborator who can run the analysis and present it with polish.</p>
+                    <div class="testimonial-author">
+                        <p class="name">Add a client name</p>
+                        <p class="role">Role · Organization</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1908,49 +1859,6 @@
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
             }, 800);
-        });
-
-        // ─── CUSTOM CURSOR (mouse only) ───
-        const cursor = document.getElementById('cursor');
-        const follower = document.getElementById('cursorFollower');
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            // Activate custom cursor only after first mouse movement
-            if (!document.documentElement.classList.contains('has-custom-cursor')) {
-                document.documentElement.classList.add('has-custom-cursor');
-            }
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursor.style.left = mouseX + 'px';
-            cursor.style.top = mouseY + 'px';
-        });
-
-        // Restore cursor for keyboard users
-        document.addEventListener('keydown', () => {
-            document.documentElement.classList.remove('has-custom-cursor');
-        });
-
-        function animateFollower() {
-            followerX += (mouseX - followerX) * 0.12;
-            followerY += (mouseY - followerY) * 0.12;
-            follower.style.left = followerX + 'px';
-            follower.style.top = followerY + 'px';
-            requestAnimationFrame(animateFollower);
-        }
-        animateFollower();
-
-        const hoverTargets = document.querySelectorAll('a, button, .stat-card, .project-item, .design-card');
-        hoverTargets.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('expanded');
-                follower.classList.add('expanded');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('expanded');
-                follower.classList.remove('expanded');
-            });
         });
 
         // ─── NAV SCROLL ───
