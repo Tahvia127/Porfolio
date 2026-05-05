@@ -1041,8 +1041,12 @@
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
+        }
+
+        @media (max-width: 860px) {
+            .testimonials-grid { grid-template-columns: 1fr; }
         }
 
         .testimonial {
@@ -1095,6 +1099,26 @@
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--ink-light);
+        }
+
+        .testimonial-linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.9rem;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #0a66c2;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .testimonial-linkedin svg {
+            width: 14px;
+            height: 14px;
+            fill: #0a66c2;
+            flex-shrink: 0;
         }
 
         @media (max-width: 768px) {
@@ -1829,37 +1853,70 @@
     </section>
 
     <!-- ─── TESTIMONIALS ─── -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
         <div class="testimonials-inner">
             <div class="testimonials-header">
                 <p class="section-label reveal">Kind Words</p>
-                <h2 class="reveal delay-1">What people <em>say</em></h2>
+                <h2 id="testimonials-heading" class="reveal delay-1">What people <em>say</em></h2>
             </div>
             <div class="testimonials-grid">
+
+                <!-- Sheila Burkett -->
                 <div class="testimonial reveal delay-1">
-                    <div class="testimonial-mark">&ldquo;</div>
-                    <p class="testimonial-quote">La'Tahvia turned a messy dataset into a story our board could actually act on. The visualizations were beautiful and the analysis was airtight.</p>
+                    <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+                    <p class="testimonial-quote">Tahvia has a creative, technical and data background. She is smart, works independently and communicates her progress. I highly recommend Tahvia!</p>
                     <div class="testimonial-author">
-                        <p class="name">Add a client name</p>
-                        <p class="role">Role · Organization</p>
+                        <p class="name">Sheila Burkett</p>
+                        <p class="role">Founder &amp; CEO · Spry Digital</p>
+                        <span class="testimonial-linkedin" aria-label="Verified LinkedIn recommendation">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn Recommendation
+                        </span>
                     </div>
                 </div>
+
+                <!-- Heath Harris -->
                 <div class="testimonial reveal delay-2">
-                    <div class="testimonial-mark">&ldquo;</div>
-                    <p class="testimonial-quote">She rebuilt our nonprofit's site from the ground up and made the donation flow effortless. Donations went up the week it launched.</p>
+                    <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+                    <p class="testimonial-quote">Tahvia is a dedicated intern who supported our Design, Technology, Business Analysis, Marketing, and Administration teams. Her energy and positive outlook, along with her willingness and ability to learn would add value to any team.</p>
                     <div class="testimonial-author">
-                        <p class="name">Add a client name</p>
-                        <p class="role">Role · Organization</p>
+                        <p class="name">Heath Harris</p>
+                        <p class="role">Design Team Leader · Spry Digital</p>
+                        <span class="testimonial-linkedin" aria-label="Verified LinkedIn recommendation">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn Recommendation
+                        </span>
                     </div>
                 </div>
+
+                <!-- Dawn Hieger -->
                 <div class="testimonial reveal delay-3">
-                    <div class="testimonial-mark">&ldquo;</div>
-                    <p class="testimonial-quote">Equal parts data scientist, designer, and project manager. La'Tahvia is the rare collaborator who can run the analysis and present it with polish.</p>
+                    <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+                    <p class="testimonial-quote">Tahvia was a joy to work with. I was immediately impressed by her diverse skill sets and her ability to take on many different responsibilities. She was enthusiastic, self-motivated and efficient.</p>
                     <div class="testimonial-author">
-                        <p class="name">Add a client name</p>
-                        <p class="role">Role · Organization</p>
+                        <p class="name">Dawn Hieger</p>
+                        <p class="role">Chief Relationship Officer · Spry Digital</p>
+                        <span class="testimonial-linkedin" aria-label="Verified LinkedIn recommendation">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn Recommendation
+                        </span>
                     </div>
                 </div>
+
+                <!-- Regan Myers -->
+                <div class="testimonial reveal delay-1">
+                    <div class="testimonial-mark" aria-hidden="true">&ldquo;</div>
+                    <p class="testimonial-quote">La'Tahvia is an extremely smart, hardworking, talented individual. She took on every assignment with a positive attitude and turned it around quickly while exceeding expectations. She has an extremely bright future ahead of her and would be an incredible asset to any team.</p>
+                    <div class="testimonial-author">
+                        <p class="name">Regan Myers, MBA</p>
+                        <p class="role">Corporate Communications Manager · Core &amp; Main</p>
+                        <span class="testimonial-linkedin" aria-label="Verified LinkedIn recommendation">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn Recommendation
+                        </span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
