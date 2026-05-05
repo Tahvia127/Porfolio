@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spellbound Bakery Brand Identity | La'Tahvia Williams</title>
     <style>
-        /* ==========================================
-   CONSISTENT TYPOGRAPHY SYSTEM
-   Copy this entire section to ALL your HTML pages
-   ========================================== */
+        :root {
+            --crimson: #6A9AB5;
+            --crimson-deep: #243F58;
+            --crimson-bright: #4A88AB;
+            --gold: #C8A85C;
+            --blue-text: #2E5F7A;
+            --cream: #F5F0E8;
+            --cream-dark: #EDE8DF;
+            --ink: #1C2B3A;
+            --ink-light: #3A526A;
+            --muted: #5A7A92;
+            --white: #FDFAF6;
+            --transition: cubic-bezier(0.76, 0, 0.24, 1);
+        }
 
         /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -24,6 +34,8 @@
             font-family: 'Inter', sans-serif;
             font-weight: 400;
             line-height: 1.7;
+            background: var(--cream);
+            color: var(--ink);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -35,80 +47,31 @@
             line-height: 1.2;
         }
 
-        h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
-
-        h3 {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        h6 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
+        h1 { font-size: 4.5rem; font-weight: 700; }
+        h2 { font-size: 3rem; font-weight: 600; }
+        h3 { font-size: 2rem; font-weight: 600; }
+        h4 { font-size: 1.5rem; font-weight: 600; }
+        h5 { font-size: 1.25rem; font-weight: 600; }
+        h6 { font-size: 1rem; font-weight: 600; }
 
         /* Body Text - Inter */
-        p, li, span, a, div {
-            font-family: 'Inter', sans-serif;
-        }
-
-        p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
+        p, li, span, a, div { font-family: 'Inter', sans-serif; }
+        p { font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem; }
 
         /* Special Elements */
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-        }
-
-        .project-category,
-        .tech-tag,
-        .tech-badge {
+        .stat-number { font-family: 'Cormorant Garamond', serif; font-weight: 700; }
+        .project-category, .tech-tag, .tech-badge {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        /* Buttons */
+        blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; }
         button, .btn, .contact-btn, .project-link {
             font-family: 'Inter', sans-serif;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-
-        /* Navigation */
-        nav, nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
         }
 
         /* Responsive Typography */
@@ -119,182 +82,161 @@
             h4 { font-size: 1.35rem; }
             p { font-size: 1rem; }
         }
-
         @media (max-width: 480px) {
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
             h3 { font-size: 1.5rem; }
         }
 
-        nav { background: rgba(245,240,232,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.5rem 5%; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(106,154,181,0.1); }
-nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-nav a { color: #1A1410; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.78rem; font-weight: 500; transition: color 0.3s; }
-nav a:hover { color: var(--crimson); }
-nav a.back::before, nav .container a:first-child::before { content: "← "; color: var(--crimson); }
+        /* NAV */
+        nav {
+            background: rgba(245,240,232,0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 1.2rem 5%;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(106,154,181,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .container {
+            max-width: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        nav a {
+            color: var(--ink);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--crimson); }
+        nav a.back { color: var(--blue-text); font-weight: 600; }
+        nav a.back:hover { color: var(--crimson); }
 
+        /* HERO */
         .hero {
             background: var(--crimson-deep);
-            color: #FFFFFF;
+            color: var(--white);
             padding: 10rem 5% 6rem;
             text-align: center;
         }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        .hero-container { max-width: 1000px; margin: 0 auto; }
         .project-category {
-            color: var(--gold, #C8A85C);
+            color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 3px;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
             font-weight: 600;
         }
-
         .hero h1 {
-            font-size: 5.5rem;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1.05;
             margin-bottom: 1.5rem;
-            line-height: 1.1;
+            color: var(--white);
         }
-
         .hero-subtitle {
-            font-size: 1.4rem;
-            color: #E8D5B7;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            font-style: italic;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255,255,255,0.88);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
         }
-
         .hero-meta {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 2.5rem;
             flex-wrap: wrap;
-            color: #CCCCCC;
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            font-size: 1rem;
         }
 
-        .content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
+        /* CONTENT */
+        .content { max-width: 1500px; margin: 0 auto; padding: 5rem 5%; }
+        .section { margin-bottom: 5rem; }
+        .section h2 { color: var(--ink); font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.5rem; }
+        .section h3 { color: var(--blue-text); font-size: clamp(1.4rem, 3vw, 2rem); margin: 2.5rem 0 1rem; }
+        .section p { color: var(--ink-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.4rem; }
 
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: var(--crimson-deep);
-        }
-
-        .section h3 {
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
-            color: var(--crimson);
-        }
-
-        .section p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            color: #444444;
-        }
-
+        /* PROJECT DETAILS */
         .project-details {
-            background: #FFFFFF;
+            background: var(--white);
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 6px;
             margin: 3rem 0;
+            border: 1px solid rgba(106,154,181,0.15);
         }
-
         .detail-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
-
         .detail-item h3 {
-            font-size: 1.2rem;
-            color: var(--crimson-deep);
-            margin-bottom: 0.5rem;
+            color: var(--blue-text);
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
         }
+        .detail-item p { color: var(--ink); font-size: 1rem; margin-bottom: 0; }
 
-        .detail-item p {
-            color: #666666;
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
-
+        /* IMAGES */
+        img { max-width: 100%; height: auto; display: block; }
         .full-width-img {
             width: 100%;
-            max-width: 1000px;
-            margin: 3rem auto;
+            max-width: 100%;
+            margin: 2.5rem auto;
             display: block;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 6px;
         }
 
+        /* GALLERY */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-            margin: 3rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
         }
-
         .gallery-item {
-            background: #FFFFFF;
-            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
+            border-radius: 6px;
+            background: var(--white);
         }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-        }
-
         .gallery-item img {
             width: 100%;
             height: auto;
             display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
         }
+        .gallery-item:hover img { transform: scale(1.03); }
+        .gallery-caption { padding: 1.2rem 1.5rem; font-size: 0.95rem; color: var(--ink-light); }
+        .gallery-caption h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.5rem; }
+        .gallery-caption p { color: var(--ink-light); font-size: 0.95rem; margin-bottom: 0; }
 
-        .gallery-caption {
-            padding: 1.5rem;
-        }
-
-        .gallery-caption h4 {
-            font-family: 'Medino', serif;
-            font-size: 1.3rem;
-            color: var(--crimson-deep);
-            margin-bottom: 0.5rem;
-        }
-
-        .gallery-caption p {
-            color: #666666;
-            font-size: 0.95rem;
-            margin-bottom: 0;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
+        /* TECH STACK */
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
         .tech-badge {
-            background: #5B3A70;
-            color: #FFFFFF;
+            background: var(--crimson-deep);
+            color: var(--white);
             padding: 0.6rem 1.5rem;
             border-radius: 25px;
             font-size: 0.9rem;
@@ -303,69 +245,59 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             font-weight: 600;
         }
 
+        /* CTA */
         .cta-section {
-            background: #1A1410;
-            color: #FFFFFF;
-            padding: 4rem 5%;
+            background: var(--crimson-deep);
+            color: var(--white);
+            padding: 6rem 5%;
             text-align: center;
         }
-
         .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #FFFFFF;
+            color: var(--white);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
         }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
+        .cta-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
         .btn {
-            padding: 1.2rem 3rem;
-            text-decoration: none;
+            display: inline-block;
+            padding: 1rem 2.4rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: inline-block;
-            border-radius: 5px;
+            border: 1.5px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+            border-radius: 2px;
         }
+        .btn:hover { background: var(--white); color: var(--ink); }
+        .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+        .btn-primary:hover { background: #b8963f; border-color: #b8963f; color: var(--ink); }
+        .btn-secondary { border: 1.5px solid var(--white); color: var(--white); }
+        .btn-secondary:hover { background: var(--white); color: var(--ink); }
 
-        .btn-primary {
-            background: #F5A623;
-            color: #000000;
-        }
-
-        .btn-primary:hover {
-            background: #e09515;
-        }
-
-        .btn-secondary {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-        }
-
-        .btn-secondary:hover {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .section h2 { font-size: 2.5rem; }
-            .hero-meta { gap: 1rem; }
+            .hero { padding: 8rem 5% 4rem; }
+            .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
             .gallery { grid-template-columns: 1fr; }
+            .detail-grid { grid-template-columns: 1fr; }
+            nav { flex-wrap: wrap; gap: 0.5rem; }
+        }
+        @media (max-width: 480px) {
+            .content { padding: 3rem 4%; }
+            .hero { padding: 7rem 4% 3rem; }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html">Back to Portfolio</a>
-            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="back nav-logo">La'Tahvia Williams</a>
+        <div style="display:flex;gap:2rem;align-items:center;">
+            <a href="index.html">Portfolio</a>
+            <a href="pricing.html">Pricing</a>
         </div>
     </nav>
 
@@ -390,14 +322,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         <section class="section">
             <h2>Brand Overview</h2>
             <p>
-                Spellbound Bakery is a whimsical bakery brand that transforms everyday treats into magical experiences. 
-                I created a complete brand identity system that captures the enchantment of artisanal baking through a 
-                fantasy-inspired aesthetic, featuring decorative typography, a rich jewel-tone color palette, and 
+                Spellbound Bakery is a whimsical bakery brand that transforms everyday treats into magical experiences.
+                I created a complete brand identity system that captures the enchantment of artisanal baking through a
+                fantasy-inspired aesthetic, featuring decorative typography, a rich jewel-tone color palette, and
                 whimsically named menu items.
             </p>
             <p>
-                The brand needed to appeal to customers seeking both exceptional baked goods and memorable experiences. 
-                The identity balances sophistication with playfulness, using elegant serif typography and a carefully 
+                The brand needed to appeal to customers seeking both exceptional baked goods and memorable experiences.
+                The identity balances sophistication with playfulness, using elegant serif typography and a carefully
                 curated color system to create a premium yet approachable feel.
             </p>
 
@@ -429,29 +361,29 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
             <h3>Logo Design & Typography</h3>
             <p>
-                The Spellbound wordmark features decorative serif typography that evokes storybook magic while remaining 
-                refined and legible. The distinctive letterforms create instant brand recognition, with the "Spell" and 
-                "Bound" words stacked to form a cohesive lockup. The logo works across six color variations, demonstrating 
+                The Spellbound wordmark features decorative serif typography that evokes storybook magic while remaining
+                refined and legible. The distinctive letterforms create instant brand recognition, with the "Spell" and
+                "Bound" words stacked to form a cohesive lockup. The logo works across six color variations, demonstrating
                 versatility for different applications and seasonal campaigns.
             </p>
 
-            <img src="Photos/8a553990-69f4-415c-9973-8af5f5ca92e8_rw_1200.png" alt="Spellbound Logo Variations" class="full-width-img">
+            <img src="photos/8a553990-69f4-415c-9973-8af5f5ca92e8_rw_1200.png" alt="Spellbound Logo Variations" class="full-width-img">
 
             <h3>Monogram System</h3>
             <p>
-                Developed a circular monogram badge featuring the "SB" initials in the brand's distinctive typography. 
-                The monogram system includes 12 colorway variations combining the brand's purple, burgundy, forest green, 
-                orange, and cream tones. These badges serve as product seals, Instagram story highlights, and flexible 
+                Developed a circular monogram badge featuring the "SB" initials in the brand's distinctive typography.
+                The monogram system includes 12 colorway variations combining the brand's purple, burgundy, forest green,
+                orange, and cream tones. These badges serve as product seals, Instagram story highlights, and flexible
                 branding elements across digital and physical touchpoints.
             </p>
 
-            <img src="Photos/af9ed97a-3a27-45af-857b-bda154f1b954_rw_1200.png" alt="SB Monogram Variations" class="full-width-img">
+            <img src="photos/af9ed97a-3a27-45af-857b-bda154f1b954_rw_1200.png" alt="SB Monogram Variations" class="full-width-img">
 
             <h3>Strategic Color Palette</h3>
             <p>
-                The color system draws from rich jewel tones and earthy naturals that evoke both magical realms and 
-                artisanal quality. Deep purple serves as the primary brand color, complemented by forest green, 
-                burgundy red, warm orange/gold, and soft cream. This palette feels premium and distinctive while 
+                The color system draws from rich jewel tones and earthy naturals that evoke both magical realms and
+                artisanal quality. Deep purple serves as the primary brand color, complemented by forest green,
+                burgundy red, warm orange/gold, and soft cream. This palette feels premium and distinctive while
                 differentiating Spellbound from traditional bakery aesthetics.
             </p>
         </section>
@@ -459,25 +391,25 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         <section class="section">
             <h2>Brand Research & Development</h2>
             <p>
-                Created a comprehensive mood board exploring existing bakery brands and design inspirations. The research 
-                examined competitors like The Wild Tribe, Brooki, and Lady Moon to understand market positioning and 
-                identify opportunities for differentiation. This analysis informed decisions about color psychology, 
+                Created a comprehensive mood board exploring existing bakery brands and design inspirations. The research
+                examined competitors like The Wild Tribe, Brooki, and Lady Moon to understand market positioning and
+                identify opportunities for differentiation. This analysis informed decisions about color psychology,
                 typography style, and the level of whimsy versus sophistication in the final brand.
             </p>
 
-            <img src="Photos/9f422a9b-97a5-463d-ac83-16490788951e_rw_1200.png" alt="Brand Moodboard and Research" class="full-width-img">
+            <img src="photos/9f422a9b-97a5-463d-ac83-16490788951e_rw_1200.png" alt="Brand Moodboard and Research" class="full-width-img">
         </section>
 
         <section class="section">
             <h2>Packaging Design</h2>
             <p>
-                Designed custom box packaging featuring the signature deep purple color with a repeating pattern of 
-                hand-drawn bakery icons in orange linework. The pattern includes cakes, pastries, cookies, and other 
-                whimsical baking elements that reinforce the magical theme. The Spellbound wordmark is prominently 
+                Designed custom box packaging featuring the signature deep purple color with a repeating pattern of
+                hand-drawn bakery icons in orange linework. The pattern includes cakes, pastries, cookies, and other
+                whimsical baking elements that reinforce the magical theme. The Spellbound wordmark is prominently
                 displayed in cream, creating strong shelf presence and gift-worthy presentation.
             </p>
 
-            <img src="Photos/07b4521f-2fa8-417c-93a7-a29588aebf5d_rw_1200.png" alt="Spellbound Box Packaging" class="full-width-img">
+            <img src="photos/07b4521f-2fa8-417c-93a7-a29588aebf5d_rw_1200.png" alt="Spellbound Box Packaging" class="full-width-img">
         </section>
 
         <section class="section">
@@ -485,15 +417,15 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
             <h3>Menu & Information Design</h3>
             <p>
-                Created a tri-fold menu/brochure system with whimsically named items that reinforce the magical brand 
-                narrative. Menu items include "Enchanted Forest Cake," "Magical Macarons," "Fairy Mint Infusion," and 
-                "Special Combo of the Day." The design balances playful names with clear pricing and descriptions, using 
+                Created a tri-fold menu/brochure system with whimsically named items that reinforce the magical brand
+                narrative. Menu items include "Enchanted Forest Cake," "Magical Macarons," "Fairy Mint Infusion," and
+                "Special Combo of the Day." The design balances playful names with clear pricing and descriptions, using
                 the brand's purple extensively with cream accents.
             </p>
 
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="Photos/667d4906-ee48-4728-9d22-dbc761e9e320_rw_1200.png" alt="Tri-fold Menu">
+                    <img src="photos/667d4906-ee48-4728-9d22-dbc761e9e320_rw_1200.png" alt="Tri-fold Menu">
                     <div class="gallery-caption">
                         <h4>Tri-Fold Menu</h4>
                         <p>Interior spread showing categories: Cakes, Pastries, Cookies, Breads with whimsical product names</p>
@@ -501,7 +433,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 </div>
 
                 <div class="gallery-item">
-                    <img src="Photos/965a1f5e-c69b-49eb-8a7b-82a8416a221d_rw_1200.png" alt="Magazine Spread">
+                    <img src="photos/965a1f5e-c69b-49eb-8a7b-82a8416a221d_rw_1200.png" alt="Magazine Spread">
                     <div class="gallery-caption">
                         <h4>Marketing Brochure</h4>
                         <p>Two-page spread with pattern background, brand story, and product photography</p>
@@ -509,7 +441,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 </div>
 
                 <div class="gallery-item">
-                    <img src="Photos/818e055d-497d-4cd4-833b-8436cffd0e39_rw_1200.png" alt="Single Sheet Flyer">
+                    <img src="photos/818e055d-497d-4cd4-833b-8436cffd0e39_rw_1200.png" alt="Single Sheet Flyer">
                     <div class="gallery-caption">
                         <h4>Information Flyer</h4>
                         <p>Single-page handout with "Indulge in Enchantment at Spellbound Bakery" messaging</p>
@@ -517,7 +449,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 </div>
 
                 <div class="gallery-item">
-                    <img src="Photos/a6f4412d-7aa5-4e65-b65d-912b82587806_rw_1200.png" alt="Sidewalk A-Frame Sign">
+                    <img src="photos/a6f4412d-7aa5-4e65-b65d-912b82587806_rw_1200.png" alt="Sidewalk A-Frame Sign">
                     <div class="gallery-caption">
                         <h4>Sidewalk Signage</h4>
                         <p>"Spellbound Specials" A-frame board featuring daily offers and Instagram CTA</p>
@@ -527,13 +459,13 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
             <h3>Business Card System</h3>
             <p>
-                Designed business cards in the brand's burgundy red with warm orange typography. The cards feature 
-                various typographic treatments of the Spellbound wordmark across different sides, creating visual 
-                interest when stacked. Contact information is clearly legible while maintaining the magical brand 
+                Designed business cards in the brand's burgundy red with warm orange typography. The cards feature
+                various typographic treatments of the Spellbound wordmark across different sides, creating visual
+                interest when stacked. Contact information is clearly legible while maintaining the magical brand
                 aesthetic.
             </p>
 
-            <img src="Photos/661e7aaf-23c1-4ae8-931c-25d7901621c5_rw_1200.png" alt="Business Card System" class="full-width-img">
+            <img src="photos/661e7aaf-23c1-4ae8-931c-25d7901621c5_rw_1200.png" alt="Business Card System" class="full-width-img">
         </section>
 
         <section class="section">
@@ -541,40 +473,40 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
             <h3>Social Media Strategy</h3>
             <p>
-                Developed a complete Instagram presence including profile design, story highlights with custom SB 
-                monogram badges organized by category (Specials, Cakes, Cookies, Pastries), and feed templates. 
-                The Instagram bio emphasizes the brand tagline and community engagement through the #SpellboundMagic 
+                Developed a complete Instagram presence including profile design, story highlights with custom SB
+                monogram badges organized by category (Specials, Cakes, Cookies, Pastries), and feed templates.
+                The Instagram bio emphasizes the brand tagline and community engagement through the #SpellboundMagic
                 hashtag.
             </p>
 
-            <img src="Photos/5eada4a1-8a3e-43a8-bbd3-91d924a28a36_rw_1200.png" alt="Instagram Profile and Post" class="full-width-img">
+            <img src="photos/5eada4a1-8a3e-43a8-bbd3-91d924a28a36_rw_1200.png" alt="Instagram Profile and Post" class="full-width-img">
 
             <h3>Digital Menu Display</h3>
             <p>
-                Created tablet-optimized menu displays for in-store use, featuring the orange colorway with product 
-                photography backgrounds. The design includes hours, Instagram handle, and #SpellboundMagic hashtag 
+                Created tablet-optimized menu displays for in-store use, featuring the orange colorway with product
+                photography backgrounds. The design includes hours, Instagram handle, and #SpellboundMagic hashtag
                 to encourage customer engagement and social sharing.
             </p>
 
-            <img src="Photos/d9c63499-9645-4285-9d96-0b0d50ee58db_rw_1200.png" alt="Tablet Digital Display" class="full-width-img">
+            <img src="photos/d9c63499-9645-4285-9d96-0b0d50ee58db_rw_1200.png" alt="Tablet Digital Display" class="full-width-img">
         </section>
 
         <section class="section">
             <h2>Design Philosophy</h2>
             <p>
-                The Spellbound Bakery identity succeeds by balancing whimsy with sophistication. The decorative 
-                typography and fantasy-themed naming create memorable differentiation, while the refined color palette 
+                The Spellbound Bakery identity succeeds by balancing whimsy with sophistication. The decorative
+                typography and fantasy-themed naming create memorable differentiation, while the refined color palette
                 and clean layouts maintain premium positioning appropriate for an artisanal bakery.
             </p>
             <p>
-                Every touchpoint—from packaging to business cards to social media—reinforces the core brand narrative 
-                of magical transformation. The repeating pattern system, monogram variations, and consistent typography 
+                Every touchpoint—from packaging to business cards to social media—reinforces the core brand narrative
+                of magical transformation. The repeating pattern system, monogram variations, and consistent typography
                 create strong visual cohesion across physical and digital applications.
             </p>
             <p>
-                The brand's success lies in its commitment to the magical theme without becoming cartoonish. Product 
-                names like "Enchanted Forest Cake" invite customers into a narrative experience while the sophisticated 
-                visual execution ensures the brand appeals to adults seeking premium baked goods, not just children 
+                The brand's success lies in its commitment to the magical theme without becoming cartoonish. Product
+                names like "Enchanted Forest Cake" invite customers into a narrative experience while the sophisticated
+                visual execution ensures the brand appeals to adults seeking premium baked goods, not just children
                 drawn to fantasy themes.
             </p>
         </section>
@@ -582,18 +514,18 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         <section class="section">
             <h2>Results & Applications</h2>
             <p>
-                This comprehensive brand system demonstrates my ability to create cohesive identities that extend across 
-                every customer touchpoint. From the initial logo design through packaging, print collateral, environmental 
+                This comprehensive brand system demonstrates my ability to create cohesive identities that extend across
+                every customer touchpoint. From the initial logo design through packaging, print collateral, environmental
                 graphics, and digital presence, every element reinforces the Spellbound narrative and visual aesthetic.
             </p>
             <p>
-                The project showcases strategic color psychology, pattern design, typography systems, product photography 
-                integration, and multi-channel marketing design. The flexible monogram system and multiple logo colorways 
+                The project showcases strategic color psychology, pattern design, typography systems, product photography
+                integration, and multi-channel marketing design. The flexible monogram system and multiple logo colorways
                 ensure the brand can adapt to seasonal campaigns and special offerings while maintaining consistent identity.
             </p>
             <p>
-                Most importantly, the Spellbound identity creates an emotional connection beyond functional bakery needs. 
-                The magical theme transforms everyday purchases into experiences worth sharing, encouraging customer 
+                Most importantly, the Spellbound identity creates an emotional connection beyond functional bakery needs.
+                The magical theme transforms everyday purchases into experiences worth sharing, encouraging customer
                 engagement through Instagram and word-of-mouth marketing driven by distinctive, memorable branding.
             </p>
         </section>
