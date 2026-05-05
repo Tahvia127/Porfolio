@@ -8,424 +8,156 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
     <style>
-        /* ==========================================
-   CONSISTENT TYPOGRAPHY SYSTEM
-   Copy this entire section to ALL your HTML pages
-   ========================================== */
+        :root {
+            --crimson:#8B1A2A; --crimson-deep:#5C0F1B; --crimson-bright:#C41E3A;
+            --cream:#F5F0E8; --cream-dark:#EDE5D8; --ink:#1A1410; --ink-light:#5C544A;
+            --muted:#5C5049; --white:#FDFAF6;
+        }
 
-        /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
-        /* Base Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        body { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 400; line-height: 1.75; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-        /* Headings - Cormorant Garamond */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.2; }
+        h1 { font-size: 4.5rem; font-weight: 700; }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; }
+        h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; }
+        h4 { font-size: 1.5rem; font-weight: 600; }
 
-        h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-        }
+        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.4rem; color: var(--ink-light); }
+        li { font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.7rem; }
 
-        h2 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
+        .skip-link { position:absolute; top:-100%; left:1rem; background:var(--crimson); color:#fff; padding:0.7rem 1.4rem; font-size:0.9rem; font-weight:600; text-decoration:none; z-index:99999; border-radius:0 0 6px 6px; transition:top 0.2s; }
+        .skip-link:focus { top:0; }
+        :focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
 
-        h3 {
-            font-size: 2rem;
-            font-weight: 600;
-        }
+        nav { position:fixed; top:0; left:0; right:0; padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; background:rgba(245,240,232,0.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:1000; border-bottom:1px solid rgba(139,26,42,0.12); }
+        nav a { font-family:'Inter',sans-serif; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink); text-decoration:none; transition:color 0.3s; }
+        nav a:hover { color:var(--crimson); }
+        nav .back { font-weight:600; color:var(--crimson); }
+        nav .back:hover { color:var(--crimson-bright); }
+        .nav-links { display:flex; gap:2rem; align-items:center; }
+        @media (max-width:600px) { .nav-links { display:none; } }
 
-        h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+        .hero { background: var(--crimson-deep); color: #FFFFFF; padding: 10rem 5% 6rem; text-align: center; }
+        .hero-container { max-width: 900px; margin: 0 auto; }
+        .hero .category { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; color: #fff; }
+        .hero h1 em { font-style: italic; color: #e8c97e; }
+        .hero .subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); color: rgba(255,255,255,0.85); margin-bottom: 3rem; line-height: 1.6; }
+        .hero-meta { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
 
-        h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
+        .content { max-width: 1400px; margin: 0 auto; padding: 4rem 5%; }
+        section.body { padding: 6rem 5% 8rem; }
+        .body-inner { max-width: 860px; margin: 0 auto; }
 
-        h6 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
+        .section { margin-bottom: 5rem; }
+        .section h2 { margin-bottom: 2rem; color: var(--ink); }
+        .section h3 { margin: 2.5rem 0 1rem; color: var(--crimson); }
+        .section p { color: var(--ink-light); }
 
-        /* Body Text - Inter */
-        p, li, span, a, div {
-            font-family: 'Inter', sans-serif;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat-card { background: var(--white); padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 3px solid var(--crimson); }
+        .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--crimson); display: block; margin-bottom: 0.5rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 1px; }
 
-        p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
+        .highlight-box { background: var(--crimson-deep); color: #FFFFFF; padding: 3rem; border-radius: 10px; margin: 3rem 0; }
+        .highlight-box h3 { color: #FFFFFF !important; margin-top: 0; }
+        .highlight-box p { color: rgba(255,255,255,0.85); }
 
-        /* Special Elements */
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-        }
+        .findings-list { background: var(--white); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0; }
+        .finding-item { padding: 1.5rem 0; border-bottom: 1px solid var(--cream-dark); font-size: 1.05rem; line-height: 1.7; color: var(--ink-light); }
+        .finding-item:last-child { border-bottom: none; }
+        .finding-item strong { color: var(--crimson); }
 
-        .project-category,
-        .tech-tag,
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .visualization-container { background: var(--white); padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 3rem 0; }
+        .viz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--crimson); margin-bottom: 1rem; font-weight: 600; }
+        .viz-description { color: var(--ink-light); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.7; }
 
-        blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 400;
-        }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
+        .tech-badge { background: var(--crimson); color: #FFFFFF; padding: 0.6rem 1.5rem; border-radius: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif; font-weight: 500; }
 
-        /* Buttons */
-        button, .btn, .contact-btn, .project-link {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .methodology-box { background: var(--cream-dark); padding: 2.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--crimson); }
 
-        /* Navigation */
-        nav, nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
+        .cta-section { background: var(--crimson-deep); color: var(--white); padding: 4rem 5%; text-align: center; }
+        .cta-section h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 2rem; color: var(--white); }
+        .cta-section p { color: rgba(255,255,255,0.85); }
+        .cta-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .btn { padding: 1.2rem 3rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-family: 'Inter', sans-serif; transition: all 0.3s; display: inline-block; border-radius: 5px; }
+        .btn-primary { background: var(--crimson); color: var(--white); }
+        .btn-primary:hover { background: var(--crimson-bright); }
+        .btn-secondary { border: 1px solid var(--white); color: var(--white); }
+        .btn-secondary:hover { background: var(--white); color: var(--ink); }
 
-        /* Responsive Typography */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.75rem; }
-            h4 { font-size: 1.35rem; }
+            .hero { padding: 8rem 5% 5rem; }
+            .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+            .hero-meta { gap: 1.5rem; flex-direction: column; }
+            section.body { padding: 4rem 5%; }
+            h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); }
+            h3 { font-size: 1.4rem; }
             p { font-size: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        nav { background: rgba(245,240,232,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.5rem 5%; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(139,26,42,0.1); }
-nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-nav a { color: #1A1410; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.78rem; font-weight: 500; transition: color 0.3s; }
-nav a:hover { color: #8B1A2A; }
-nav a.back::before, nav .container a:first-child::before { content: "← "; color: #8B1A2A; }
-
-        .hero {
-            background: linear-gradient(135deg, #8e44ad 0%, #6c3483 100%);
-            color: #FFFFFF;
-            padding: 10rem 5% 6rem;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .project-category {
-            color: #e8daef;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: #d7bde2;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            color: #d7bde2;
-            font-size: 0.9rem;
-        }
-
-        .content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #000000;
-        }
-
-        .section h3 {
-            font-size: 1.8rem;
-            margin: 2.5rem 0 1rem;
-            color: #8e44ad;
-        }
-
-        .section p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            color: #444444;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: #FFFFFF;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .stat-number {
-            font-family: 'Medino', serif;
-            font-size: 3rem;
-            color: #8e44ad;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #8e44ad 0%, #6c3483 100%);
-            color: #FFFFFF;
-            padding: 3rem;
-            border-radius: 10px;
-            margin: 3rem 0;
-        }
-
-        .highlight-box h3 {
-            color: #FFFFFF;
-            margin-top: 0;
-        }
-
-        .highlight-box p {
-            color: #d7bde2;
-        }
-
-        .findings-list {
-            background: #FFFFFF;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin: 2rem 0;
-        }
-
-        .finding-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #F0F0F0;
-        }
-
-        .finding-item:last-child {
-            border-bottom: none;
-        }
-
-        .finding-item strong {
-            color: #8e44ad;
-        }
-
-        .visualization-container {
-            background: #FFFFFF;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin: 3rem 0;
-        }
-
-        .viz-title {
-            font-family: 'Medino', serif;
-            font-size: 1.8rem;
-            color: #8e44ad;
-            margin-bottom: 1rem;
-        }
-
-        .viz-description {
-            color: #666666;
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-badge {
-            background: #8e44ad;
-            color: #FFFFFF;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .methodology-box {
-            background: #f8f9fa;
-            padding: 2.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-            border-left: 4px solid #8e44ad;
-        }
-
-        .cta-section {
-            background: #1A1410;
-            color: #FFFFFF;
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #FFFFFF;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: inline-block;
-            border-radius: 5px;
-            font-family: 'Aileron', sans-serif;
-        }
-
-        .btn-primary {
-            background: #8e44ad;
-            color: #FFFFFF;
-        }
-
-        .btn-primary:hover {
-            background: #6c3483;
-        }
-
-        .btn-secondary {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-        }
-
-        .btn-secondary:hover {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section h2 { font-size: 2.5rem; }
-            .hero-meta { gap: 1rem; }
             .stats-grid { grid-template-columns: 1fr; }
         }
+        @media (max-width: 480px) {
+            body { font-size: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            nav { padding: 1rem 4%; }
+        }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html">Back to Portfolio</a>
-            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="back">← La'Tahvia Williams</a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="pricing.html">Pricing</a>
         </div>
     </nav>
 
-    <section class="hero">
+    <header class="hero" id="main-content">
         <div class="hero-container">
-            <div class="project-category">Policy Research • Data Journalism</div>
+            <div class="category">Policy Research · Data Journalism</div>
             <h1>Financial Aid Analysis</h1>
-            <p class="hero-subtitle">
+            <p class="subtitle">
                 Comparing UChicago's Financial Aid Competitiveness Across Elite Peer Institutions
             </p>
             <div class="hero-meta">
                 <span>The Chicago Maroon</span>
-                <span>•</span>
+                <span>·</span>
                 <span>Investigative Journalism</span>
-                <span>•</span>
+                <span>·</span>
                 <span>2024-25</span>
             </div>
         </div>
-    </section>
+    </header>
 
     <div class="content">
         <section class="section">
             <h2>Investigation Overview</h2>
             <p>
-                As college costs continue to rise, prospective students and families increasingly rely on financial aid 
-                packages to make higher education affordable. But how does the University of Chicago's financial aid 
-                really compare to its elite peer institutions? This investigative piece for The Chicago Maroon combines 
+                As college costs continue to rise, prospective students and families increasingly rely on financial aid
+                packages to make higher education affordable. But how does the University of Chicago's financial aid
+                really compare to its elite peer institutions? This investigative piece for The Chicago Maroon combines
                 data analysis with policy journalism to answer that critical question.
             </p>
             <p>
-                By analyzing comprehensive financial aid data across UChicago and eight comparable institutions—including 
-                Harvard, Yale, Princeton, Stanford, MIT, Penn, Duke, and Johns Hopkins—I uncovered surprising insights about 
-                accessibility, aid generosity, and how UChicago positions itself in the competitive landscape of elite 
+                By analyzing comprehensive financial aid data across UChicago and eight comparable institutions—including
+                Harvard, Yale, Princeton, Stanford, MIT, Penn, Duke, and Johns Hopkins—I uncovered surprising insights about
+                accessibility, aid generosity, and how UChicago positions itself in the competitive landscape of elite
                 higher education.
             </p>
 
             <div class="highlight-box">
                 <h3>Key Research Question</h3>
                 <p>
-                    Despite UChicago's higher sticker price ($71,325 tuition) compared to most peer institutions, does 
+                    Despite UChicago's higher sticker price ($71,325 tuition) compared to most peer institutions, does
                     its financial aid program ensure comparable affordability for low and middle-income students?
                 </p>
             </div>
@@ -455,28 +187,28 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
             <div class="findings-list">
                 <div class="finding-item">
-                    <strong>Competitive Net Price for Low-Income Students:</strong> UChicago's net price of $21,500 
-                    is only $3,600 higher than Harvard/MIT, demonstrating that despite higher tuition, financial aid 
+                    <strong>Competitive Net Price for Low-Income Students:</strong> UChicago's net price of $21,500
+                    is only $3,600 higher than Harvard/MIT, demonstrating that despite higher tuition, financial aid
                     creates comparable affordability for families earning under $65K.
                 </div>
                 <div class="finding-item">
-                    <strong>Middle-Income Affordability Gap:</strong> For families earning $110K-$150K, UChicago offers 
-                    "Free Tuition" while Harvard and MIT provide "Full Free" coverage (including room & board), creating 
-                    a $15K-$20K annual expected family contribution difference—$60K-$80K over four years.
+                    <strong>Middle-Income Affordability Gap:</strong> For families earning $110K-$150K, UChicago offers
+                    "Free Tuition" while Harvard and MIT provide "Full Free" coverage (including room &amp; board), creating
+                    a $15K-$20K annual expected family contribution difference — $60K-$80K over four years.
                 </div>
                 <div class="finding-item">
-                    <strong>Income Threshold Comparison:</strong> UChicago's $125,000 free tuition threshold matches 
-                    Princeton but trails Harvard/MIT ($200,000) and Stanford ($150,000), directly reflecting endowment 
+                    <strong>Income Threshold Comparison:</strong> UChicago's $125,000 free tuition threshold matches
+                    Princeton but trails Harvard/MIT ($200,000) and Stanford ($150,000), directly reflecting endowment
                     resource constraints rather than institutional commitment.
                 </div>
                 <div class="finding-item">
-                    <strong>International Student Disparity:</strong> UChicago's need-aware admission policy for 
-                    international students results in lower average aid ($65,118) compared to need-blind institutions 
+                    <strong>International Student Disparity:</strong> UChicago's need-aware admission policy for
+                    international students results in lower average aid ($65,118) compared to need-blind institutions
                     Harvard ($78,900), MIT ($77,200), and Yale ($75,800).
                 </div>
                 <div class="finding-item">
-                    <strong>Endowment Impact:</strong> Harvard's $51 billion endowment ($7.0M per student) enables 
-                    universal no-loan policies and higher income thresholds, while UChicago's $11 billion ($1.4M per 
+                    <strong>Endowment Impact:</strong> Harvard's $51 billion endowment ($7.0M per student) enables
+                    universal no-loan policies and higher income thresholds, while UChicago's $11 billion ($1.4M per
                     student) creates structural constraints on middle-class aid expansion.
                 </div>
             </div>
@@ -493,7 +225,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                     of its financial aid program for aided students. UChicago is highlighted in maroon.
                 </p>
                 <div id="netPriceChart" style="width: 100%; min-height: 350px;"></div>
-                <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; font-style: italic;">
+                <p style="font-size: 0.9rem; color: var(--ink-light); margin-top: 1rem; font-style: italic;">
                     UChicago's net price of $21,500 is only $3,600 higher than Harvard/MIT but $7,000 lower than Penn/Duke,
                     showing competitive middle-tier positioning.
                 </p>
@@ -503,13 +235,13 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 <h3 class="viz-title">2. Free Tuition Income Thresholds</h3>
                 <p class="viz-description">
                     Family income level at which each institution commits to free or full-need tuition support.
-                    Higher thresholds indicate more generous middle-class aid policies, directly reflecting endowment 
+                    Higher thresholds indicate more generous middle-class aid policies, directly reflecting endowment
                     capacity. UChicago is highlighted in maroon.
                 </p>
                 <div id="thresholdChart" style="width: 100%; min-height: 400px;"></div>
-                <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; font-style: italic;">
+                <p style="font-size: 0.9rem; color: var(--ink-light); margin-top: 1rem; font-style: italic;">
                     The $75,000 gap between Harvard ($200K threshold) and UChicago ($125K) represents middle-income
-                    families who qualify for free tuition at Harvard but not at UChicago—a direct result of endowment differences.
+                    families who qualify for free tuition at Harvard but not at UChicago — a direct result of endowment differences.
                 </p>
             </div>
 
@@ -517,11 +249,11 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 <h3 class="viz-title">3. Financial Aid Coverage by Family Income</h3>
                 <p class="viz-description">
                     Interactive heatmap showing what type of financial aid coverage each institution provides across
-                    income brackets. Find your family's income level and compare aid policies across schools. This 
+                    income brackets. Find your family's income level and compare aid policies across schools. This
                     visualization reveals exactly where the "middle-income squeeze" occurs at each institution.
                 </p>
-                
-                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+
+                <div style="background: var(--cream-dark); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
                     <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <div style="width: 20px; height: 20px; background: #70AD47; border-radius: 3px;"></div>
@@ -541,11 +273,11 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="heatmapChart" style="width: 100%; min-height: 450px;"></div>
-                
-                <p style="font-size: 0.9rem; color: #666; margin-top: 1rem; font-style: italic;">
-                    Notice where each school transitions from green → yellow → red. Princeton maintains green (full free)
+
+                <p style="font-size: 0.9rem; color: var(--ink-light); margin-top: 1rem; font-style: italic;">
+                    Notice where each school transitions from green to yellow to red. Princeton maintains green (full free)
                     through $200K income, while UChicago switches to yellow at $60K and red above $200K. This visualization
                     shows exactly where middle-income families face the "aid gap."
                 </p>
@@ -558,49 +290,49 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="methodology-box">
                 <h3>Data Collection</h3>
                 <p>
-                    <strong>Primary Sources:</strong> Institutional Common Data Set (CDS) filings for 2024-25 academic year, 
-                    IPEDS (Integrated Postsecondary Education Data System) databases, university financial aid websites, 
+                    <strong>Primary Sources:</strong> Institutional Common Data Set (CDS) filings for 2024-25 academic year,
+                    IPEDS (Integrated Postsecondary Education Data System) databases, university financial aid websites,
                     and direct communication with financial aid offices.
                 </p>
                 <p>
-                    <strong>Policy Documentation:</strong> Analyzed detailed financial aid policies including income 
-                    thresholds for no-loan programs, expected family contribution calculations, treatment of home equity, 
+                    <strong>Policy Documentation:</strong> Analyzed detailed financial aid policies including income
+                    thresholds for no-loan programs, expected family contribution calculations, treatment of home equity,
                     small business assets, and non-custodial parent income across all nine institutions.
                 </p>
                 <p>
-                    <strong>Student Interviews:</strong> Conducted confidential interviews with 25+ UChicago students 
-                    from varying income backgrounds to understand real-world experiences navigating the financial aid 
+                    <strong>Student Interviews:</strong> Conducted confidential interviews with 25+ UChicago students
+                    from varying income backgrounds to understand real-world experiences navigating the financial aid
                     process and comparing offers across institutions.
                 </p>
             </div>
 
             <h3>Analysis Approach</h3>
             <p>
-                <strong>Comparative Metrics:</strong> Standardized comparison across institutions required normalizing 
-                for geographic cost-of-living differences, academic calendar variations (quarter vs. semester systems), 
+                <strong>Comparative Metrics:</strong> Standardized comparison across institutions required normalizing
+                for geographic cost-of-living differences, academic calendar variations (quarter vs. semester systems),
                 and institutional definitions of demonstrated "need."
-                </p>
+            </p>
             <p>
-                <strong>Scenario Modeling:</strong> Created hypothetical family profiles across income quintiles 
-                ($0-40K, $40-65K, $65-110K, $110-150K, $150K+, $200K+) to model expected aid packages at each institution 
+                <strong>Scenario Modeling:</strong> Created hypothetical family profiles across income quintiles
+                ($0-40K, $40-65K, $65-110K, $110-150K, $150K+, $200K+) to model expected aid packages at each institution
                 using published net price calculators and policy documentation.
             </p>
             <p>
-                <strong>Data Visualization:</strong> Developed interactive charts using Vega-Lite, Python (Altair), and 
-                Pandas to illustrate cost comparisons, aid package composition, and income-based coverage patterns 
+                <strong>Data Visualization:</strong> Developed interactive charts using Vega-Lite, Python (Altair), and
+                Pandas to illustrate cost comparisons, aid package composition, and income-based coverage patterns
                 across the competitive landscape.
             </p>
         </section>
 
         <section class="section">
             <h2>Implications for Prospective Students</h2>
-            
+
             <div class="highlight-box">
-                <h3>For Low-Income Students (family income <$65K)</h3>
+                <h3>For Low-Income Students (family income &lt;$65K)</h3>
                 <p>
-                    UChicago's aid packages are highly competitive with Ivy League peers. Most students in this bracket 
-                    will face similar net costs (often $0-$5,000 annually) across all nine institutions. Focus comparison 
-                    on non-financial factors: academic fit, campus culture, location preferences, and specific program 
+                    UChicago's aid packages are highly competitive with Ivy League peers. Most students in this bracket
+                    will face similar net costs (often $0-$5,000 annually) across all nine institutions. Focus comparison
+                    on non-financial factors: academic fit, campus culture, location preferences, and specific program
                     strengths.
                 </p>
             </div>
@@ -608,9 +340,9 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="highlight-box">
                 <h3>For Middle-Income Families ($110K-$150K)</h3>
                 <p>
-                    Calculate net costs carefully using each institution's calculator. Harvard, MIT, and Stanford may 
-                    offer $10,000-$20,000 lower annual costs due to more generous middle-class initiatives. Consider 
-                    the 4-year cumulative difference: $40,000-$80,000 in total savings could significantly impact 
+                    Calculate net costs carefully using each institution's calculator. Harvard, MIT, and Stanford may
+                    offer $10,000-$20,000 lower annual costs due to more generous middle-class initiatives. Consider
+                    the 4-year cumulative difference: $40,000-$80,000 in total savings could significantly impact
                     post-graduation financial flexibility.
                 </p>
             </div>
@@ -618,8 +350,8 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="highlight-box">
                 <h3>For International Students</h3>
                 <p>
-                    If requiring substantial financial aid, prioritize need-blind institutions (Harvard, Yale, Princeton, 
-                    MIT, Amherst) to maximize admission chances alongside aid eligibility. At need-aware schools like 
+                    If requiring substantial financial aid, prioritize need-blind institutions (Harvard, Yale, Princeton,
+                    MIT, Amherst) to maximize admission chances alongside aid eligibility. At need-aware schools like
                     UChicago, applying for financial aid may reduce admission probability for international applicants.
                 </p>
             </div>
@@ -628,20 +360,20 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         <section class="section">
             <h2>Journalistic Impact</h2>
             <p>
-                Published in The Chicago Maroon, this investigation generated significant campus discussion about 
-                financial aid accessibility and transparency. The piece was cited in student government discussions 
+                Published in The Chicago Maroon, this investigation generated significant campus discussion about
+                financial aid accessibility and transparency. The piece was cited in student government discussions
                 about advocating for enhanced middle-income aid initiatives and improved international student support.
             </p>
             <p>
-                The analysis methodology—combining quantitative data analysis with qualitative student interviews—
-                demonstrated how data journalism can make complex policy issues accessible to student readers while 
-                maintaining analytical rigor. The interactive visualizations allowed readers to explore scenarios 
+                The analysis methodology — combining quantitative data analysis with qualitative student interviews —
+                demonstrated how data journalism can make complex policy issues accessible to student readers while
+                maintaining analytical rigor. The interactive visualizations allowed readers to explore scenarios
                 relevant to their own financial circumstances.
             </p>
         </section>
 
         <section class="section">
-            <h2>Tools & Technologies</h2>
+            <h2>Tools &amp; Technologies</h2>
             <div class="tech-stack">
                 <span class="tech-badge">Python</span>
                 <span class="tech-badge">Pandas</span>
@@ -663,14 +395,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         </div>
     </section>
 
-    <script>
-        // Vega-Lite embed options
-        const embedOpts = {
-            actions: false,
-            renderer: "svg"
-        };
+    <footer style="background:var(--crimson-deep);color:rgba(255,255,255,0.7);text-align:center;padding:3rem 5%;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:1px;">
+        <p>© 2026 La'Tahvia Williams · <a href="mailto:williamstahvia@gmail.com" style="color:rgba(255,255,255,0.9);text-decoration:none;">williamstahvia@gmail.com</a></p>
+        <p style="margin-top:0.5rem;"><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;text-transform:uppercase;letter-spacing:2px;font-size:0.75rem;">← Back to Portfolio</a></p>
+    </footer>
 
-        // Chart 1: Net Price
+    <script>
+        const embedOpts = { actions: false, renderer: "svg" };
+
         const spec1 = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": null,
@@ -686,16 +418,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             ]},
             "mark": {"type": "bar", "cornerRadiusEnd": 4},
             "encoding": {
-                "y": {"field": "Institution", "type": "nominal", "sort": {"field": "NetPrice"}, "title": null, "axis": {"labelFontSize": 13, "labelFont": "Aileron"}},
+                "y": {"field": "Institution", "type": "nominal", "sort": {"field": "NetPrice"}, "title": null, "axis": {"labelFontSize": 13}},
                 "x": {"field": "NetPrice", "type": "quantitative", "title": "Average Net Price ($)", "axis": {"format": "$,.0f", "grid": true, "gridColor": "#eee", "labelFontSize": 11}},
-                "color": {"condition": {"test": "datum.IsUChicago", "value": "#8e44ad"}, "value": "#4472C4"},
+                "color": {"condition": {"test": "datum.IsUChicago", "value": "#8B1A2A"}, "value": "#4472C4"},
                 "tooltip": [{"field": "Institution", "title": "School"}, {"field": "NetPrice", "title": "Net Price", "format": "$,.0f"}]
             },
-            "width": "container",
-            "height": 300
+            "width": "container", "height": 300
         };
 
-        // Chart 2: Income Thresholds
         const spec2 = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": null,
@@ -712,16 +442,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             ]},
             "mark": {"type": "bar", "cornerRadiusEnd": 4},
             "encoding": {
-                "y": {"field": "Institution", "type": "nominal", "sort": {"field": "Threshold"}, "title": null, "axis": {"labelFontSize": 13, "labelFont": "Aileron"}},
+                "y": {"field": "Institution", "type": "nominal", "sort": {"field": "Threshold"}, "title": null, "axis": {"labelFontSize": 13}},
                 "x": {"field": "Threshold", "type": "quantitative", "title": "Free Tuition Threshold ($)", "axis": {"format": "$,.0f", "grid": true, "gridColor": "#eee", "labelFontSize": 11}},
-                "color": {"condition": {"test": "datum.IsUChicago", "value": "#8e44ad"}, "value": "#FFC000"},
+                "color": {"condition": {"test": "datum.IsUChicago", "value": "#8B1A2A"}, "value": "#FFC000"},
                 "tooltip": [{"field": "Institution", "title": "School"}, {"field": "Threshold", "title": "Threshold", "format": "$,.0f"}]
             },
-            "width": "container",
-            "height": 350
+            "width": "container", "height": 350
         };
 
-        // Chart 3: Income Heatmap
         const spec3 = {
             "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
             "title": null,
@@ -774,16 +502,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             ]},
             "mark": {"type": "rect", "stroke": "#fff", "strokeWidth": 1},
             "encoding": {
-                "x": {"field": "Income", "type": "nominal", "title": "Family Income Range", "sort": ["<$60k", "$60-$100k", "$100-$150k", "$150k-$200k", "$200k+"], "axis": {"labelAngle": -45, "labelFontSize": 11, "labelFont": "Aileron"}},
-                "y": {"field": "Institution", "type": "nominal", "title": null, "sort": ["Princeton", "MIT", "Harvard", "Penn", "Stanford", "UChicago", "Duke", "Johns Hopkins", "Yale"], "axis": {"labelFontSize": 13, "labelFont": "Aileron"}},
+                "x": {"field": "Income", "type": "nominal", "title": "Family Income Range", "sort": ["<$60k", "$60-$100k", "$100-$150k", "$150k-$200k", "$200k+"], "axis": {"labelAngle": -45, "labelFontSize": 11}},
+                "y": {"field": "Institution", "type": "nominal", "title": null, "sort": ["Princeton", "MIT", "Harvard", "Penn", "Stanford", "UChicago", "Duke", "Johns Hopkins", "Yale"], "axis": {"labelFontSize": 13}},
                 "color": {"field": "Color", "type": "nominal", "scale": null},
                 "tooltip": [{"field": "Institution", "title": "Institution"}, {"field": "Income", "title": "Income"}, {"field": "Coverage", "title": "Aid Type"}]
             },
-            "width": "container",
-            "height": 380
+            "width": "container", "height": 380
         };
 
-        // Embed all charts
         vegaEmbed('#netPriceChart', spec1, embedOpts);
         vegaEmbed('#thresholdChart', spec2, embedOpts);
         vegaEmbed('#heatmapChart', spec3, embedOpts);

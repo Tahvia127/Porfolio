@@ -6,450 +6,148 @@
     <title>Healthcare Payment Analysis | La'Tahvia Williams</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* ==========================================
-   CONSISTENT TYPOGRAPHY SYSTEM
-   Copy this entire section to ALL your HTML pages
-   ========================================== */
+        :root {
+            --crimson:#8B1A2A; --crimson-deep:#5C0F1B; --crimson-bright:#C41E3A;
+            --cream:#F5F0E8; --cream-dark:#EDE5D8; --ink:#1A1410; --ink-light:#5C544A;
+            --muted:#5C5049; --white:#FDFAF6;
+        }
 
-        /* Google Fonts Import */
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
-        /* Base Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        body { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 400; line-height: 1.75; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-        /* Headings - Cormorant Garamond */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.2; }
+        h1 { font-size: 4.5rem; font-weight: 700; }
+        h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; }
+        h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; }
+        h4 { font-size: 1.5rem; font-weight: 600; }
 
-        h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-        }
+        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.4rem; color: var(--ink-light); }
+        li { font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.7rem; }
 
-        h2 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
+        .skip-link { position:absolute; top:-100%; left:1rem; background:var(--crimson); color:#fff; padding:0.7rem 1.4rem; font-size:0.9rem; font-weight:600; text-decoration:none; z-index:99999; border-radius:0 0 6px 6px; transition:top 0.2s; }
+        .skip-link:focus { top:0; }
 
-        h3 {
-            font-size: 2rem;
-            font-weight: 600;
-        }
+        :focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
 
-        h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
+        nav { position:fixed; top:0; left:0; right:0; padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; background:rgba(245,240,232,0.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:1000; border-bottom:1px solid rgba(139,26,42,0.12); }
+        nav a { font-family:'Inter',sans-serif; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink); text-decoration:none; transition:color 0.3s; }
+        nav a:hover { color:var(--crimson); }
+        nav .back { font-weight:600; color:var(--crimson); }
+        nav .back:hover { color:var(--crimson-bright); }
+        .nav-links { display:flex; gap:2rem; align-items:center; }
+        @media (max-width:600px) { .nav-links { display:none; } }
 
-        h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
+        .hero { background: var(--crimson-deep); color: #FFFFFF; padding: 10rem 5% 6rem; text-align: center; }
+        .hero-container { max-width: 900px; margin: 0 auto; }
+        .hero .category { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; color: #fff; }
+        .hero h1 em { font-style: italic; color: #e8c97e; }
+        .hero .subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); color: rgba(255,255,255,0.85); margin-bottom: 3rem; line-height: 1.6; }
+        .hero-meta { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
 
-        h6 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
+        .content { max-width: 1400px; margin: 0 auto; padding: 4rem 5%; }
+        section.body { padding: 6rem 5% 8rem; }
+        .body-inner { max-width: 860px; margin: 0 auto; }
 
-        /* Body Text - Inter */
-        p, li, span, a, div {
-            font-family: 'Inter', sans-serif;
-        }
+        .section { margin-bottom: 5rem; }
+        .section h2 { margin-bottom: 2rem; color: var(--ink); }
+        .section h3 { margin: 2.5rem 0 1rem; color: var(--ink); }
+        .section p { color: var(--ink-light); }
 
-        p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .stat-card { background: var(--white); padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 3px solid var(--crimson); }
+        .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--crimson); display: block; margin-bottom: 0.5rem; font-weight: 700; }
+        .stat-label { font-size: 0.85rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Special Elements */
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-        }
+        .highlight-box { background: var(--crimson-deep); color: #FFFFFF; padding: 3rem; border-radius: 10px; margin: 3rem 0; }
+        .highlight-box h3 { color: #FFFFFF; margin-top: 0; }
+        .highlight-box p { color: rgba(255,255,255,0.85); }
 
-        .project-category,
-        .tech-tag,
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .findings-list { background: var(--white); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0; }
+        .finding-item { padding: 1.5rem 0; border-bottom: 1px solid var(--cream-dark); }
+        .finding-item:last-child { border-bottom: none; }
+        .finding-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--crimson); }
+        .finding-item p { color: var(--ink-light); margin-bottom: 0; }
 
-        blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 400;
-        }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
+        .tech-badge { background: var(--crimson); color: #FFFFFF; padding: 0.6rem 1.5rem; border-radius: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif; font-weight: 500; }
 
-        /* Buttons */
-        button, .btn, .contact-btn, .project-link {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+        .chart-container { background: var(--white); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 3rem 0; }
+        .chart-container h3 { margin-top: 0; margin-bottom: 1rem; color: var(--ink); }
+        .chart-container p { color: var(--ink-light); margin-bottom: 1.5rem; font-size: 1rem; }
+        .chart-wrapper { position: relative; height: 400px; }
 
-        /* Navigation */
-        nav, nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
+        .timeline { position: relative; padding-left: 3rem; margin: 2rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 2px; background: var(--crimson); }
+        .timeline-item { position: relative; margin-bottom: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -3.5rem; top: 0.5rem; width: 15px; height: 15px; background: var(--crimson); border-radius: 50%; }
+        .timeline-year { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--crimson); margin-bottom: 0.5rem; }
 
-        /* Responsive Typography */
+        .cta-section { background: var(--crimson-deep); color: var(--white); padding: 4rem 5%; text-align: center; }
+        .cta-section h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 2rem; color: var(--white); }
+        .cta-section p { color: rgba(255,255,255,0.85); }
+        .cta-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+        .btn { padding: 1.2rem 3rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-family: 'Inter', sans-serif; transition: all 0.3s; display: inline-block; border-radius: 5px; }
+        .btn-primary { background: var(--white); color: var(--ink); }
+        .btn-primary:hover { background: var(--cream-dark); }
+        .btn-secondary { border: 1px solid var(--white); color: var(--white); }
+        .btn-secondary:hover { background: var(--white); color: var(--ink); }
+
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.75rem; }
-            h4 { font-size: 1.35rem; }
+            .hero { padding: 8rem 5% 5rem; }
+            .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+            .hero-meta { gap: 1.5rem; flex-direction: column; }
+            section.body { padding: 4rem 5%; }
+            h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); }
+            h3 { font-size: 1.4rem; }
             p { font-size: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        nav { background: rgba(245,240,232,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.5rem 5%; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(139,26,42,0.1); }
-nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-nav a { color: #1A1410; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.78rem; font-weight: 500; transition: color 0.3s; }
-nav a:hover { color: #8B1A2A; }
-nav a.back::before, nav .container a:first-child::before { content: "← "; color: #8B1A2A; }
-
-        .hero {
-            background: linear-gradient(135deg, #1a3a52 0%, #0d1f2d 100%);
-            color: #FFFFFF;
-            padding: 10rem 5% 6rem;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .project-category {
-            color: #A8D5E2;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: #CCCCCC;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            color: #A8D5E2;
-            font-size: 0.9rem;
-        }
-
-        .content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #000000;
-        }
-
-        .section h3 {
-            font-size: 1.8rem;
-            margin: 2.5rem 0 1rem;
-            color: #1a1a1a;
-        }
-
-        .section p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            color: #444444;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: #FFFFFF;
-            padding: 2rem;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .stat-number {
-            font-family: 'Medino', serif;
-            font-size: 3rem;
-            color: #1a3a52;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #1a3a52 0%, #0d1f2d 100%);
-            color: #FFFFFF;
-            padding: 3rem;
-            border-radius: 10px;
-            margin: 3rem 0;
-        }
-
-        .highlight-box h3 {
-            color: #FFFFFF;
-            margin-top: 0;
-        }
-
-        .highlight-box p {
-            color: #CCCCCC;
-        }
-
-        .findings-list {
-            background: #FFFFFF;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin: 2rem 0;
-        }
-
-        .finding-item {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #F0F0F0;
-        }
-
-        .finding-item:last-child {
-            border-bottom: none;
-        }
-
-        .finding-item h4 {
-            font-family: 'Medino', serif;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #1a3a52;
-        }
-
-        .finding-item p {
-            color: #666666;
-            margin-bottom: 0;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-badge {
-            background: #1a3a52;
-            color: #FFFFFF;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .chart-container {
-            background: #FFFFFF;
-            padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin: 3rem 0;
-        }
-
-        .chart-container h3 {
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
-
-        .chart-container p {
-            color: #666666;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-        }
-
-        .chart-wrapper {
-            position: relative;
-            height: 400px;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-            margin: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #1a3a52;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -3.5rem;
-            top: 0.5rem;
-            width: 15px;
-            height: 15px;
-            background: #1a3a52;
-            border-radius: 50%;
-        }
-
-        .timeline-year {
-            font-family: 'Medino', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #1a3a52;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-section {
-            background: #1A1410;
-            color: #FFFFFF;
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #FFFFFF;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: inline-block;
-            border-radius: 5px;
-        }
-
-        .btn-primary {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
-        .btn-primary:hover {
-            background: #CCCCCC;
-        }
-
-        .btn-secondary {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-        }
-
-        .btn-secondary:hover {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section h2 { font-size: 2.5rem; }
-            .hero-meta { gap: 1rem; }
             .chart-wrapper { height: 300px; }
         }
+        @media (max-width: 480px) {
+            body { font-size: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            nav { padding: 1rem 4%; }
+        }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html">Back to Portfolio</a>
-            <a href="https://github.com/Tahvia127/Tahvia127" target="_blank">GitHub</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="back">← La'Tahvia Williams</a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="pricing.html">Pricing</a>
         </div>
     </nav>
 
-    <section class="hero">
+    <header class="hero" id="main-content">
         <div class="hero-container">
-            <div class="project-category">Data Analysis • Healthcare Policy</div>
+            <div class="category">Data Analysis · Healthcare Policy</div>
             <h1>Healthcare Payment Analysis</h1>
-            <p class="hero-subtitle">
+            <p class="subtitle">
                 Following the money in women's health: Analyzing pharmaceutical payments to OB/GYN specialists from 2017-2020, revealing how policy changes and COVID-19 transformed industry spending patterns
             </p>
             <div class="hero-meta">
                 <span>DATA 11800 Midterm Project</span>
-                <span>•</span>
+                <span>·</span>
                 <span>$157.8M Analyzed</span>
-                <span>•</span>
+                <span>·</span>
                 <span>1.18M Transactions</span>
             </div>
         </div>
-    </section>
+    </header>
 
     <div class="content">
         <section class="section">
             <h2>Overview</h2>
             <p>
-                The Open Payments Database, maintained by the Centers for Medicare & Medicaid Services (CMS), was created under the Physician Payments Sunshine Act of 2010 to promote transparency in financial relationships between healthcare providers and industry companies. This analysis examines $157,768,067 in payments to OB/GYN specialists across 1,175,177 transactions from 2017-2020.
+                The Open Payments Database, maintained by the Centers for Medicare &amp; Medicaid Services (CMS), was created under the Physician Payments Sunshine Act of 2010 to promote transparency in financial relationships between healthcare providers and industry companies. This analysis examines $157,768,067 in payments to OB/GYN specialists across 1,175,177 transactions from 2017-2020.
             </p>
             <p>
                 During this period, significant healthcare policy changes and economic factors influenced payment distributions. The 2017 Tax Cuts and Jobs Act shifted financial priorities in the healthcare sector. In 2020, the COVID-19 pandemic caused a dramatic decline in medical procedures and pharmaceutical sponsorships, while the increasing adoption of value-based care models encouraged shifts in funding structures.
@@ -465,7 +163,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                     <span class="stat-label">Transactions</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">2017-2020</span>
+                    <span class="stat-number">2017–2020</span>
                     <span class="stat-label">Time Period</span>
                 </div>
                 <div class="stat-card">
@@ -484,7 +182,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
         <section class="section">
             <h2>Key Findings</h2>
-            
+
             <div class="findings-list">
                 <div class="finding-item">
                     <h4>Reproductive Endocrinology: 140% Surge in Average Payments</h4>
@@ -518,7 +216,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
         <section class="section">
             <h2>Visualizations</h2>
-            
+
             <div class="chart-container">
                 <h3>Annual Payment Trends (2017-2020)</h3>
                 <p>Total payments showing steady growth through 2019 followed by the dramatic COVID-19 decline in 2020.</p>
@@ -554,7 +252,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
 
         <section class="section">
             <h2>Policy Context Timeline</h2>
-            
+
             <div class="timeline">
                 <div class="timeline-item">
                     <div class="timeline-year">2010: Physician Payments Sunshine Act</div>
@@ -601,9 +299,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
         <h2>Interested in the Details?</h2>
         <div class="cta-buttons">
             <a href="index.html" class="btn btn-secondary">Back to Portfolio</a>
-            <a href="https://github.com/Tahvia127/Tahvia127" target="_blank" class="btn btn-primary">View on GitHub</a>
+            <a href="https://github.com/Tahvia127/Tahvia127" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View on GitHub</a>
         </div>
     </section>
+
+    <footer style="background:var(--crimson-deep);color:rgba(255,255,255,0.7);text-align:center;padding:3rem 5%;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:1px;">
+        <p>© 2026 La'Tahvia Williams · <a href="mailto:williamstahvia@gmail.com" style="color:rgba(255,255,255,0.9);text-decoration:none;">williamstahvia@gmail.com</a></p>
+        <p style="margin-top:0.5rem;"><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;text-transform:uppercase;letter-spacing:2px;font-size:0.75rem;">← Back to Portfolio</a></p>
+    </footer>
 
     <script>
         const ctx1 = document.getElementById('yearlyChart').getContext('2d');
@@ -614,8 +317,8 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 datasets: [{
                     label: 'Total Payments (Millions)',
                     data: [41.92, 42.70, 46.45, 26.30],
-                    borderColor: '#1a3a52',
-                    backgroundColor: 'rgba(26, 58, 82, 0.1)',
+                    borderColor: '#8B1A2A',
+                    backgroundColor: 'rgba(139, 26, 42, 0.1)',
                     borderWidth: 3,
                     tension: 0.4,
                     fill: true
@@ -639,8 +342,8 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 datasets: [{
                     label: 'Average Payment per Transaction ($)',
                     data: [520, 308, 247, 214, 162],
-                    backgroundColor: '#1a3a52',
-                    borderColor: '#0d1f2d',
+                    backgroundColor: '#8B1A2A',
+                    borderColor: '#5C0F1B',
                     borderWidth: 1
                 }]
             },
@@ -664,7 +367,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                     {
                         label: '2017-2019 Average',
                         data: [22000, 24000, 32000, 26000, 27000, 25000, 24000, 26000, 25000, 31000, 26000, 28000],
-                        borderColor: '#1a3a52',
+                        borderColor: '#8B1A2A',
                         backgroundColor: 'transparent',
                         borderWidth: 2,
                         tension: 0.4
@@ -672,7 +375,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                     {
                         label: '2020',
                         data: [19000, 18000, 21000, 8500, 9000, 12000, 13000, 15000, 14000, 13500, 13000, 12500],
-                        borderColor: '#A8D5E2',
+                        borderColor: '#C41E3A',
                         backgroundColor: 'transparent',
                         borderWidth: 2,
                         tension: 0.4,
@@ -697,8 +400,8 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 datasets: [{
                     label: 'Total Payments ($ Millions)',
                     data: [5.33, 3.72, 2.52, 2.31, 2.18, 1.95, 1.87, 1.76, 1.64, 1.52],
-                    backgroundColor: '#1a3a52',
-                    borderColor: '#0d1f2d',
+                    backgroundColor: '#8B1A2A',
+                    borderColor: '#5C0F1B',
                     borderWidth: 1
                 }]
             },
