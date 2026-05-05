@@ -633,10 +633,34 @@
         }
 
         /* Colored project covers */
-        .cover-data { background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%); }
-        .cover-healthcare { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 50%, #b91c1c 100%); }
-        .cover-conflict { background: linear-gradient(135deg, #1e3a5f 0%, #1e4d8c 50%, #2563b0 100%); }
-        .cover-financial { background: linear-gradient(135deg, #14532d 0%, #166534 50%, #16a34a 100%); }
+        .cover-data {
+            background-image:
+                linear-gradient(135deg, rgba(30,58,138,0.72) 0%, rgba(37,99,235,0.6) 100%),
+                url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-healthcare {
+            background-image:
+                linear-gradient(135deg, rgba(127,29,29,0.72) 0%, rgba(185,28,28,0.6) 100%),
+                url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-conflict {
+            background-image:
+                linear-gradient(135deg, rgba(30,58,95,0.72) 0%, rgba(37,99,176,0.6) 100%),
+                url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-financial {
+            background-image:
+                linear-gradient(135deg, rgba(20,83,45,0.72) 0%, rgba(22,163,74,0.6) 100%),
+                url('https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
         .cover-social {
             background-image: url('photos/07b4521f-2fa8-417c-93a7-a29588aebf5d_rw_1200.png');
             background-size: cover;
@@ -662,7 +686,20 @@
             background-size: cover;
             background-position: center;
         }
-        .cover-student { background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%); }
+        .cover-student {
+            background-image:
+                linear-gradient(135deg, rgba(30,27,75,0.68) 0%, rgba(79,70,229,0.55) 100%),
+                url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-hashtag {
+            background-image:
+                linear-gradient(135deg, rgba(74,29,110,0.68) 0%, rgba(109,40,217,0.55) 100%),
+                url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
         .cover-policyguesser { background: linear-gradient(135deg, #0c2461 0%, #1a4480 50%, #1e7a78 100%); }
         .cover-geography { background: linear-gradient(135deg, #4a1d4a 0%, #6b2660 45%, #6b4d18 100%); }
         .cover-sentenced { background: linear-gradient(135deg, #1c1917 0%, #2a2724 45%, #5b1f0c 100%); }
@@ -1496,7 +1533,7 @@
 
             <!-- Project 5 -->
             <div class="project-item reveal delay-1">
-                <div class="project-visual cover-social">
+                <div class="project-visual cover-hashtag">
                     <div class="project-visual-overlay">
                         <div class="project-visual-text">Hashtag<br>Analysis</div>
                     </div>
