@@ -6,7 +6,7 @@
     <title>La'Tahvia Williams — Data Scientist & Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Pinyon+Script&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Medino';
@@ -29,15 +29,17 @@
         }
 
         :root {
-            --crimson: #8B1A2A;
-            --crimson-deep: #5C0F1B;
-            --crimson-bright: #C41E3A;
-            --cream: #F5F0E8;
-            --cream-dark: #EDE8DF;
-            --ink: #1A1410;
-            --ink-light: #3D342C;
-            --muted: #5C5049;
-            --white: #FDFAF6;
+            /* ─── Quiet Luxury Palette ─── */
+            --crimson: #6A9AB5;          /* dusty slate blue — borders, nav, labels */
+            --crimson-deep: #243F58;     /* deep navy-slate — hero, footer, dark sections */
+            --crimson-bright: #4A88AB;   /* brighter slate — hover, active states */
+            --gold: #C8A85C;             /* warm gold — em highlights, premium accents */
+            --cream: #F5F0E8;            /* warm cream — main background */
+            --cream-dark: #EDE8DF;       /* slightly deeper cream — alternate sections */
+            --ink: #1C2B3A;              /* deep navy — primary text */
+            --ink-light: #3A526A;        /* medium navy — secondary text */
+            --muted: #5A7A92;            /* muted slate — tertiary text */
+            --white: #FDFAF6;            /* warm white */
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
 
@@ -117,17 +119,18 @@
             background: rgba(245, 240, 232, 0.95);
             backdrop-filter: blur(12px);
             padding: 1rem 5%;
-            border-bottom: 1px solid rgba(139, 26, 42, 0.15);
+            border-bottom: 1px solid rgba(106, 154, 181, 0.15);
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.9rem;
             letter-spacing: 1px;
-            font-weight: 500;
+            font-weight: 400;
             color: var(--ink);
             text-decoration: none;
             position: relative;
+            line-height: 1;
         }
 
         .logo span {
@@ -214,7 +217,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--crimson-bright);
+            color: var(--gold);
             margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(20px);
@@ -249,7 +252,10 @@
 
         .hero h1 em {
             font-style: italic;
-            color: var(--crimson-bright);
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.15em;
+            color: var(--gold);
+            letter-spacing: 2px;
         }
 
         @keyframes slideUp {
@@ -414,7 +420,7 @@
 
         .about-left h2 em {
             font-style: italic;
-            color: var(--crimson);
+            color: var(--gold);
         }
 
         .about-left p {
@@ -469,7 +475,7 @@
 
         .stat-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(139, 26, 42, 0.12);
+            box-shadow: 0 20px 50px rgba(106, 154, 181, 0.12);
         }
 
         .stat-card:hover::before { transform: scaleX(1); }
@@ -495,7 +501,7 @@
             max-width: 1400px;
             margin: 5rem auto 0;
             padding-top: 2.5rem;
-            border-top: 1px solid rgba(139, 26, 42, 0.18);
+            border-top: 1px solid rgba(106, 154, 181, 0.18);
             display: flex;
             align-items: baseline;
             gap: 2rem;
@@ -530,7 +536,7 @@
         /* ─── SECTION DIVIDER ─── */
         .divider {
             height: 1px;
-            background: linear-gradient(to right, transparent, rgba(139,26,42,0.2), transparent);
+            background: linear-gradient(to right, transparent, rgba(106,154,181,0.2), transparent);
             margin: 0 5%;
         }
 
@@ -555,7 +561,7 @@
             line-height: 1;
         }
 
-        .projects-header h2 em { font-style: italic; color: var(--crimson); }
+        .projects-header h2 em { font-style: italic; color: var(--gold); }
 
         .projects-header p {
             color: var(--muted);
@@ -748,7 +754,7 @@
 
         .tech-tag {
             padding: 0.3rem 0.9rem;
-            border: 1px solid rgba(139,26,42,0.25);
+            border: 1px solid rgba(106,154,181,0.25);
             color: var(--crimson);
             font-size: 0.7rem;
             text-transform: uppercase;
@@ -813,7 +819,7 @@
             line-height: 1;
         }
 
-        .design-header h2 em { font-style: italic; color: var(--crimson); }
+        .design-header h2 em { font-style: italic; color: var(--gold); }
 
         .design-header p {
             color: var(--ink-light);
@@ -1036,7 +1042,7 @@
 
         .testimonials h2 em {
             font-style: italic;
-            color: var(--crimson);
+            color: var(--gold);
         }
 
         .testimonials-grid {
@@ -1060,7 +1066,7 @@
 
         .testimonial:hover {
             transform: translateY(-4px);
-            box-shadow: 0 18px 40px -20px rgba(139, 26, 42, 0.25);
+            box-shadow: 0 18px 40px -20px rgba(106, 154, 181, 0.25);
         }
 
         .testimonial-mark {
@@ -1082,7 +1088,7 @@
         }
 
         .testimonial-author {
-            border-top: 1px solid rgba(139, 26, 42, 0.15);
+            border-top: 1px solid rgba(106, 154, 181, 0.15);
             padding-top: 1.2rem;
         }
 
@@ -1143,7 +1149,7 @@
             transform: translateX(-50%);
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(139,26,42,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(106,154,181,0.15) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -1165,7 +1171,7 @@
 
         .contact h2 em {
             font-style: italic;
-            color: var(--crimson-bright);
+            color: var(--gold);
         }
 
         .contact p {
@@ -1306,10 +1312,9 @@
         }
 
         .loader-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 3.5rem;
             color: var(--white);
-            font-style: italic;
             letter-spacing: 4px;
             animation: loaderPulse 1.5s ease-in-out infinite;
         }

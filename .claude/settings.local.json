@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(unzip -l /Users/latahviawilliams/Porfolio/photos.zip)",
+      "Bash(gh repo *)",
+      "WebFetch(domain:github.com)",
+      "Bash(grep -n \"<!-- ─\\\\|</section>\\\\|</div>$\\\\|^    </div>\" /Users/latahviawilliams/Porfolio/index.html)",
+      "Bash(sed -i '' 's/rgba\\(139, 26, 42, 0\\\\.15\\)/rgba\\(106, 154, 181, 0.15\\)/g' pricing.html)",
+      "Bash(sed -i '' 's/rgba\\(139,26,42,0\\\\.1\\)/rgba\\(106,154,181,0.1\\)/g' pricing.html)",
+      "Bash(sed -i '' 's/rgba\\(139,26,42,0\\\\.12\\)/rgba\\(106,154,181,0.12\\)/g' pricing.html)",
+      "Bash(sed -i '' 's/rgba\\(139,26,42,0\\\\.25\\)/rgba\\(106,154,181,0.25\\)/g' pricing.html)",
+      "Bash(sed -i '' 's/rgba\\(139,26,42,0\\\\.2\\)/rgba\\(106,154,181,0.2\\)/g' pricing.html)",
+      "Bash(sed -i '' 's/color: var\\(--crimson-bright\\);/color: var\\(--gold\\);/g' pricing.html)",
+      "Bash(sed -i '' 's/background: var\\(--crimson-bright\\);/background: var\\(--gold\\);/g' pricing.html)",
+      "Bash(sed -i '' 's/border-color: var\\(--crimson-bright\\);/border-color: var\\(--gold\\);/g' pricing.html)"
+    ]
+  }
+}

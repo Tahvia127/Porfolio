@@ -6,7 +6,7 @@
     <title>Pricing & Services — La'Tahvia Williams</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Aileron';
@@ -25,14 +25,15 @@
         }
 
         :root {
-            --crimson: #8B1A2A;
-            --crimson-deep: #5C0F1B;
-            --crimson-bright: #C41E3A;
+            --crimson: #6A9AB5;
+            --crimson-deep: #243F58;
+            --crimson-bright: #4A88AB;
+            --gold: #C8A85C;
             --cream: #F5F0E8;
             --cream-dark: #EDE8DF;
-            --ink: #1A1410;
-            --ink-light: #3D342C;
-            --muted: #5C5049;
+            --ink: #1C2B3A;
+            --ink-light: #3A526A;
+            --muted: #5A7A92;
             --white: #FDFAF6;
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
@@ -129,15 +130,16 @@
             background: rgba(245, 240, 232, 0.95);
             backdrop-filter: blur(12px);
             padding: 1rem 5%;
-            border-bottom: 1px solid rgba(139, 26, 42, 0.15);
+            border-bottom: 1px solid rgba(106, 154, 181, 0.15);
         }
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-family: 'Pinyon Script', cursive;
+            font-size: 1.9rem;
             letter-spacing: 1px;
-            font-weight: 500;
+            font-weight: 400;
             color: var(--ink);
             text-decoration: none;
+            line-height: 1;
         }
         .logo span { color: var(--crimson); }
 
@@ -209,7 +211,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--crimson-bright);
+            color: var(--gold);
             margin-bottom: 1rem;
             opacity: 0;
             animation: revealUp 0.8s var(--transition) 0.3s forwards;
@@ -228,7 +230,7 @@
 
         .pricing-hero h1 em {
             font-style: italic;
-            color: var(--crimson-bright);
+            color: var(--gold);
         }
 
         .pricing-hero-sub {
@@ -313,7 +315,7 @@
             margin-bottom: 3rem;
             text-align: center;
         }
-        .process h2 em { font-style: italic; color: var(--crimson); }
+        .process h2 em { font-style: italic; color: var(--gold); }
 
         .process-steps {
             display: grid;
@@ -336,7 +338,7 @@
             font-family: 'Cormorant Garamond', serif;
             font-size: 5rem;
             font-weight: 700;
-            color: rgba(139,26,42,0.1);
+            color: rgba(106,154,181,0.1);
             line-height: 1;
             margin-bottom: 1rem;
             transition: color 0.3s ease;
@@ -377,7 +379,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--crimson);
+            color: var(--gold);
             margin-bottom: 0.8rem;
             font-weight: 500;
             display: block;
@@ -391,7 +393,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .section-title em { font-style: italic; color: var(--crimson); }
+        .section-title em { font-style: italic; color: var(--gold); }
 
         .section-desc {
             font-size: 1rem;
@@ -427,7 +429,7 @@
             transition: transform 0.4s var(--transition);
         }
 
-        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(139,26,42,0.12); }
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 30px 70px rgba(106,154,181,0.12); }
         .pricing-card:hover::before { transform: scaleX(1); }
 
         .pricing-card.featured {
@@ -435,7 +437,7 @@
             color: var(--white);
         }
 
-        .pricing-card.featured::before { background: var(--crimson-bright); transform: scaleX(1); }
+        .pricing-card.featured::before { background: var(--gold); transform: scaleX(1); }
         .pricing-card.featured:hover { box-shadow: 0 30px 70px rgba(0,0,0,0.3); }
 
         .card-badge {
@@ -451,7 +453,7 @@
         }
 
         .pricing-card.featured .card-badge {
-            background: var(--crimson-bright);
+            background: var(--gold);
         }
 
         .card-name {
@@ -469,10 +471,10 @@
             font-weight: 300;
             line-height: 1;
             margin-bottom: 0.3rem;
-            color: var(--crimson);
+            color: var(--gold);
         }
 
-        .pricing-card.featured .card-price { color: var(--crimson-bright); }
+        .pricing-card.featured .card-price { color: var(--gold); }
 
         .card-price-note {
             font-size: 0.75rem;
@@ -486,7 +488,7 @@
 
         .card-divider {
             height: 1px;
-            background: rgba(139,26,42,0.12);
+            background: rgba(106,154,181,0.12);
             margin-bottom: 2rem;
         }
         .pricing-card.featured .card-divider { background: rgba(255,255,255,0.1); }
@@ -512,20 +514,20 @@
 
         .card-features li::before {
             content: '✓';
-            color: var(--crimson);
+            color: var(--gold);
             font-weight: 700;
             flex-shrink: 0;
             margin-top: 0.1rem;
         }
 
-        .pricing-card.featured .card-features li::before { color: var(--crimson-bright); }
+        .pricing-card.featured .card-features li::before { color: var(--gold); }
 
         .card-cta {
             display: block;
             text-align: center;
             padding: 0.9rem;
-            border: 1.5px solid rgba(139,26,42,0.25);
-            color: var(--crimson);
+            border: 1.5px solid rgba(106,154,181,0.25);
+            color: var(--gold);
             text-decoration: none;
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -538,18 +540,18 @@
         .card-cta:hover {
             background: var(--crimson);
             color: var(--white);
-            border-color: var(--crimson);
+            border-color: var(--gold);
         }
 
         .pricing-card.featured .card-cta {
             background: var(--crimson);
             color: var(--white);
-            border-color: var(--crimson);
+            border-color: var(--gold);
         }
 
         .pricing-card.featured .card-cta:hover {
-            background: var(--crimson-bright);
-            border-color: var(--crimson-bright);
+            background: var(--gold);
+            border-color: var(--gold);
         }
 
         /* ─── RETAINER / ADD-ON CARD ─── */
@@ -575,7 +577,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--crimson-bright);
+            color: var(--gold);
             margin-bottom: 0.5rem;
         }
 
@@ -634,7 +636,7 @@
             margin-bottom: 4rem;
         }
 
-        .payment-inner h2 em { font-style: italic; color: var(--crimson-bright); }
+        .payment-inner h2 em { font-style: italic; color: var(--gold); }
 
         .payment-grid {
             display: grid;
@@ -649,7 +651,7 @@
             transition: background 0.3s ease;
         }
 
-        .payment-card:hover { background: rgba(139,26,42,0.2); }
+        .payment-card:hover { background: rgba(106,154,181,0.2); }
 
         .payment-icon {
             font-size: 2rem;
@@ -691,7 +693,7 @@
         .faq h2 em { font-style: italic; color: var(--crimson); }
 
         .faq-item {
-            border-bottom: 1px solid rgba(139,26,42,0.15);
+            border-bottom: 1px solid rgba(106,154,181,0.15);
         }
 
         .faq-question {
@@ -715,7 +717,7 @@
 
         .faq-icon {
             font-size: 1.5rem;
-            color: var(--crimson);
+            color: var(--gold);
             transition: transform 0.3s var(--transition);
             flex-shrink: 0;
             margin-left: 1rem;
@@ -816,7 +818,7 @@
         }
         footer p { font-size: 0.8rem; color: rgba(255,255,255,0.65); letter-spacing: 1px; }
         footer a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.8rem; letter-spacing: 1px; transition: color 0.3s ease; }
-        footer a:hover { color: var(--crimson-bright); }
+        footer a:hover { color: var(--gold); }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 1000px) {
