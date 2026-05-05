@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing & Services — La'Tahvia Williams</title>
+    <title>Pricing & Services - La'Tahvia Williams</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -35,6 +35,7 @@
             --ink-light: #3A526A;
             --muted: #5A7A92;
             --white: #FDFAF6;
+            --blue-text: #2E5F7A;
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
 
@@ -45,7 +46,8 @@
             font-family: 'Aileron', 'Inter', sans-serif;
             background: var(--cream);
             color: var(--ink);
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.8;
             overflow-x: hidden;
         }
         @media (pointer: fine) {
@@ -127,27 +129,31 @@
             transition: background 0.4s ease, padding 0.4s ease;
         }
         nav.scrolled {
-            background: rgba(245, 240, 232, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(245, 240, 232, 0.97);
+            backdrop-filter: blur(14px);
             padding: 1rem 5%;
             border-bottom: 1px solid rgba(106, 154, 181, 0.15);
         }
+        nav.scrolled a { color: var(--ink); }
+        nav.scrolled a:hover { color: var(--crimson); }
+        nav.scrolled .logo { color: var(--ink); }
         .logo {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 1.9rem;
-            letter-spacing: 1px;
-            font-weight: 400;
-            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: var(--white);
             text-decoration: none;
             line-height: 1;
         }
-        .logo span { color: var(--crimson); }
+        .logo span { color: var(--gold); }
 
         nav ul { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
         nav a {
-            color: var(--ink);
+            color: rgba(255,255,255,0.9);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 500;
@@ -159,10 +165,10 @@
             position: absolute;
             bottom: -4px; left: 0;
             width: 0; height: 1px;
-            background: var(--crimson);
+            background: var(--gold);
             transition: width 0.3s var(--transition);
         }
-        nav a:hover { color: var(--crimson); }
+        nav a:hover { color: var(--gold); }
         nav a:hover::after { width: 100%; }
 
         .nav-back {
@@ -305,7 +311,7 @@
             background: var(--white);
         }
         .process-inner {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
         }
         .process h2 {
@@ -367,7 +373,7 @@
         .pricing-section:nth-child(even) { background: var(--cream-dark); }
 
         .pricing-section-inner {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto;
         }
 
@@ -376,10 +382,10 @@
         }
 
         .section-label {
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--gold);
+            color: var(--blue-text);
             margin-bottom: 0.8rem;
             font-weight: 500;
             display: block;
@@ -505,7 +511,7 @@
             display: flex;
             align-items: flex-start;
             gap: 0.8rem;
-            font-size: 0.88rem;
+            font-size: 1rem;
             line-height: 1.5;
             color: var(--ink-light);
         }
@@ -623,7 +629,7 @@
         }
 
         .payment-inner {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
         }
 
@@ -654,21 +660,22 @@
         .payment-card:hover { background: rgba(106,154,181,0.2); }
 
         .payment-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
+            color: var(--gold);
             margin-bottom: 1.5rem;
         }
 
         .payment-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             color: var(--white);
             margin-bottom: 0.8rem;
         }
 
         .payment-desc {
-            font-size: 0.88rem;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.7;
+            font-size: 1rem;
+            color: rgba(255,255,255,0.88);
+            line-height: 1.8;
         }
 
         /* ─── FAQ ─── */
@@ -678,7 +685,7 @@
         }
 
         .faq-inner {
-            max-width: 900px;
+            max-width: 1080px;
             margin: 0 auto;
         }
 
@@ -707,7 +714,7 @@
             align-items: center;
             cursor: pointer;
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--ink);
             font-weight: 500;
             transition: color 0.3s ease;
@@ -890,7 +897,7 @@
         <div class="pricing-hero-bg" aria-hidden="true">RATES</div>
         <p class="pricing-hero-label" aria-hidden="true">Freelance Services · 2026</p>
         <h1 id="pricing-hero-heading">Transparent<br><em>Pricing.</em></h1>
-        <p class="pricing-hero-sub">Five years of experience. Professional-quality design and analysis with honest, fixed-price packages — no hidden fees, no surprises.</p>
+        <p class="pricing-hero-sub">Five years of experience. Professional-quality design and analysis with honest, fixed-price packages: no hidden fees, no surprises.</p>
     </section>
 
     <!-- MARQUEE -->
@@ -982,7 +989,7 @@
                     <a href="mailto:williamstahvia@gmail.com?subject=Starter Site Inquiry" class="card-cta">Get Started</a>
                 </div>
 
-                <!-- Business — FEATURED -->
+                <!-- Business - FEATURED -->
                 <div class="pricing-card featured reveal delay-2">
                     <div class="card-badge">Most Popular</div>
                     <div class="card-name">Business Site</div>
@@ -1081,7 +1088,7 @@
                     <a href="mailto:williamstahvia@gmail.com?subject=Brand Starter Inquiry" class="card-cta">Get Started</a>
                 </div>
 
-                <!-- Brand Standard — FEATURED -->
+                <!-- Brand Standard - FEATURED -->
                 <div class="pricing-card featured reveal delay-2">
                     <div class="card-badge">Most Popular</div>
                     <div class="card-name">Brand Standard</div>
@@ -1127,7 +1134,7 @@
                     <div>
                         <div class="addon-label">One-Off Design</div>
                         <div class="addon-title">Graphic Design À La Carte</div>
-                        <div class="addon-desc">Single pieces — event flyers, social media graphics, posters, infographics, presentation decks, and more. Priced per deliverable.</div>
+                        <div class="addon-desc">Single pieces: event flyers, social media graphics, posters, infographics, presentation decks, and more. Priced per deliverable.</div>
                     </div>
                     <div class="addon-price">
                         <span class="addon-price-amount">$150</span>
@@ -1138,7 +1145,7 @@
                     <div>
                         <div class="addon-label">Ongoing Creative</div>
                         <div class="addon-title">Monthly Design Retainer</div>
-                        <div class="addon-desc">Consistent branded content every month — social media graphics, email headers, marketing materials. Perfect for active brands.</div>
+                        <div class="addon-desc">Consistent branded content every month: social media graphics, email headers, marketing materials. Perfect for active brands.</div>
                     </div>
                     <div class="addon-price">
                         <span class="addon-price-amount">$600</span>
@@ -1179,7 +1186,7 @@
                     <a href="mailto:williamstahvia@gmail.com?subject=Exploratory Analysis Inquiry" class="card-cta">Get Started</a>
                 </div>
 
-                <!-- Standard — FEATURED -->
+                <!-- Standard - FEATURED -->
                 <div class="pricing-card featured reveal delay-2">
                     <div class="card-badge">Most Popular</div>
                     <div class="card-name">Standard Analysis</div>
@@ -1260,7 +1267,7 @@
                 <div class="payment-card reveal delay-2">
                     <div class="payment-icon">3 ×</div>
                     <div class="payment-title">Installment Plan</div>
-                    <div class="payment-desc">Available on projects over $1,500. Split into 3 monthly payments — no interest, no fees. Makes professional work accessible for small budgets.</div>
+                    <div class="payment-desc">Available on projects over $1,500. Split into 3 monthly payments: no interest, no fees. Makes professional work accessible for small budgets.</div>
                 </div>
                 <div class="payment-card reveal delay-3">
                     <div class="payment-icon">↻</div>
@@ -1283,7 +1290,7 @@
 
             <div class="faq-item reveal delay-2">
                 <button class="faq-question" aria-expanded="false">What if I need something not listed? <span class="faq-icon" aria-hidden="true">+</span></button>
-                <div class="faq-answer"><p>All packages are a starting point. If your project needs something custom — a unique scope, combination of services, or a tight timeline — reach out and we'll put together a custom quote. I'm flexible and happy to tailor a package to your needs.</p></div>
+                <div class="faq-answer"><p>All packages are a starting point. If your project needs something custom, a unique scope, combination of services, or a tight timeline, reach out and we'll put together a custom quote. I'm flexible and happy to tailor a package to your needs.</p></div>
             </div>
 
             <div class="faq-item reveal delay-3">
@@ -1298,7 +1305,7 @@
 
             <div class="faq-item reveal delay-5">
                 <button class="faq-question" aria-expanded="false">What happens after the project is done? <span class="faq-icon" aria-hidden="true">+</span></button>
-                <div class="faq-answer"><p>You get all source files and deliverables in agreed formats. Website clients get a 30–90 day support window depending on their package. After that, maintenance retainers keep everything running smoothly. I don't disappear after delivery — I want your project to keep performing.</p></div>
+                <div class="faq-answer"><p>You get all source files and deliverables in agreed formats. Website clients get a 30-90 day support window depending on their package. After that, maintenance retainers keep everything running smoothly. I don't disappear after delivery, I want your project to keep performing.</p></div>
             </div>
         </div>
     </section>

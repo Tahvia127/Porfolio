@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La'Tahvia Williams — Data Scientist & Designer</title>
+    <title>La'Tahvia Williams - Data Scientist & Designer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Pinyon+Script&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -30,16 +30,17 @@
 
         :root {
             /* ─── Quiet Luxury Palette ─── */
-            --crimson: #6A9AB5;          /* dusty slate blue — borders, nav, labels */
-            --crimson-deep: #243F58;     /* deep navy-slate — hero, footer, dark sections */
-            --crimson-bright: #4A88AB;   /* brighter slate — hover, active states */
-            --gold: #C8A85C;             /* warm gold — em highlights, premium accents */
-            --cream: #F5F0E8;            /* warm cream — main background */
-            --cream-dark: #EDE8DF;       /* slightly deeper cream — alternate sections */
-            --ink: #1C2B3A;              /* deep navy — primary text */
-            --ink-light: #3A526A;        /* medium navy — secondary text */
-            --muted: #5A7A92;            /* muted slate — tertiary text */
+            --crimson: #6A9AB5;          /* dusty slate blue - borders, nav, labels */
+            --crimson-deep: #243F58;     /* deep navy-slate - hero, footer, dark sections */
+            --crimson-bright: #4A88AB;   /* brighter slate - hover, active states */
+            --gold: #C8A85C;             /* warm gold - em highlights, premium accents */
+            --cream: #F5F0E8;            /* warm cream - main background */
+            --cream-dark: #EDE8DF;       /* slightly deeper cream - alternate sections */
+            --ink: #1C2B3A;              /* deep navy - primary text */
+            --ink-light: #3A526A;        /* medium navy - secondary text */
+            --muted: #5A7A92;            /* muted slate - tertiary text */
             --white: #FDFAF6;            /* warm white */
+            --blue-text: #2E5F7A;        /* accessible text blue - 5.2:1 contrast on cream */
             --transition: cubic-bezier(0.76, 0, 0.24, 1);
         }
 
@@ -58,7 +59,8 @@
             font-weight: 400;
             background: var(--cream);
             color: var(--ink);
-            line-height: 1.6;
+            font-size: 1.1rem;
+            line-height: 1.75;
             overflow-x: hidden;
         }
 
@@ -115,27 +117,25 @@
             transition: background 0.4s ease, padding 0.4s ease;
         }
 
-        nav.scrolled {
-            background: rgba(245, 240, 232, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 1rem 5%;
-            border-bottom: 1px solid rgba(106, 154, 181, 0.15);
-        }
+        nav.scrolled { background: rgba(245, 240, 232, 0.97); backdrop-filter: blur(14px); padding: 1rem 5%; border-bottom: 1px solid rgba(106, 154, 181, 0.15); }
+        nav.scrolled a { color: var(--ink); }
+        nav.scrolled a:hover { color: var(--crimson); }
+        nav.scrolled .nav-cta { background: var(--crimson) !important; color: var(--white) !important; }
+        nav.scrolled .logo { color: var(--ink); }
 
         .logo {
-            font-family: 'Pinyon Script', cursive;
-            font-size: 1.9rem;
-            letter-spacing: 1px;
-            font-weight: 400;
-            color: var(--ink);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: var(--white);
             text-decoration: none;
             position: relative;
             line-height: 1;
         }
 
-        .logo span {
-            color: var(--crimson);
-        }
+        .logo span { color: var(--gold); }
 
         nav ul {
             display: flex;
@@ -145,9 +145,9 @@
         }
 
         nav a {
-            color: var(--ink);
+            color: rgba(255,255,255,0.9);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 500;
@@ -162,24 +162,26 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: var(--crimson);
+            background: var(--gold);
             transition: width 0.3s var(--transition);
         }
 
-        nav a:hover { color: var(--crimson); }
+        nav a:hover { color: var(--gold); }
         nav a:hover::after { width: 100%; }
 
         .nav-cta {
-            background: var(--crimson) !important;
-            color: var(--white) !important;
-            padding: 0.6rem 1.5rem !important;
+            background: var(--gold) !important;
+            color: var(--ink) !important;
+            padding: 0.75rem 1.8rem !important;
+            min-height: 44px;
             border-radius: 100px;
-            font-size: 0.8rem !important;
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
             transition: background 0.3s ease, transform 0.3s ease !important;
         }
 
         .nav-cta::after { display: none !important; }
-        .nav-cta:hover { background: var(--crimson-deep) !important; transform: translateY(-2px); }
+        .nav-cta:hover { background: #b8963f !important; transform: translateY(-2px); }
 
         /* ─── HERO ─── */
         .hero {
@@ -191,26 +193,6 @@
             padding: 0 5% 5rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-bg-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(150px, 25vw, 300px);
-            font-weight: 700;
-            color: rgba(255,255,255,0.025);
-            white-space: nowrap;
-            pointer-events: none;
-            letter-spacing: -5px;
-            animation: slowFloat 12s ease-in-out infinite;
-        }
-
-        @keyframes slowFloat {
-            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
-            50% { transform: translate(-50%, -50%) translateY(-20px); }
         }
 
         .hero-label {
@@ -226,7 +208,7 @@
 
         .hero h1 {
             font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(4rem, 10vw, 10rem);
+            font-size: clamp(5rem, 12vw, 12rem);
             font-weight: 300;
             color: var(--white);
             line-height: 0.9;
@@ -386,10 +368,10 @@
 
         /* ─── SECTION LABEL ─── */
         .section-label {
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--crimson);
+            color: var(--blue-text);
             margin-bottom: 1rem;
             font-weight: 500;
         }
@@ -401,7 +383,7 @@
         }
 
         .about-grid {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -424,8 +406,8 @@
         }
 
         .about-left p {
-            font-size: 1rem;
-            line-height: 1.9;
+            font-size: 1.15rem;
+            line-height: 1.8;
             color: var(--ink-light);
             margin-bottom: 1.5rem;
         }
@@ -433,8 +415,9 @@
         .about-link {
             display: inline-flex;
             align-items: center;
+            min-height: 44px;
             gap: 0.7rem;
-            color: var(--crimson);
+            color: var(--ink);
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -498,7 +481,7 @@
 
         /* ─── SKILLS STRIP (in About) ─── */
         .skills-strip {
-            max-width: 1400px;
+            max-width: 1700px;
             margin: 5rem auto 0;
             padding-top: 2.5rem;
             border-top: 1px solid rgba(106, 154, 181, 0.18);
@@ -547,7 +530,7 @@
         }
 
         .projects-header {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto 6rem;
             display: flex;
             justify-content: space-between;
@@ -574,7 +557,7 @@
         }
 
         .project-grid {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto;
             display: grid;
             gap: 2px;
@@ -707,11 +690,35 @@
             background-position: center;
         }
         .cover-policyguesser { background: linear-gradient(135deg, #0c2461 0%, #1a4480 50%, #1e7a78 100%); }
-        .cover-geography { background: linear-gradient(135deg, #4a1d4a 0%, #6b2660 45%, #6b4d18 100%); }
-        .cover-sentenced { background: linear-gradient(135deg, #1c1917 0%, #2a2724 45%, #5b1f0c 100%); }
+        .cover-geography {
+            background-image:
+                linear-gradient(135deg, rgba(46,95,122,0.68) 0%, rgba(74,136,171,0.5) 100%),
+                url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-sentenced {
+            background-image:
+                linear-gradient(135deg, rgba(28,43,58,0.72) 0%, rgba(58,82,106,0.6) 100%),
+                url('https://images.unsplash.com/photo-1589578527966-fdac0f44566c?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
         .cover-crown { background: linear-gradient(135deg, #3f2a14 0%, #5e2a0c 45%, #6f4f1f 100%); }
-        .cover-unity { background: linear-gradient(135deg, #064e3b 0%, #0a5d52 50%, #0a6e63 100%); }
-        .cover-publicpath { background: linear-gradient(135deg, #312e81 0%, #3730a3 45%, #4338ca 100%); }
+        .cover-unity {
+            background-image:
+                linear-gradient(135deg, rgba(36,63,88,0.68) 0%, rgba(74,136,171,0.5) 100%),
+                url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-publicpath {
+            background-image:
+                linear-gradient(135deg, rgba(28,43,58,0.68) 0%, rgba(46,95,122,0.5) 100%),
+                url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&w=900&q=75');
+            background-size: cover;
+            background-position: center;
+        }
 
         .project-content {
             padding: 4rem 4rem;
@@ -724,7 +731,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: var(--crimson);
+            color: var(--blue-text);
             margin-bottom: 1.2rem;
             font-weight: 500;
         }
@@ -739,8 +746,8 @@
         }
 
         .project-description {
-            font-size: 0.9rem;
-            line-height: 1.9;
+            font-size: 1.1rem;
+            line-height: 1.75;
             color: var(--ink-light);
             margin-bottom: 2rem;
         }
@@ -754,9 +761,9 @@
 
         .tech-tag {
             padding: 0.3rem 0.9rem;
-            border: 1px solid rgba(106,154,181,0.25);
-            color: var(--crimson);
-            font-size: 0.7rem;
+            border: 1px solid rgba(46,95,122,0.3);
+            color: var(--blue-text);
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             border-radius: 100px;
@@ -771,6 +778,7 @@
         .project-link {
             display: inline-flex;
             align-items: center;
+            min-height: 44px;
             gap: 0.6rem;
             color: var(--ink);
             font-size: 0.8rem;
@@ -804,7 +812,7 @@
         }
 
         .design-header {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto 6rem;
             display: flex;
             justify-content: space-between;
@@ -832,7 +840,7 @@
         }
 
         .design-grid {
-            max-width: 1300px;
+            max-width: 1600px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -932,7 +940,7 @@
         .pricing-teaser-inner {
             position: relative;
             z-index: 1;
-            max-width: 800px;
+            max-width: 960px;
             margin: 0 auto;
         }
 
@@ -1023,7 +1031,7 @@
         }
 
         .testimonials-inner {
-            max-width: 1200px;
+            max-width: 1500px;
             margin: 0 auto;
         }
 
@@ -1079,7 +1087,7 @@
 
         .testimonial-quote {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-style: italic;
             line-height: 1.55;
             color: var(--ink);
@@ -1337,6 +1345,65 @@
 
         .section-line.visible { transform: scaleX(1); }
 
+        /* ─── HAMBURGER MENU ─── */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            width: 44px;
+            height: 44px;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            align-items: center;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        nav.scrolled .nav-toggle span { background: var(--ink); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: flex; }
+            nav ul {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: var(--crimson-deep);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+                z-index: 999;
+            }
+            nav ul.open {
+                opacity: 1;
+                pointer-events: all;
+            }
+            nav ul a { font-size: 1.3rem; color: var(--white); }
+            .hero h1 { font-size: clamp(3.5rem, 12vw, 6rem); }
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .design-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 1rem; }
+            .hero { padding: 0 5% 4rem; }
+            nav { padding: 1rem 5%; }
+        }
+
         /* ─── SCREEN-READER ONLY UTILITY ─── */
         .sr-only {
             position: absolute;
@@ -1363,21 +1430,25 @@
     <!-- Navigation -->
     <nav id="nav" aria-label="Main navigation">
         <a href="#main-content" class="logo">La'<span aria-hidden="true">T</span><span class="sr-only">T</span>ahvia Williams</a>
-        <ul role="list">
+        <ul id="nav-menu" role="list">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Data &amp; Analysis</a></li>
             <li><a href="#design">Design</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="pricing.html" class="nav-cta">View Pricing <span aria-hidden="true">→</span></a></li>
         </ul>
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
     </nav>
 
     <main id="main-content">
 
     <!-- ─── HERO ─── -->
     <section class="hero" aria-labelledby="hero-heading">
-        <div class="hero-bg-text" aria-hidden="true">LTW</div>
-        <div class="hero-label" aria-hidden="true">Portfolio · 2026</div>
+        <div class="hero-label" aria-hidden="true">Portfolio - 2026</div>
         <h1 id="hero-heading">
             <span class="line"><span class="line-inner">Data.</span></span>
             <span class="line"><span class="line-inner">Design.</span></span>
@@ -1476,7 +1547,7 @@
                     <div class="project-category">Machine Learning</div>
                     <h3>Academic Performance Modeling</h3>
                     <p class="project-description">
-                        Predictive model analyzing 6,607 students — discovered that for high achievers,
+                        Predictive model analyzing 6,607 students: discovered that for high achievers,
                         more study hours actually hurts performance. Partitioned regression achieved R² = 0.968.
                     </p>
                     <div class="tech-stack">
@@ -1485,7 +1556,7 @@
                         <span class="tech-tag">LASSO</span>
                         <span class="tech-tag">Regression</span>
                     </div>
-                    <a href="project-student-performance-final.html" class="project-link">Explore Project →</a>
+                    <a href="project-student-performance-final.html" class="project-link" aria-label="Explore Academic Performance Modeling project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1509,7 +1580,7 @@
                         <span class="tech-tag">Plotly</span>
                         <span class="tech-tag">CMS Data</span>
                     </div>
-                    <a href="project-healthcare-final.html" class="project-link">Explore Project →</a>
+                    <a href="project-healthcare-final.html" class="project-link" aria-label="Explore Pharmaceutical Industry Transparency project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1533,7 +1604,7 @@
                         <span class="tech-tag">Data Viz</span>
                         <span class="tech-tag">GDELT</span>
                     </div>
-                    <a href="project-conflict-final.html" class="project-link">Explore Project →</a>
+                    <a href="project-conflict-final.html" class="project-link" aria-label="Explore Conflict Attention Analysis project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1556,7 +1627,7 @@
                         <span class="tech-tag">ggplot2</span>
                         <span class="tech-tag">Statistical Analysis</span>
                     </div>
-                    <a href="project-financial-aid.html" class="project-link">Explore Project →</a>
+                    <a href="project-financial-aid.html" class="project-link" aria-label="Explore Financial Aid Equity Study project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1579,7 +1650,7 @@
                         <span class="tech-tag">Twitter API</span>
                         <span class="tech-tag">Network Analysis</span>
                     </div>
-                    <a href="project-hashtags.html" class="project-link">Explore Project →</a>
+                    <a href="project-hashtags.html" class="project-link" aria-label="Explore Social Movement Tracking project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1595,7 +1666,7 @@
                     <h3>The Geography of Rights</h3>
                     <p class="project-description">
                         A composite Human Rights Policy Index scoring all 50 U.S. states across reproductive rights,
-                        LGBTQ+ protections, voting access, labor, and criminal justice — with PCA weighting and OLS regression on political and demographic predictors.
+                        LGBTQ+ protections, voting access, labor, and criminal justice, with PCA weighting and OLS regression on political and demographic predictors.
                     </p>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
@@ -1604,7 +1675,7 @@
                         <span class="tech-tag">Altair</span>
                         <span class="tech-tag">Chart.js</span>
                     </div>
-                    <a href="project-geography-of-rights.html" class="project-link">Explore Project →</a>
+                    <a href="project-geography-of-rights.html" class="project-link" aria-label="Explore The Geography of Rights project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1629,7 +1700,7 @@
                         <span class="tech-tag">Chart.js</span>
                         <span class="tech-tag">USSC Data</span>
                     </div>
-                    <a href="project-sentenced-differently.html" class="project-link">Explore Project →</a>
+                    <a href="project-sentenced-differently.html" class="project-link" aria-label="Explore Sentenced Differently project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1645,7 +1716,7 @@
                     <div class="project-category">Web Development · Nonprofit</div>
                     <h3>Project Unity NFP Site Rebuild</h3>
                     <p class="project-description">
-                        A static-site rebuild for Project Unity NFP — multi-page architecture covering Catalyst Academy cohorts,
+                        A static-site rebuild for Project Unity NFP: multi-page architecture covering Catalyst Academy cohorts,
                         Y-PHIC programming, leadership and research, an interactive U.S. presence map, and Zeffy donation integration.
                         Designed as the foundation for a custom WordPress theme migration on SiteGround.
                     </p>
@@ -1655,7 +1726,7 @@
                         <span class="tech-tag">JavaScript</span>
                         <span class="tech-tag">WordPress</span>
                     </div>
-                    <a href="project-unity.html" class="project-link">Explore Project →</a>
+                    <a href="project-unity.html" class="project-link" aria-label="Explore Project Unity NFP Site Rebuild project">Explore Project →</a>
                 </div>
             </div>
 
@@ -1679,7 +1750,7 @@
                         <span class="tech-tag">HTML</span>
                         <span class="tech-tag">GitHub Actions</span>
                     </div>
-                    <a href="project-publicpath.html" class="project-link">Explore Project →</a>
+                    <a href="project-publicpath.html" class="project-link" aria-label="Explore PublicPath Job and Partner Hub project">Explore Project →</a>
                 </div>
             </div>
         </div>
@@ -1771,7 +1842,7 @@
                 <div class="design-card-info">
                     <div class="design-card-cat" style="color: rgba(255,255,255,0.85);">Freelance Services</div>
                     <div class="design-card-title" style="color: var(--white);">View Pricing &amp; Packages</div>
-                    <div class="design-card-desc" style="color: rgba(255,255,255,0.85);">Website design, graphic design, and data analysis — transparent pricing for every budget.</div>
+                    <div class="design-card-desc" style="color: rgba(255,255,255,0.85);">Website design, graphic design, and data analysis: transparent pricing for every budget.</div>
                 </div>
             </a>
         </div>
@@ -1886,7 +1957,7 @@
             <h2 class="reveal delay-1">Let's<br><em>Connect</em></h2>
             <p class="reveal delay-2">
                 Whether you want to collaborate on a project, discuss the latest in data science,
-                or explore how data and design can work together — I'd love to hear from you.
+                or explore how data and design can work together, I'd love to hear from you.
             </p>
             <div class="contact-links reveal delay-3">
                 <a href="mailto:williamstahvia@gmail.com" class="contact-btn contact-btn-primary">Email Me</a>
@@ -1937,13 +2008,21 @@
 
         revealEls.forEach(el => revealObserver.observe(el));
 
-        // ─── PARALLAX HERO BG TEXT ───
-        window.addEventListener('scroll', () => {
-            const bgText = document.querySelector('.hero-bg-text');
-            if (bgText) {
-                bgText.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.3}px))`;
-            }
-        });
+        // ─── MOBILE NAV TOGGLE ───
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        if (navToggle && navMenu) {
+            navToggle.addEventListener('click', () => {
+                const isOpen = navMenu.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
 
         // ─── SMOOTH SCROLL ───
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
