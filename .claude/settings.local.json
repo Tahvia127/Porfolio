@@ -15,7 +15,13 @@
       "Bash(sed -i '' 's/rgba\\(139,26,42,0\\\\.2\\)/rgba\\(106,154,181,0.2\\)/g' pricing.html)",
       "Bash(sed -i '' 's/color: var\\(--crimson-bright\\);/color: var\\(--gold\\);/g' pricing.html)",
       "Bash(sed -i '' 's/background: var\\(--crimson-bright\\);/background: var\\(--gold\\);/g' pricing.html)",
-      "Bash(sed -i '' 's/border-color: var\\(--crimson-bright\\);/border-color: var\\(--gold\\);/g' pricing.html)"
+      "Bash(sed -i '' 's/border-color: var\\(--crimson-bright\\);/border-color: var\\(--gold\\);/g' pricing.html)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio add index.html pricing.html)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio status)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio commit -m ' *)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio add project-spellbound-bakery.html project-kickinit-314.html project-prelude-brand.html project-soccer-seniors.html project-alumni-basketball.html)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio log --oneline -5)",
+      "Bash(git -C /Users/latahviawilliams/Porfolio status --short)"
     ]
   }
 }

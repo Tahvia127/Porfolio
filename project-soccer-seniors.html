@@ -4,323 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STEAM Soccer Senior Night | La'Tahvia Williams</title>
-    <style>
-        :root {
-            --crimson: #6A9AB5;
-            --crimson-deep: #243F58;
-            --crimson-bright: #4A88AB;
-            --gold: #C8A85C;
-            --blue-text: #2E5F7A;
-            --cream: #F5F0E8;
-            --cream-dark: #EDE8DF;
-            --ink: #1C2B3A;
-            --ink-light: #3A526A;
-            --muted: #5A7A92;
-            --white: #FDFAF6;
-            --transition: cubic-bezier(0.76, 0, 0.24, 1);
-        }
-
-        /* Google Fonts Import */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Inter:wght@300;400;500;600;700&display=swap');
-
-        /* Base Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.7;
-            background: var(--cream);
-            color: var(--ink);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Headings - Cormorant Garamond */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        h1 { font-size: 4.5rem; font-weight: 700; }
-        h2 { font-size: 3rem; font-weight: 600; }
-        h3 { font-size: 2rem; font-weight: 600; }
-        h4 { font-size: 1.5rem; font-weight: 600; }
-        h5 { font-size: 1.25rem; font-weight: 600; }
-        h6 { font-size: 1rem; font-weight: 600; }
-
-        /* Body Text - Inter */
-        p, li, span, a, div { font-family: 'Inter', sans-serif; }
-        p { font-size: 1.05rem; line-height: 1.9; margin-bottom: 1.5rem; }
-
-        /* Special Elements */
-        .stat-number { font-family: 'Cormorant Garamond', serif; font-weight: 700; }
-        .project-category, .tech-tag, .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; }
-        button, .btn, .contact-btn, .project-link {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Responsive Typography */
-        @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.75rem; }
-            h4 { font-size: 1.35rem; }
-            p { font-size: 1rem; }
-        }
-        @media (max-width: 480px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        /* NAV */
-        nav {
-            background: rgba(245,240,232,0.95);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            padding: 1.2rem 5%;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(106,154,181,0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav .container {
-            max-width: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: 2px;
-            color: var(--ink);
-            text-decoration: none;
-        }
-        nav a {
-            color: var(--ink);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        nav a:hover { color: var(--crimson); }
-        nav a.back { color: var(--blue-text); font-weight: 600; }
-        nav a.back:hover { color: var(--crimson); }
-
-        /* HERO */
-        .hero {
-            background: var(--crimson-deep);
-            color: var(--white);
-            padding: 10rem 5% 6rem;
-            text-align: center;
-        }
-        .hero-container { max-width: 1000px; margin: 0 auto; }
-        .project-category {
-            color: rgba(255,255,255,0.85);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: rgba(255,255,255,0.88);
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-        }
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            flex-wrap: wrap;
-            color: rgba(255,255,255,0.75);
-            font-size: 1rem;
-        }
-
-        /* CONTENT */
-        .content { max-width: 1500px; margin: 0 auto; padding: 5rem 5%; }
-        .section { margin-bottom: 5rem; }
-        .section h2 { color: var(--ink); font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 1.5rem; }
-        .section h3 { color: var(--blue-text); font-size: clamp(1.4rem, 3vw, 2rem); margin: 2.5rem 0 1rem; }
-        .section p { color: var(--ink-light); font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.4rem; }
-
-        /* PROJECT DETAILS */
-        .project-details {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 6px;
-            margin: 3rem 0;
-            border: 1px solid rgba(106,154,181,0.15);
-        }
-        .detail-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .detail-item h3 {
-            color: var(--blue-text);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 0.5rem;
-        }
-        .detail-item p { color: var(--ink); font-size: 1rem; margin-bottom: 0; }
-
-        /* IMAGES */
-        img { max-width: 100%; height: auto; display: block; }
-        .full-width-img {
-            width: 100%;
-            max-width: 100%;
-            margin: 2.5rem auto;
-            display: block;
-            border-radius: 6px;
-        }
-
-        /* GALLERY */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            margin: 2.5rem 0;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 6px;
-            background: var(--white);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .gallery-item:hover img { transform: scale(1.03); }
-        .gallery-caption { padding: 1.2rem 1.5rem; font-size: 0.95rem; color: var(--ink-light); text-align: center; }
-        .gallery-caption h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--ink); margin-bottom: 0.5rem; }
-        .gallery-caption p { color: var(--ink-light); font-size: 0.9rem; margin-bottom: 0; }
-
-        /* TECH STACK */
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
-        .tech-badge {
-            background: var(--crimson);
-            color: var(--white);
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        /* CTA */
-        .cta-section {
-            background: var(--crimson-deep);
-            color: var(--white);
-            padding: 6rem 5%;
-            text-align: center;
-        }
-        .cta-section h2 {
-            color: var(--white);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-        }
-        .cta-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.4rem;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 1.5px solid var(--white);
-            color: var(--white);
-            text-decoration: none;
-            transition: background 0.3s, color 0.3s;
-            border-radius: 2px;
-        }
-        .btn:hover { background: var(--white); color: var(--ink); }
-        .btn-primary { background: var(--gold); border-color: var(--gold); color: var(--ink); }
-        .btn-primary:hover { background: #b8963f; border-color: #b8963f; color: var(--ink); }
-        .btn-secondary { border: 1.5px solid var(--white); color: var(--white); }
-        .btn-secondary:hover { background: var(--white); color: var(--ink); }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero { padding: 8rem 5% 4rem; }
-            .hero h1 { font-size: clamp(2.5rem, 10vw, 4rem); }
-            .gallery { grid-template-columns: 1fr; }
-            .detail-grid { grid-template-columns: 1fr; }
-            nav { flex-wrap: wrap; gap: 0.5rem; }
-        }
-        @media (max-width: 480px) {
-            .content { padding: 3rem 4%; }
-            .hero { padding: 7rem 4% 3rem; }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="project-styles.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav aria-label="Site navigation">
-        <a href="index.html" class="back nav-logo">La'Tahvia Williams</a>
-        <div style="display:flex;gap:2rem;align-items:center;">
+        <a href="index.html" class="nav-logo">La'Tahvia Williams</a>
+        <div class="nav-links">
             <a href="index.html">Portfolio</a>
             <a href="pricing.html">Pricing</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="project-category">Sports Photography • Graphic Design • Editorial Design</div>
-            <h1>STEAM Soccer Senior Night</h1>
-            <p class="hero-subtitle">
-                Professional senior night posters combining portrait photography with dynamic sports graphics for STEAM Academy high school soccer team
-            </p>
+    <header class="hero" id="main-content">
+        <div class="hero-inner">
+            <p class="category">Sports Photography · Graphic Design · Editorial Design</p>
+            <h1>STEAM Soccer<br><em>Senior Night Posters</em></h1>
+            <p class="subtitle">Professional senior night posters combining portrait photography with dynamic sports graphics for STEAM Academy's high school soccer team — four athletes, one cohesive identity.</p>
             <div class="hero-meta">
-                <span>Photography & Design</span>
-                <span>•</span>
-                <span>4 Senior Players</span>
-                <span>•</span>
-                <span>2024</span>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Type</p>
+                    <p class="hero-meta-value">Photography &amp; Design</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Athletes</p>
+                    <p class="hero-meta-value">4 Senior Players</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Year</p>
+                    <p class="hero-meta-value">2024</p>
+                </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <div class="content">
-        <section class="section">
-            <h2>Project Overview</h2>
+    <main id="main-content-body" class="body-section">
+        <div class="body-inner">
+            <p class="section-label">Project Overview</p>
+            <h2>Photography meets design — <em>from shoot to final poster</em>.</h2>
             <p>
                 For STEAM Academy's 2024 soccer season, I created a complete senior night poster series celebrating four graduating players. This project combined my photography and graphic design skills, I conducted the teen portrait photo shoots, then designed dramatic sports posters using Adobe Illustrator and Photoshop.
             </p>
@@ -349,9 +72,7 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Design Process</h2>
             <p>
                 The project began with coordinated portrait sessions where I photographed each senior in their soccer uniforms. I directed poses that showcased their confidence and connection to the sport (holding soccer balls) standing in athletic stances, and capturing their personalities beyond just being athletes.
@@ -362,9 +83,7 @@
             <p>
                 The typography system features bold, italic letterforms for player names that convey motion and energy, complemented by the clean "STEAM SOCCER" branding at the top. Each player's jersey number is subtly integrated into the background design, creating depth and personalization. The "SENIOR 2024" designation anchors each composition while marking this milestone moment in their athletic careers.
             </p>
-        </section>
 
-        <section class="section">
             <h2>Senior Poster Gallery</h2>
 
             <div class="gallery">
@@ -372,7 +91,7 @@
                     <img src="photos/42c57145-bbdc-4b9f-9759-692809640dc1_rw_1920.png" alt="Shawn Smith Senior Poster">
                     <div class="gallery-caption">
                         <h4>Shawn Smith</h4>
-                        <p>Senior 2024 • #20 • Dramatic blue jersey composition</p>
+                        <p>Senior 2024 · #20 · Dramatic blue jersey composition</p>
                     </div>
                 </div>
 
@@ -380,7 +99,7 @@
                     <img src="photos/b4e1ec12-b655-47da-9769-8b52f7686101_rw_1920.png" alt="Ne'Miah Barnett Senior Poster">
                     <div class="gallery-caption">
                         <h4>Ne'Miah Barnett</h4>
-                        <p>Senior 2024 • #10 • Confident portrait with soccer ball</p>
+                        <p>Senior 2024 · #10 · Confident portrait with soccer ball</p>
                     </div>
                 </div>
 
@@ -388,7 +107,7 @@
                     <img src="photos/7a9eabac-d78b-4b37-a5d8-93269e8ce3d1_rw_1920.png" alt="Roshad Gregory Senior Poster">
                     <div class="gallery-caption">
                         <h4>Roshad Gregory</h4>
-                        <p>Senior 2024 • #13 • White jersey alternate design</p>
+                        <p>Senior 2024 · #13 · White jersey alternate design</p>
                     </div>
                 </div>
 
@@ -396,14 +115,12 @@
                     <img src="photos/fdce7e60-0ba2-4782-977a-c26d8749cf5e_rw_1920.png" alt="Jaidon Evans Senior Poster">
                     <div class="gallery-caption">
                         <h4>Jaidon Evans</h4>
-                        <p>Senior 2024 • #17 • Dynamic pose with elevated ball</p>
+                        <p>Senior 2024 · #17 · Dynamic pose with elevated ball</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <h2>Results & Impact</h2>
+            <h2>Results &amp; Impact</h2>
             <p>
                 The senior night posters successfully celebrated each athlete while creating a unified visual campaign for STEAM Academy's soccer program. The dramatic, professional designs elevated the standard senior night experience, providing families with high-quality keepsakes commemorating their students' athletic achievements.
             </p>
@@ -413,29 +130,33 @@
             <p>
                 The project demonstrated my ability to execute complete creative campaigns from concept through delivery, combining technical photography skills with advanced graphic design capabilities. The posters were displayed at the senior night ceremony and became treasured mementos for graduating athletes and their families.
             </p>
-        </section>
 
-        <section class="section">
-            <h2>Tools & Techniques</h2>
+            <h2>Tools &amp; Techniques</h2>
             <div class="tech-stack">
-                <span class="tech-badge">Photography</span>
-                <span class="tech-badge">Adobe Photoshop</span>
-                <span class="tech-badge">Adobe Illustrator</span>
-                <span class="tech-badge">Photo Editing</span>
-                <span class="tech-badge">Photo Compositing</span>
-                <span class="tech-badge">Typography</span>
-                <span class="tech-badge">Sports Graphics</span>
-                <span class="tech-badge">Print Design</span>
+                <span class="tech-tag">Photography</span>
+                <span class="tech-tag">Adobe Photoshop</span>
+                <span class="tech-tag">Adobe Illustrator</span>
+                <span class="tech-tag">Photo Editing</span>
+                <span class="tech-tag">Photo Compositing</span>
+                <span class="tech-tag">Typography</span>
+                <span class="tech-tag">Sports Graphics</span>
+                <span class="tech-tag">Print Design</span>
             </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
-    <section class="cta-section">
+    <section class="cta">
         <h2>See More Work</h2>
+        <p>More design and photography projects in my portfolio.</p>
         <div class="cta-buttons">
-            <a href="index.html#design" class="btn btn-secondary">More Design Projects</a>
-            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+            <a href="https://github.com/Tahvia127" target="_blank" rel="noopener noreferrer" class="btn primary">View on GitHub</a>
+            <a href="index.html" class="btn">Back to Portfolio</a>
         </div>
     </section>
+
+    <footer>
+        <p>© 2026 La'Tahvia Williams &middot; <a href="mailto:williamstahvia@gmail.com">williamstahvia@gmail.com</a></p>
+        <p style="margin-top:0.5rem;"><a href="index.html" style="font-size:0.78rem;text-transform:uppercase;letter-spacing:2px;">Back to Portfolio</a></p>
+    </footer>
 </body>
 </html>

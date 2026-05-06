@@ -4,432 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hashtags for Change | La'Tahvia Williams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="project-styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        /* ==========================================
-   CONSISTENT TYPOGRAPHY SYSTEM
-   Copy this entire section to ALL your HTML pages
-   ========================================== */
-
-        /* Google Fonts Import */
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Inter:wght@300;400;500;600;700&display=swap');
-
-        /* Base Typography */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Headings - Cormorant Garamond */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            line-height: 1.2;
-        }
-
-        h1 {
-            font-size: 4.5rem;
-            font-weight: 700;
-        }
-
-        h2 {
-            font-size: 3rem;
-            font-weight: 600;
-        }
-
-        h3 {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        h5 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        h6 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* Body Text - Inter */
-        p, li, span, a, div {
-            font-family: 'Inter', sans-serif;
-        }
-
-        p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Special Elements */
-        .stat-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
-        }
-
-        .project-category,
-        .tech-tag,
-        .tech-badge {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-weight: 400;
-        }
-
-        /* Buttons */
-        button, .btn, .contact-btn, .project-link {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Navigation */
-        nav, nav a {
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-        }
-
-        /* Responsive Typography */
-        @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.5rem; }
-            h3 { font-size: 1.75rem; }
-            h4 { font-size: 1.35rem; }
-            p { font-size: 1rem; }
-        }
-
-        @media (max-width: 480px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        nav { background: rgba(245,240,232,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); padding: 1.5rem 5%; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; border-bottom: 1px solid rgba(106,154,181,0.1); }
-nav .container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-nav a { color: #1A1410; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.78rem; font-weight: 500; transition: color 0.3s; }
-nav a:hover { color: #8B1A2A; }
-nav a.back::before, nav .container a:first-child::before { content: "← "; color: #8B1A2A; }
-
-        .hero {
-            background: var(--crimson-deep);
-            color: #FFFFFF;
-            padding: 10rem 5% 6rem;
-            text-align: center;
-        }
-
-        .hero-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .project-category {
-            color: #fce4ec;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: #ffcccb;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            color: #ffcccb;
-            font-size: 0.9rem;
-        }
-
-        .content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
-
-        .section {
-            margin-bottom: 5rem;
-        }
-
-        .section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #000000;
-        }
-
-        .section h3 {
-            font-size: 2rem;
-            margin: 3rem 0 1.5rem;
-            color: #e74c3c;
-        }
-
-        .section p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-            color: #444444;
-        }
-
-        .callout {
-            background: #fff5f5;
-            border-left: 4px solid #e74c3c;
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 5px;
-        }
-
-        .callout h3 {
-            margin-top: 0;
-            color: #c0392b;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .stat-card {
-            background: #FFFFFF;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 600;
-            color: #e74c3c;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-        }
-
-        .findings-list {
-            background: #FFFFFF;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin: 3rem 0;
-        }
-
-        .findings-list ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .findings-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #eeeeee;
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .findings-list li:last-child {
-            border-bottom: none;
-        }
-
-        .findings-list li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .methodology {
-            background: #f8f9fa;
-            padding: 3rem;
-            border-radius: 10px;
-            margin: 3rem 0;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .tech-badge {
-            background: #e74c3c;
-            color: #FFFFFF;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-        }
-
-        .cta-section {
-            background: #1A1410;
-            color: #FFFFFF;
-            padding: 4rem 5%;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #FFFFFF;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            display: inline-block;
-            border-radius: 5px;
-        }
-
-        .btn-primary {
-            background: #e74c3c;
-            color: #FFFFFF;
-        }
-
-        .btn-primary:hover {
-            background: #c0392b;
-        }
-
-        .btn-secondary {
-            border: 1px solid #FFFFFF;
-            color: #FFFFFF;
-        }
-
-        .btn-secondary:hover {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section h2 { font-size: 2.5rem; }
-            .hero-meta { gap: 1rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="index.html">Back to Portfolio</a>
-            <a href="https://github.com/tahviawilliams" target="_blank">GitHub</a>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <nav aria-label="Site navigation">
+        <a href="index.html" class="nav-logo">La'Tahvia Williams</a>
+        <div class="nav-links">
+            <a href="index.html">Portfolio</a>
+            <a href="pricing.html">Pricing</a>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="project-category">Social Media Analytics • Digital Activism</div>
-            <h1>Hashtags for Change</h1>
-            <p class="hero-subtitle">
-                Analyzing the Impact of Digital Activism on Real-World Conflict Awareness
-            </p>
+    <header class="hero" id="main-content">
+        <div class="hero-inner">
+            <p class="category">Social Media Analytics · Digital Activism</p>
+            <h1>Hashtags for Change:<br><em>Digital Activism &amp; Conflict Awareness</em></h1>
+            <p class="subtitle">Analyzing the impact of digital activism on real-world conflict awareness — examining whether hashtag movements translate into measurable changes in public attention.</p>
             <div class="hero-meta">
-                <span>Social Media Analysis</span>
-                <span>•</span>
-                <span>Natural Language Processing</span>
-                <span>•</span>
-                <span>DATA 23700</span>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Type</p>
+                    <p class="hero-meta-value">Social Media Analysis</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Method</p>
+                    <p class="hero-meta-value">Natural Language Processing</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Course</p>
+                    <p class="hero-meta-value">DATA 23700</p>
+                </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <div class="content">
-        <section class="section">
-            <h2>Research Question</h2>
+    <main id="main-content-body" class="body-section">
+        <div class="body-inner">
+            <p class="section-label">Research Question</p>
+            <h2>Do hashtag campaigns <em>actually</em> move public attention?</h2>
             <p>
-                In an era where hashtags can trend globally within hours, a critical question emerges: Do social media 
-                campaigns actually influence awareness and response to humanitarian crises? This project investigates 
-                the relationship between digital activism and real-world conflict events, examining whether online 
+                In an era where hashtags can trend globally within hours, a critical question emerges: Do social media
+                campaigns actually influence awareness and response to humanitarian crises? This project investigates
+                the relationship between digital activism and real-world conflict events, examining whether online
                 engagement correlates with on-ground impact.
             </p>
             <p>
-                By analyzing millions of social media posts across major global conflicts, I sought to understand if 
-                hashtag movements like #FreePalestine, #StandWithUkraine, and #SaveYemen translate into measurable 
+                By analyzing millions of social media posts across major global conflicts, I sought to understand if
+                hashtag movements like #FreePalestine, #StandWithUkraine, and #SaveYemen translate into measurable
                 changes in public attention, policy discourse, or humanitarian response.
             </p>
 
             <div class="callout">
                 <h3>Core Hypothesis</h3>
                 <p>
-                    Social media engagement around conflict-related hashtags correlates with real-world event severity 
-                    and timing, but Western-centric platforms disproportionately amplify conflicts aligned with 
+                    Social media engagement around conflict-related hashtags correlates with real-world event severity
+                    and timing, but Western-centric platforms disproportionately amplify conflicts aligned with
                     geopolitical interests rather than humanitarian need.
                 </p>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Key Findings</h2>
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">11</div>
-                    <div class="stat-label">Global Conflicts Analyzed</div>
+                    <span class="stat-number">11</span>
+                    <span class="stat-label">Global Conflicts Analyzed</span>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">884K+</div>
-                    <div class="stat-label">Conflict Events (ACLED Data)</div>
+                    <span class="stat-number">884K+</span>
+                    <span class="stat-label">Conflict Events (ACLED Data)</span>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">Millions</div>
-                    <div class="stat-label">Social Media Posts Tracked</div>
+                    <span class="stat-number">Millions</span>
+                    <span class="stat-label">Social Media Posts Tracked</span>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Major Platforms Analyzed</div>
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Major Platforms Analyzed</span>
                 </div>
             </div>
 
@@ -437,47 +91,45 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 <h3>Research Discoveries</h3>
                 <ul>
                     <li>
-                        <strong>Attention Disparity:</strong> Conflicts with Western strategic importance receive 
-                        dramatically higher social media engagement regardless of humanitarian severity. Ukraine-related 
+                        <strong>Attention Disparity:</strong> Conflicts with Western strategic importance receive
+                        dramatically higher social media engagement regardless of humanitarian severity. Ukraine-related
                         hashtags dominated discourse despite Yemen experiencing higher casualty rates.
                     </li>
                     <li>
-                        <strong>Event-Driven Spikes:</strong> Social media activity correlates strongly with specific 
-                        dramatic events (attacks, policy changes) rather than sustained humanitarian need, creating 
+                        <strong>Event-Driven Spikes:</strong> Social media activity correlates strongly with specific
+                        dramatic events (attacks, policy changes) rather than sustained humanitarian need, creating
                         episodic rather than systemic awareness.
                     </li>
                     <li>
-                        <strong>Sentiment Patterns:</strong> NLP analysis revealed that Western conflicts receive more 
-                        nuanced sentiment (calls for diplomacy, policy discussion), while non-Western conflicts receive 
+                        <strong>Sentiment Patterns:</strong> NLP analysis revealed that Western conflicts receive more
+                        nuanced sentiment (calls for diplomacy, policy discussion), while non-Western conflicts receive
                         more performative activism (#ThoughtsAndPrayers style engagement).
                     </li>
                     <li>
-                        <strong>Platform Differences:</strong> Twitter/X showed highest political discourse, Instagram 
-                        focused on visual storytelling, while TikTok demonstrated youngest demographic engagement with 
+                        <strong>Platform Differences:</strong> Twitter/X showed highest political discourse, Instagram
+                        focused on visual storytelling, while TikTok demonstrated youngest demographic engagement with
                         shortest attention spans.
                     </li>
                     <li>
-                        <strong>Temporal Decay:</strong> Most conflict hashtags showed rapid engagement decay after 
+                        <strong>Temporal Decay:</strong> Most conflict hashtags showed rapid engagement decay after
                         initial events, with median half-life of 7-10 days regardless of ongoing humanitarian crisis.
                     </li>
                 </ul>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Data Visualizations</h2>
 
             <div class="callout">
                 <h3>Visualization 1: Conflict Events by Country</h3>
                 <p>
-                    Distribution of 884,216 conflict events across analyzed countries from ACLED database. Yemen 
-                    experienced the highest number of recorded events, yet received disproportionately low social 
+                    Distribution of 884,216 conflict events across analyzed countries from ACLED database. Yemen
+                    experienced the highest number of recorded events, yet received disproportionately low social
                     media attention compared to Ukraine.
                 </p>
             </div>
 
-            <div style="background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0;">
-                <div style="height: 400px;">
+            <div class="chart-container">
+                <div class="chart-wrapper">
                     <canvas id="conflictEventsChart"></canvas>
                 </div>
             </div>
@@ -485,14 +137,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="callout">
                 <h3>Visualization 2: Social Media Engagement vs. Casualties</h3>
                 <p>
-                    Comparison showing the stark attention disparity: conflicts with Western strategic importance 
-                    receive dramatically higher engagement regardless of humanitarian severity. The data reveals 
+                    Comparison showing the stark attention disparity: conflicts with Western strategic importance
+                    receive dramatically higher engagement regardless of humanitarian severity. The data reveals
                     systemic bias in global attention patterns.
                 </p>
             </div>
 
-            <div style="background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0;">
-                <div style="height: 450px;">
+            <div class="chart-container">
+                <div class="chart-wrapper" style="height:450px;">
                     <canvas id="attentionDisparityChart"></canvas>
                 </div>
             </div>
@@ -500,14 +152,14 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="callout">
                 <h3>Visualization 3: Hashtag Engagement Over Time</h3>
                 <p>
-                    Temporal analysis showing rapid engagement spikes following major events, followed by quick decay. 
-                    Most conflict hashtags show median half-life of 7-10 days, demonstrating the ephemeral nature of 
+                    Temporal analysis showing rapid engagement spikes following major events, followed by quick decay.
+                    Most conflict hashtags show median half-life of 7-10 days, demonstrating the ephemeral nature of
                     digital activism.
                 </p>
             </div>
 
-            <div style="background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0;">
-                <div style="height: 400px;">
+            <div class="chart-container">
+                <div class="chart-wrapper">
                     <canvas id="engagementTimelineChart"></canvas>
                 </div>
             </div>
@@ -515,159 +167,150 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
             <div class="callout">
                 <h3>Visualization 4: Sentiment Analysis by Conflict</h3>
                 <p>
-                    NLP sentiment analysis revealing that Western conflicts receive more nuanced discourse (policy 
-                    discussion, diplomatic solutions), while non-Western conflicts receive more performative activism 
+                    NLP sentiment analysis revealing that Western conflicts receive more nuanced discourse (policy
+                    discussion, diplomatic solutions), while non-Western conflicts receive more performative activism
                     and generic humanitarian responses.
                 </p>
             </div>
 
-            <div style="background: white; padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0;">
-                <div style="height: 400px;">
+            <div class="chart-container">
+                <div class="chart-wrapper">
                     <canvas id="sentimentChart"></canvas>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Methodology</h2>
 
-            <div class="methodology">
-                <h3>Data Collection & Processing</h3>
+            <div class="methodology-box">
+                <h3>Data Collection &amp; Processing</h3>
                 <p>
-                    <strong>Conflict Event Data:</strong> Utilized the Armed Conflict Location & Event Data (ACLED) 
-                    project's comprehensive dataset covering 884,216 conflict events across 11 countries including 
+                    <strong>Conflict Event Data:</strong> Utilized the Armed Conflict Location &amp; Event Data (ACLED)
+                    project's comprehensive dataset covering 884,216 conflict events across 11 countries including
                     Ukraine, Palestine, Yemen, Syria, Myanmar, Afghanistan, Ethiopia, and others.
                 </p>
                 <p>
-                    <strong>Social Media Data:</strong> Collected posts using platform APIs (Twitter API v2, Instagram 
-                    Graph API, Reddit API) and web scraping tools for platforms without robust API access. Tracked 
-                    conflict-specific hashtags including #Ukraine, #Palestine, #Yemen, #StandWith[Country], and 
+                    <strong>Social Media Data:</strong> Collected posts using platform APIs (Twitter API v2, Instagram
+                    Graph API, Reddit API) and web scraping tools for platforms without robust API access. Tracked
+                    conflict-specific hashtags including #Ukraine, #Palestine, #Yemen, #StandWith[Country], and
                     related variations.
                 </p>
                 <p>
-                    <strong>Temporal Alignment:</strong> Synchronized social media engagement data with ACLED event 
+                    <strong>Temporal Alignment:</strong> Synchronized social media engagement data with ACLED event
                     timelines to identify correlations between real-world incidents and online discussion spikes.
                 </p>
             </div>
 
             <h3>Analysis Techniques</h3>
             <p>
-                <strong>Natural Language Processing:</strong> Applied sentiment analysis using VADER and transformer-based 
-                models to classify post sentiment and extract themes. Used topic modeling (LDA) to identify dominant 
+                <strong>Natural Language Processing:</strong> Applied sentiment analysis using VADER and transformer-based
+                models to classify post sentiment and extract themes. Used topic modeling (LDA) to identify dominant
                 narratives across conflicts.
             </p>
             <p>
-                <strong>Time Series Analysis:</strong> Examined engagement patterns over time, identifying event-driven 
-                spikes versus sustained attention. Calculated correlation coefficients between casualty events and 
+                <strong>Time Series Analysis:</strong> Examined engagement patterns over time, identifying event-driven
+                spikes versus sustained attention. Calculated correlation coefficients between casualty events and
                 hashtag volume.
             </p>
             <p>
-                <strong>Comparative Analysis:</strong> Normalized engagement metrics across conflicts to account for 
-                baseline platform activity and population differences, enabling fair comparison between Ukraine 
+                <strong>Comparative Analysis:</strong> Normalized engagement metrics across conflicts to account for
+                baseline platform activity and population differences, enabling fair comparison between Ukraine
                 (high Western engagement) and Yemen (low engagement despite higher casualties).
             </p>
-        </section>
 
-        <section class="section">
             <h2>Implications</h2>
             <p>
-                This research reveals fundamental limitations in digital activism as a mechanism for equitable 
-                humanitarian attention. While social media can rapidly mobilize awareness for strategically important 
+                This research reveals fundamental limitations in digital activism as a mechanism for equitable
+                humanitarian attention. While social media can rapidly mobilize awareness for strategically important
                 conflicts, it systematically neglects crises lacking Western geopolitical salience.
             </p>
             <p>
-                The findings challenge assumptions about social media democratizing global attention. Instead, 
-                platforms appear to amplify existing power structures, with algorithms prioritizing engagement-driven 
-                content over humanitarian need. Yemen's 165,446 deaths generating less online discussion than conflicts 
+                The findings challenge assumptions about social media democratizing global attention. Instead,
+                platforms appear to amplify existing power structures, with algorithms prioritizing engagement-driven
+                content over humanitarian need. Yemen's 165,446 deaths generating less online discussion than conflicts
                 with 400x fewer casualties demonstrates this attention inequality.
             </p>
 
             <div class="callout">
                 <h3>Policy Recommendations</h3>
                 <p>
-                    For humanitarian organizations: Diversify awareness strategies beyond hashtag campaigns. Invest in 
-                    sustained storytelling that transcends episodic news cycles. Partner with influencers in 
+                    For humanitarian organizations: Diversify awareness strategies beyond hashtag campaigns. Invest in
+                    sustained storytelling that transcends episodic news cycles. Partner with influencers in
                     under-covered regions to build authentic audience connections.
                 </p>
                 <p>
-                    For platforms: Consider algorithmic adjustments that surface humanitarian crises based on severity 
-                    metrics rather than purely engagement-driven ranking. Develop "crisis awareness" features that 
+                    For platforms: Consider algorithmic adjustments that surface humanitarian crises based on severity
+                    metrics rather than purely engagement-driven ranking. Develop "crisis awareness" features that
                     contextualize trending conflicts with data on casualties, displacement, and aid needs.
                 </p>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Technical Implementation</h2>
             <p>
-                The analysis pipeline combined large-scale data collection with sophisticated NLP techniques. Twitter 
-                API collected real-time posts matching conflict hashtags, while historical data came from academic 
+                The analysis pipeline combined large-scale data collection with sophisticated NLP techniques. Twitter
+                API collected real-time posts matching conflict hashtags, while historical data came from academic
                 Twitter archives. Instagram scraping used Selenium for posts public figures and news organizations.
             </p>
             <p>
-                Sentiment analysis employed VADER for quick classification and RoBERTa transformer models for nuanced 
-                understanding of political discourse. Topic modeling with Latent Dirichlet Allocation identified 
-                dominant themes: for Ukraine, topics included "invasion," "sanctions," "refugees"; for Yemen, topics 
+                Sentiment analysis employed VADER for quick classification and RoBERTa transformer models for nuanced
+                understanding of political discourse. Topic modeling with Latent Dirichlet Allocation identified
+                dominant themes: for Ukraine, topics included "invasion," "sanctions," "refugees"; for Yemen, topics
                 were vaguer: "humanitarian," "crisis," "suffering."
             </p>
             <p>
-                Visualizations created with Python (Matplotlib, Seaborn) showed temporal engagement patterns, 
-                geographic distribution of posts, and sentiment evolution over time. Interactive dashboards built 
+                Visualizations created with Python (Matplotlib, Seaborn) showed temporal engagement patterns,
+                geographic distribution of posts, and sentiment evolution over time. Interactive dashboards built
                 with Plotly allowed exploration of individual conflicts and platform comparisons.
             </p>
-        </section>
 
-        <section class="section">
-            <h2>Limitations & Future Research</h2>
+            <h2>Limitations &amp; Future Research</h2>
             <p>
-                This study faced several constraints. Platform API access limitations meant some data came from scraping 
-                rather than comprehensive collection. Language barriers limited analysis primarily to English-language 
+                This study faced several constraints. Platform API access limitations meant some data came from scraping
+                rather than comprehensive collection. Language barriers limited analysis primarily to English-language
                 posts, potentially missing local discourse in conflict regions.
             </p>
             <p>
-                Bot detection and filtering removed obvious automated accounts, but sophisticated influence campaigns 
-                may have remained. The correlation between social media engagement and real-world impact (policy changes, 
+                Bot detection and filtering removed obvious automated accounts, but sophisticated influence campaigns
+                may have remained. The correlation between social media engagement and real-world impact (policy changes,
                 aid funding) remains difficult to establish causally.
             </p>
             <p>
-                Future research should expand to non-English languages, incorporate more granular geolocation data, and 
-                establish clearer causal links between online activism and tangible humanitarian outcomes. Longitudinal 
-                studies tracking the same conflicts over years would reveal whether attention patterns evolve or remain 
+                Future research should expand to non-English languages, incorporate more granular geolocation data, and
+                establish clearer causal links between online activism and tangible humanitarian outcomes. Longitudinal
+                studies tracking the same conflicts over years would reveal whether attention patterns evolve or remain
                 consistently biased toward Western interests.
             </p>
-        </section>
 
-        <section class="section">
-            <h2>Tools & Technologies</h2>
+            <h2>Tools &amp; Technologies</h2>
             <div class="tech-stack">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Twitter API</span>
-                <span class="tech-badge">NLP</span>
-                <span class="tech-badge">VADER Sentiment</span>
-                <span class="tech-badge">Transformers</span>
-                <span class="tech-badge">Selenium</span>
-                <span class="tech-badge">pandas</span>
-                <span class="tech-badge">Plotly</span>
-                <span class="tech-badge">ACLED Data</span>
-                <span class="tech-badge">LDA Topic Modeling</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Twitter API</span>
+                <span class="tech-tag">NLP</span>
+                <span class="tech-tag">VADER Sentiment</span>
+                <span class="tech-tag">Transformers</span>
+                <span class="tech-tag">Selenium</span>
+                <span class="tech-tag">pandas</span>
+                <span class="tech-tag">Plotly</span>
+                <span class="tech-tag">ACLED Data</span>
+                <span class="tech-tag">LDA Topic Modeling</span>
             </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
-    <section class="cta-section">
+    <section class="cta">
         <h2>Explore More Projects</h2>
+        <p>Full analysis and code on GitHub.</p>
         <div class="cta-buttons">
-            <a href="index.html#projects" class="btn btn-secondary">All Projects</a>
-            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+            <a href="https://github.com/Tahvia127" target="_blank" rel="noopener noreferrer" class="btn primary">View on GitHub</a>
+            <a href="index.html" class="btn">Back to Portfolio</a>
         </div>
     </section>
 
-    <script>
-        // Chart.js configuration
-        Chart.defaults.font.family = "'Aileron', sans-serif";
-        Chart.defaults.font.size = 12;
-        Chart.defaults.color = '#666666';
+    <footer>
+        <p>© 2026 La'Tahvia Williams &middot; <a href="mailto:williamstahvia@gmail.com">williamstahvia@gmail.com</a></p>
+        <p style="margin-top:0.5rem;"><a href="index.html" style="font-size:0.78rem;text-transform:uppercase;letter-spacing:2px;">Back to Portfolio</a></p>
+    </footer>
 
+    <script>
         // 1. Conflict Events by Country
         const conflictCtx = document.getElementById('conflictEventsChart').getContext('2d');
         new Chart(conflictCtx, {
@@ -686,9 +329,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: false
-                    },
+                    legend: { display: false },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -744,10 +385,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
+                    legend: { display: true, position: 'top' },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -763,28 +401,12 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 },
                 scales: {
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Total Casualties',
-                            font: { size: 14 }
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return (value/1000) + 'K';
-                            }
-                        }
+                        title: { display: true, text: 'Total Casualties', font: { size: 14 } },
+                        ticks: { callback: function(value) { return (value/1000) + 'K'; } }
                     },
                     y: {
-                        title: {
-                            display: true,
-                            text: 'Social Media Posts',
-                            font: { size: 14 }
-                        },
-                        ticks: {
-                            callback: function(value) {
-                                return (value/1000000) + 'M';
-                            }
-                        }
+                        title: { display: true, text: 'Social Media Posts', font: { size: 14 } },
+                        ticks: { callback: function(value) { return (value/1000000) + 'M'; } }
                     }
                 }
             }
@@ -831,31 +453,17 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false
-                    }
+                    legend: { display: true, position: 'top' },
+                    tooltip: { mode: 'index', intersect: false }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
                         max: 100,
-                        title: {
-                            display: true,
-                            text: 'Engagement Level (% of Peak)',
-                            font: { size: 14 }
-                        }
+                        title: { display: true, text: 'Engagement Level (% of Peak)', font: { size: 14 } }
                     },
                     x: {
-                        title: {
-                            display: true,
-                            text: 'Days Since Event',
-                            font: { size: 14 }
-                        }
+                        title: { display: true, text: 'Days Since Event', font: { size: 14 } }
                     }
                 }
             }
@@ -894,10 +502,7 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
+                    legend: { display: true, position: 'top' },
                     tooltip: {
                         callbacks: {
                             label: function(context) {
@@ -907,23 +512,13 @@ nav a.back::before, nav .container a:first-child::before { content: "← "; colo
                     }
                 },
                 scales: {
-                    x: {
-                        stacked: true
-                    },
+                    x: { stacked: true },
                     y: {
                         stacked: true,
                         beginAtZero: true,
                         max: 100,
-                        ticks: {
-                            callback: function(value) {
-                                return value + '%';
-                            }
-                        },
-                        title: {
-                            display: true,
-                            text: 'Sentiment Distribution',
-                            font: { size: 14 }
-                        }
+                        ticks: { callback: function(value) { return value + '%'; } },
+                        title: { display: true, text: 'Sentiment Distribution', font: { size: 14 } }
                     }
                 }
             }

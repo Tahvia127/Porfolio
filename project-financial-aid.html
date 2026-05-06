@@ -4,117 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Aid Analysis | La'Tahvia Williams</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="project-styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-    <style>
-        :root {
-            --crimson:#6A9AB5; --crimson-deep:#243F58; --crimson-bright:#4A88AB; --gold:#C8A85C;
-            --cream:#F5F0E8; --cream-dark:#EDE5D8; --ink:#1C2B3A; --ink-light:#3A526A;
-            --muted:#5C5049; --white:#FDFAF6;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 400; line-height: 1.75; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; font-weight: 600; line-height: 1.2; }
-        h1 { font-size: 4.5rem; font-weight: 700; }
-        h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; }
-        h3 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; }
-        h4 { font-size: 1.5rem; font-weight: 600; }
-
-        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.4rem; color: var(--ink-light); }
-        li { font-size: 1.05rem; line-height: 1.7; margin-bottom: 0.7rem; }
-
-        .skip-link { position:absolute; top:-100%; left:1rem; background:var(--crimson); color:#fff; padding:0.7rem 1.4rem; font-size:0.9rem; font-weight:600; text-decoration:none; z-index:99999; border-radius:0 0 6px 6px; transition:top 0.2s; }
-        .skip-link:focus { top:0; }
-        :focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
-        a:focus-visible, button:focus-visible { outline: 3px solid var(--crimson); outline-offset: 3px; }
-
-        nav { position:fixed; top:0; left:0; right:0; padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; background:rgba(245,240,232,0.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:1000; border-bottom:1px solid rgba(106,154,181,0.12); }
-        nav a { font-family:'Inter',sans-serif; font-size:0.9rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--ink); text-decoration:none; transition:color 0.3s; }
-        nav a:hover { color:var(--crimson); }
-        nav .back { font-weight:600; color:var(--crimson); }
-        nav .back:hover { color:var(--crimson-bright); }
-        .nav-links { display:flex; gap:2rem; align-items:center; }
-        @media (max-width:600px) { .nav-links { display:none; } }
-
-        .hero { background: var(--crimson-deep); color: #FFFFFF; padding: 10rem 5% 6rem; text-align: center; }
-        .hero-container { max-width: 900px; margin: 0 auto; }
-        .hero .category { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.85); margin-bottom: 2rem; }
-        .hero h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; color: #fff; }
-        .hero h1 em { font-style: italic; color: #e8c97e; }
-        .hero .subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); color: rgba(255,255,255,0.85); margin-bottom: 3rem; line-height: 1.6; }
-        .hero-meta { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; color: rgba(255,255,255,0.75); font-size: 0.9rem; }
-
-        .content { max-width: 1400px; margin: 0 auto; padding: 4rem 5%; }
-        section.body { padding: 6rem 5% 8rem; }
-        .body-inner { max-width: 860px; margin: 0 auto; }
-
-        .section { margin-bottom: 5rem; }
-        .section h2 { margin-bottom: 2rem; color: var(--ink); }
-        .section h3 { margin: 2.5rem 0 1rem; color: var(--crimson); }
-        .section p { color: var(--ink-light); }
-
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 3rem 0; }
-        .stat-card { background: var(--white); padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 3px solid var(--crimson); }
-        .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--crimson); display: block; margin-bottom: 0.5rem; font-weight: 700; }
-        .stat-label { font-size: 0.85rem; color: var(--ink-light); text-transform: uppercase; letter-spacing: 1px; }
-
-        .highlight-box { background: var(--crimson-deep); color: #FFFFFF; padding: 3rem; border-radius: 10px; margin: 3rem 0; }
-        .highlight-box h3 { color: #FFFFFF !important; margin-top: 0; }
-        .highlight-box p { color: rgba(255,255,255,0.85); }
-
-        .findings-list { background: var(--white); padding: 2.5rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 2rem 0; }
-        .finding-item { padding: 1.5rem 0; border-bottom: 1px solid var(--cream-dark); font-size: 1.05rem; line-height: 1.7; color: var(--ink-light); }
-        .finding-item:last-child { border-bottom: none; }
-        .finding-item strong { color: var(--crimson); }
-
-        .visualization-container { background: var(--white); padding: 3rem; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 3rem 0; }
-        .viz-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 3vw, 1.8rem); color: var(--crimson); margin-bottom: 1rem; font-weight: 600; }
-        .viz-description { color: var(--ink-light); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.7; }
-
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin: 2rem 0; }
-        .tech-badge { background: var(--crimson); color: #FFFFFF; padding: 0.6rem 1.5rem; border-radius: 25px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif; font-weight: 500; }
-
-        .methodology-box { background: var(--cream-dark); padding: 2.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--crimson); }
-
-        .cta-section { background: var(--crimson-deep); color: var(--white); padding: 4rem 5%; text-align: center; }
-        .cta-section h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 2rem; color: var(--white); }
-        .cta-section p { color: rgba(255,255,255,0.85); }
-        .cta-buttons { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-        .btn { padding: 1.2rem 3rem; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-family: 'Inter', sans-serif; transition: all 0.3s; display: inline-block; border-radius: 5px; }
-        .btn-primary { background: var(--crimson); color: var(--white); }
-        .btn-primary:hover { background: var(--crimson-bright); }
-        .btn-secondary { border: 1px solid var(--white); color: var(--white); }
-        .btn-secondary:hover { background: var(--white); color: var(--ink); }
-
-        @media (max-width: 768px) {
-            .hero { padding: 8rem 5% 5rem; }
-            .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
-            .hero-meta { gap: 1.5rem; flex-direction: column; }
-            section.body { padding: 4rem 5%; }
-            h2 { font-size: clamp(1.7rem, 5vw, 2.5rem); }
-            h3 { font-size: 1.4rem; }
-            p { font-size: 1rem; }
-            .stats-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-            body { font-size: 1rem; }
-            .hero h1 { font-size: 2rem; }
-            nav { padding: 1rem 4%; }
-        }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
-    </style>
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <nav aria-label="Site navigation">
-        <a href="index.html" class="back">← La'Tahvia Williams</a>
+        <a href="index.html" class="nav-logo">La'Tahvia Williams</a>
         <div class="nav-links">
             <a href="index.html">Portfolio</a>
             <a href="pricing.html">Pricing</a>
@@ -122,25 +23,31 @@
     </nav>
 
     <header class="hero" id="main-content">
-        <div class="hero-container">
-            <div class="category">Policy Research · Data Journalism</div>
-            <h1>Financial Aid Analysis</h1>
-            <p class="subtitle">
-                Comparing UChicago's Financial Aid Competitiveness Across Elite Peer Institutions
-            </p>
+        <div class="hero-inner">
+            <p class="category">Policy Research · Data Journalism</p>
+            <h1>Financial Aid Analysis:<br><em>UChicago vs. Elite Peer Institutions</em></h1>
+            <p class="subtitle">Comparing UChicago's financial aid competitiveness across elite peer institutions — combining data analysis with investigative journalism to answer what families actually pay.</p>
             <div class="hero-meta">
-                <span>The Chicago Maroon</span>
-                <span>·</span>
-                <span>Investigative Journalism</span>
-                <span>·</span>
-                <span>2024-25</span>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Publication</p>
+                    <p class="hero-meta-value">The Chicago Maroon</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Type</p>
+                    <p class="hero-meta-value">Investigative Journalism</p>
+                </div>
+                <div class="hero-meta-item">
+                    <p class="hero-meta-label">Year</p>
+                    <p class="hero-meta-value">2024–25</p>
+                </div>
             </div>
         </div>
     </header>
 
-    <div class="content">
-        <section class="section">
-            <h2>Investigation Overview</h2>
+    <main id="main-content-body" class="body-section">
+        <div class="body-inner">
+            <p class="section-label">Investigation Overview</p>
+            <h2>Does UChicago's aid program <em>actually</em> create comparable affordability?</h2>
             <p>
                 As college costs continue to rise, prospective students and families increasingly rely on financial aid
                 packages to make higher education affordable. But how does the University of Chicago's financial aid
@@ -161,9 +68,7 @@
                     its financial aid program ensure comparable affordability for low and middle-income students?
                 </p>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Key Findings</h2>
 
             <div class="stats-grid">
@@ -212,9 +117,7 @@
                     student) creates structural constraints on middle-class aid expansion.
                 </div>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Interactive Data Visualizations</h2>
 
             <div class="visualization-container">
@@ -282,9 +185,7 @@
                     shows exactly where middle-income families face the "aid gap."
                 </p>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Methodology</h2>
 
             <div class="methodology-box">
@@ -322,9 +223,7 @@
                 Pandas to illustrate cost comparisons, aid package composition, and income-based coverage patterns
                 across the competitive landscape.
             </p>
-        </section>
 
-        <section class="section">
             <h2>Implications for Prospective Students</h2>
 
             <div class="highlight-box">
@@ -355,9 +254,7 @@
                     UChicago, applying for financial aid may reduce admission probability for international applicants.
                 </p>
             </div>
-        </section>
 
-        <section class="section">
             <h2>Journalistic Impact</h2>
             <p>
                 Published in The Chicago Maroon, this investigation generated significant campus discussion about
@@ -370,34 +267,33 @@
                 maintaining analytical rigor. The interactive visualizations allowed readers to explore scenarios
                 relevant to their own financial circumstances.
             </p>
-        </section>
 
-        <section class="section">
             <h2>Tools &amp; Technologies</h2>
             <div class="tech-stack">
-                <span class="tech-badge">Python</span>
-                <span class="tech-badge">Pandas</span>
-                <span class="tech-badge">Altair</span>
-                <span class="tech-badge">Vega-Lite</span>
-                <span class="tech-badge">IPEDS Data</span>
-                <span class="tech-badge">Jupyter Notebooks</span>
-                <span class="tech-badge">Data Journalism</span>
-                <span class="tech-badge">CDS Analysis</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">Altair</span>
+                <span class="tech-tag">Vega-Lite</span>
+                <span class="tech-tag">IPEDS Data</span>
+                <span class="tech-tag">Jupyter Notebooks</span>
+                <span class="tech-tag">Data Journalism</span>
+                <span class="tech-tag">CDS Analysis</span>
             </div>
-        </section>
-    </div>
+        </div>
+    </main>
 
-    <section class="cta-section">
+    <section class="cta">
         <h2>Explore More Projects</h2>
+        <p>Full analysis and interactive visualizations on GitHub.</p>
         <div class="cta-buttons">
-            <a href="index.html#projects" class="btn btn-secondary">All Projects</a>
-            <a href="index.html" class="btn btn-primary">Back to Portfolio</a>
+            <a href="https://github.com/Tahvia127" target="_blank" rel="noopener noreferrer" class="btn primary">View on GitHub</a>
+            <a href="index.html" class="btn">Back to Portfolio</a>
         </div>
     </section>
 
-    <footer style="background:var(--crimson-deep);color:rgba(255,255,255,0.7);text-align:center;padding:3rem 5%;font-family:'Inter',sans-serif;font-size:0.85rem;letter-spacing:1px;">
-        <p>© 2026 La'Tahvia Williams · <a href="mailto:williamstahvia@gmail.com" style="color:rgba(255,255,255,0.9);text-decoration:none;">williamstahvia@gmail.com</a></p>
-        <p style="margin-top:0.5rem;"><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;text-transform:uppercase;letter-spacing:2px;font-size:0.75rem;">← Back to Portfolio</a></p>
+    <footer>
+        <p>© 2026 La'Tahvia Williams &middot; <a href="mailto:williamstahvia@gmail.com">williamstahvia@gmail.com</a></p>
+        <p style="margin-top:0.5rem;"><a href="index.html" style="font-size:0.78rem;text-transform:uppercase;letter-spacing:2px;">Back to Portfolio</a></p>
     </footer>
 
     <script>
